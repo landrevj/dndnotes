@@ -10,7 +10,6 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    console
     @related_notes = @note.notes
   end
 
