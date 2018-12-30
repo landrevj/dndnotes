@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @note.content %>
+</p>
+
+<p>
+  <strong>Links to:</strong>
+  <% @outgoing_notes.each do |note| %>
+    <div><%= note.content %></div>
+    <div><%= note.id %></div>
+  <% end %>
+</p>
+<p>
+  <strong>Linked from</strong>
+  <% @incoming_notes.each do |note| %>
+    <div><%= note.content %></div>
+    <div><%= note.id %></div>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>
