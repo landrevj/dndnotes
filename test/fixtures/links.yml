@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: one
+  origin_type: Origin
+  linkable: one
+  linkable_type: Linkable
+
+two:
+  origin: two
+  origin_type: Origin
+  linkable: two
+  linkable_type: Linkable

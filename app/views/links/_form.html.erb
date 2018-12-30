@@ -1,0 +1,30 @@
+<%= form_with(model: link, local: true) do |form| %>
+  <% if link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% link.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :origin_id, value: params[:origin_id] %>
+  <%= form.hidden_field :origin_type, value: params[:origin_type] %>
+
+  <div class="field">
+    <%= form.label :linkable_type, "Type" %>
+    <%= form.text_field :linkable_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :linkable_id, 'ID' %>
+    <%= form.text_field :linkable_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

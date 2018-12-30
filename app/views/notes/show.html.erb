@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @note.content %>
+</p>
+
+<table>
+  <thead>
+    <th>Note</th>
+    <th>ID</th>
+    <th colspan="1"></th>
+  </thead>
+
+  <tbody>
+    <% @related_notes.each do |note| %>
+      <tr>
+        <td><%= note.content %></td>
+        <td><%= note.id %></td>
+        <td><%= link_to 'Unlink', Link.find_link([@note.id, @note.model_name.name],[note.id, note.model_name.name]).first, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %> |
+<%= link_to 'Link', new_link_path(origin_id: @note.id, origin_type: @note.model_name.name) %>
