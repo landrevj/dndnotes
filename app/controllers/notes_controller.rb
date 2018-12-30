@@ -10,9 +10,8 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @outgoing_notes = @note.outgoing_notes
-    @incoming_notes = @note.incoming_notes
     console
+    @related_notes = @note.notes
   end
 
   # GET /notes/new
