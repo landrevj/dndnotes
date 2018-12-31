@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_035851) do
+ActiveRecord::Schema.define(version: 2018_12_31_051314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2018_12_31_035851) do
     t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -29,8 +31,10 @@ ActiveRecord::Schema.define(version: 2018_12_31_035851) do
     t.bigint "linkable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id"
     t.index ["origin_type", "origin_id"], name: "index_links_on_origin_type_and_origin_id"
+    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -38,12 +42,16 @@ ActiveRecord::Schema.define(version: 2018_12_31_035851) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "quests", force: :cascade do |t|
@@ -51,6 +59,8 @@ ActiveRecord::Schema.define(version: 2018_12_31_035851) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_quests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,4 +82,9 @@ ActiveRecord::Schema.define(version: 2018_12_31_035851) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "campaigns", "users"
+  add_foreign_key "links", "users"
+  add_foreign_key "locations", "users"
+  add_foreign_key "notes", "users"
+  add_foreign_key "quests", "users"
 end

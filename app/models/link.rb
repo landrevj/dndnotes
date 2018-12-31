@@ -4,6 +4,8 @@ class Link < ApplicationRecord
   belongs_to :origin, polymorphic: true
   belongs_to :linkable, polymorphic: true
   
+  belongs_to :user
+  
   def self.find_link(one, another)
     Link.where('origin_id = ? AND origin_type = ? AND linkable_id = ? AND linkable_type = ? OR origin_id = ? AND origin_type = ? AND linkable_id = ? AND linkable_type = ?',
                        one[0],             one[1],         another[0],           another[1],      another[0],         another[1],             one[0],               one[1])
