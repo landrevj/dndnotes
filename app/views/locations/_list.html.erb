@@ -1,0 +1,18 @@
+<table>
+  <strong>Locations</strong>
+  <thead>
+    <th>Location</th>
+    <th>ID</th>
+    <th colspan="1"></th>
+  </thead>
+
+  <tbody>
+    <% locations.each do |location| %>
+      <tr>
+        <td><%= location.name %></td>
+        <td><%= location.id %></td>
+        <td><%= link_to 'Unlink', Link.find_link([id, type],[location.id, 'Location']).first, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

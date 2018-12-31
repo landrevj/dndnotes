@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :quests
+  resources :locations
+  resources :campaigns
   root 'static_pages#home'
   resources :links, only: [:new, :create, :destroy]
   resources :notes

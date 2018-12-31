@@ -6,11 +6,10 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
   end
-
+  
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @related_notes = @note.notes
   end
 
   # GET /notes/new
