@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 #################################
 # Use Devise for user authentication
 gem 'devise'
+# Use CanCanCan for authorization
+gem 'cancancan', '~> 2.3'
 # Use Rails Admin for admin page
 gem 'rails_admin', '~> 1.4'
 #################################
