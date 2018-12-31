@@ -15,8 +15,6 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
-    console
-  
     @link = current_user.links.build
   end
 
