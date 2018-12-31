@@ -1,8 +1,7 @@
 class Link < ApplicationRecord
   validates :origin_id, :origin_type, :linkable_id, :linkable_type, presence: true
   
-  validate :unique_link
-  validate :permissions
+  validate :unique_link, :permissions, :not_reflexive
 
   # validates :origin, presence: true
   # validates :linkable, presence: true
@@ -31,6 +30,12 @@ class Link < ApplicationRecord
     # check that the user owns both targets of the link
     if origin.user_id != self.user_id || linkable.user_id != self.user_id
       errors.add( :User, "doesn't own one end of that link")
+    end
+  end
+
+  def not_reflexive
+    if origin.id == linkable.id
+      errors.add(:Link, "cannot connect something to itself")
     end
   end
 end
