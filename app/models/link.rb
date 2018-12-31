@@ -1,5 +1,9 @@
 class Link < ApplicationRecord
   validate :unique_link
+  validate :permissions
+
+  validates :origin, presence: true
+  validates :linkable, presence: true
 
   belongs_to :origin, polymorphic: true
   belongs_to :linkable, polymorphic: true
@@ -14,9 +18,17 @@ class Link < ApplicationRecord
   private
 
   def unique_link
-    if Link.exists?(origin_id: origin.id, origin_type: origin.model_name.name, linkable_id: linkable.id, linkable_type: linkable.model_name.name) || 
-       Link.exists?(origin_id: linkable.id, origin_type: linkable.model_name.name, linkable_id: origin.id, linkable_type: origin.model_name.name)
+    # TODO: errors everywhere when invalid 
+    unless Link.find_link([origin.id, origin.class.name],[linkable.id, linkable.class.name]).empty?
       errors.add(:Link, "already exists")
+    end
+  end
+
+  # TODO: do this with cancancan instead if possible
+  def permissions
+    # check that the user owns both targets of the link
+    if origin.user_id != self.user_id || linkable.id != self.user_id
+      errors.add( :User, "doesn't own one end of that link")
     end
   end
 end

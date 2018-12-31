@@ -1,10 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = current_user.locations
   end
 
   # GET /locations/1

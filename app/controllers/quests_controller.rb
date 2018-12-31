@@ -1,10 +1,11 @@
 class QuestsController < ApplicationController
   before_action :set_quest, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /quests
   # GET /quests.json
   def index
-    @quests = Quest.all
+    @quests = current_user.quests
   end
 
   # GET /quests/1

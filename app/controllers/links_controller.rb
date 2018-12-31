@@ -1,10 +1,11 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = current_user.links
   end
 
   # GET /links/1
@@ -14,6 +15,8 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
+    console
+  
     @link = current_user.links.build
   end
 
