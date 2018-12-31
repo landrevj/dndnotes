@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @quest.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @quest.description %>
+</p>
+
+<%= link_to 'Edit', edit_quest_path(@quest) %> |
+<%= link_to 'Back', quests_path %> |
+<%= link_to 'Link', new_link_path(origin_id: @quest.id, origin_type: 'Quest') %>
+
+<hr>
+<%= render 'campaigns/list', campaigns: @quest.related('campaigns'), id: @quest.id, type: 'Quest' %>
+<hr>
+<%= render 'locations/list', locations: @quest.related('locations'), id: @quest.id, type: 'Quest' %>
+<hr>
+<%= render 'quests/list', quests: @quest.related('quests'), id: @quest.id, type: 'Quest' %>
+<hr>
+<%= render 'notes/list', notes: @quest.related('notes'), id: @quest.id, type: 'Quest' %>
+<hr>
