@@ -1,10 +1,11 @@
 class QuestsController < ApplicationController
   before_action :set_quest, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /quests
   # GET /quests.json
   def index
-    @quests = Quest.all
+    @quests = current_user.quests
   end
 
   # GET /quests/1
@@ -14,7 +15,7 @@ class QuestsController < ApplicationController
 
   # GET /quests/new
   def new
-    @quest = Quest.new
+    @quest = current_user.quests.build
   end
 
   # GET /quests/1/edit
@@ -24,7 +25,7 @@ class QuestsController < ApplicationController
   # POST /quests
   # POST /quests.json
   def create
-    @quest = Quest.new(quest_params)
+    @quest = current_user.quests.build(quest_params)
 
     respond_to do |format|
       if @quest.save

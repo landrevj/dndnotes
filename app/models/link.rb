@@ -1,8 +1,15 @@
 class Link < ApplicationRecord
-  validate :unique_link
+  validates :origin_id, :origin_type, :linkable_id, :linkable_type, presence: true
+  
+  validate :unique_link, :permissions, :not_reflexive
+
+  # validates :origin, presence: true
+  # validates :linkable, presence: true
 
   belongs_to :origin, polymorphic: true
   belongs_to :linkable, polymorphic: true
+  
+  belongs_to :user
   
   def self.find_link(one, another)
     Link.where('origin_id = ? AND origin_type = ? AND linkable_id = ? AND linkable_type = ? OR origin_id = ? AND origin_type = ? AND linkable_id = ? AND linkable_type = ?',
@@ -11,10 +18,24 @@ class Link < ApplicationRecord
 
   private
 
+  # TODO: these error when the user gives something for type that isnt a valid model
   def unique_link
-    if Link.exists?(origin_id: origin.id, origin_type: origin.model_name.name, linkable_id: linkable.id, linkable_type: linkable.model_name.name) || 
-       Link.exists?(origin_id: linkable.id, origin_type: linkable.model_name.name, linkable_id: origin.id, linkable_type: origin.model_name.name)
+    unless Link.find_link([origin.id, origin.class.name],[linkable.id, linkable.class.name]).empty?
       errors.add(:Link, "already exists")
+    end
+  end
+
+  # TODO: do this with cancancan instead if possible
+  def permissions
+    # check that the user owns both targets of the link
+    if origin.user_id != self.user_id || linkable.user_id != self.user_id
+      errors.add( :User, "doesn't own one end of that link")
+    end
+  end
+
+  def not_reflexive
+    if origin.id == linkable.id
+      errors.add(:Link, "cannot connect something to itself")
     end
   end
 end

@@ -27,6 +27,20 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#################################
+# Use Devise for user authentication
+gem 'devise'
+# Use CanCanCan for authorization
+gem 'cancancan', '~> 2.3'
+# Use Rails Admin for admin page
+gem 'rails_admin', '~> 1.4'
+
+# Use Redcarpet for markdown support
+gem 'redcarpet', '~> 3.4'
+# Use Rouge for code highlighting
+gem 'rouge', '~> 3.3'
+#################################
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

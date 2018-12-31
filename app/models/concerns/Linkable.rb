@@ -5,6 +5,7 @@ module Linkable
         has_many :outgoing_links, as: :origin, dependent: :destroy, class_name: "Link"
         has_many :incoming_links, as: :linkable, dependent: :destroy, class_name: "Link"
 
+        # TODO: DRY
         # this is kind of horrible but im not sure how to write the associations
         # to join the two directions into one association. maybe its ok, i might need them separate somewhere
         has_many :outgoing_campaigns, through: :outgoing_links, source: :linkable, source_type: "Campaign"

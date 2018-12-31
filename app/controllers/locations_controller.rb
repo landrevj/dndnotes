@@ -1,10 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = current_user.locations
   end
 
   # GET /locations/1
@@ -14,7 +15,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @location = Location.new
+    @location = current_user.locations.build
   end
 
   # GET /locations/1/edit
@@ -24,7 +25,7 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    @location = Location.new(location_params)
+    @location = current_user.locations.build(location_params)
 
     respond_to do |format|
       if @location.save

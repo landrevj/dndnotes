@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  
+  # different roots for authenticated users
+  authenticated :user do
+    root to: 'static_pages#user_home', as: :authenticated_root
+  end
+  root 'static_pages#home'
+
+  devise_for :users, controllers: { registrations: "registrations" }
+
+  # resources
   resources :quests
   resources :locations
   resources :campaigns
-  root 'static_pages#home'
   resources :links, only: [:new, :create, :destroy]
   resources :notes
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
