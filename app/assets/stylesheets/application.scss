@@ -97,6 +97,12 @@ footer {
     }
 }
 
+.alert {
+  position: fixed;
+  left: 2rem;
+  bottom: 1rem;
+}
+
 // switch checkbox style from https://www.w3schools.com/howto/howto_css_switch.asp
 /* The switch - the box around the slider */
 .switch {

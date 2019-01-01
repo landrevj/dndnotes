@@ -17,3 +17,11 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function () {
+
+    window.setTimeout(function () {
+        $(".alert .close").click();
+    }, 5000);
+
+});
