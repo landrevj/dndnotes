@@ -10,6 +10,28 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+$colors: (
+    blue:   #4084D6,
+    indigo: #7B53DF,
+    purple: #9F5ED1,
+    pink:   #D66799,
+    red:    #D05353,
+    orange: #DC7C54,
+    yellow: #E0E07E,
+    green:  #87AF5F,
+    teal:   #4CDCCF,
+    cyan:   #4CB1DC,
+    white:  #E8E8E8,
+) !default;
+
+$theme-colors: (
+    primary: map-get($map: $colors, $key: blue),
+    success: map-get($map: $colors, $key: green),
+    info:    map-get($map: $colors, $key: cyan),
+    warning: map-get($map: $colors, $key: yellow),
+    danger:  map-get($map: $colors, $key: red),
+) !default;
+
+@import "bootstrap";
