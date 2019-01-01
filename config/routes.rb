@@ -3,11 +3,17 @@ Rails.application.routes.draw do
   
   # different roots for authenticated users
   authenticated :user do
-    root to: 'static_pages#user_home', as: :authenticated_root
+    root to: 'static_pages#home', as: :authenticated_root
   end
-  root 'static_pages#home'
+  root to: redirect('/login')
 
-  devise_for :users, controllers: { registrations: "registrations" }
+  # custom routes for devise
+  devise_for :users, controllers: { registrations: "registrations" }, skip: [:sessions]
+  devise_scope :user do
+    get 'login', to: 'devise/sessions#new', as: :new_user_session
+    post 'login', to: 'devise/sessions#create', as: :user_session
+    delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
 
   # resources
   resources :quests
