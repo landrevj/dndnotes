@@ -11,19 +11,47 @@
  * It is generally better to create a new file per style scope.
  *
  */
+$blue:    #4084D6;
+$indigo:  #7B53DF;
+$purple:  #9F5ED1;
+$pink:    #D66799;
+$red:     #D05353;
+$orange:  #DC7C54;
+$yellow:  #E0E07E;
+$green:   #87AF5F;
+$teal:    #4CDCCF;
+$cyan:    #4CB1DC;
+$white:   #E8E8E8;
+
+$font01:   #E8E8E8;
+$font02:   #a7a7a7;
+$font03:   #7e7e7e;
+$base01:   #4B4B4B;
+$base02:   #444444;
+$base03:   #3C3C3C;
+$bg:       #313131;
+
+$linkColor: $red !default;
 
 $colors: (
-    blue:   #4084D6,
-    indigo: #7B53DF,
-    purple: #9F5ED1,
-    pink:   #D66799,
-    red:    #D05353,
-    orange: #DC7C54,
-    yellow: #E0E07E,
-    green:  #87AF5F,
-    teal:   #4CDCCF,
-    cyan:   #4CB1DC,
-    white:  #E8E8E8,
+    blue:   $blue,
+    indigo: $indigo,
+    purple: $purple,
+    pink:   $pink,
+    red:    $red,
+    orange: $orange,
+    yellow: $yellow,
+    green:  $green,
+    teal:   $teal,
+    cyan:   $cyan,
+    white:  $white,
+    font01:  $font01,
+    font02:  $font02,
+    font03:  $font03,
+    base01:  $base01,
+    base02:  $base02,
+    base03:  $base03,
+    bg:      $bg
 ) !default;
 
 $theme-colors: (
@@ -34,4 +62,90 @@ $theme-colors: (
     danger:  map-get($map: $colors, $key: red),
 ) !default;
 
+
 @import "bootstrap";
+@import "login";
+
+html, body {
+  height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+    background: $bg;
+    font-family: 'Open Sans', arial, sans-serif !important;
+}
+
+.container {
+  flex: 1 0 auto;
+}
+
+footer {
+    background: $base03;
+    padding: 25px 15%;
+    flex-shrink: 0;
+
+    .links {
+        text-align: center;
+        color: #212529;
+
+        a {
+            color: $font03;
+        }
+    }
+}
+
+// switch checkbox style from https://www.w3schools.com/howto/howto_css_switch.asp
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 25px;
+  margin-bottom: 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+
+}
+
+input:checked + .slider {
+  background-color: $blue;
+}
+
+input:checked + .slider:before {
+  transform: translateX(15px);
+}

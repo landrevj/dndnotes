@@ -1,0 +1,56 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+.login-form {
+    padding: 25px;
+    border-radius: 0.25rem;
+    background: $base02;
+
+    .links a {
+        color: $font02;
+    }
+
+    input {
+        width: 250px;
+    }
+
+    #user_email {
+        margin-bottom: 5px;
+    }
+}
+
+.about-container {
+    position: absolute;
+    left: 0;
+    padding: 0;
+
+    a {
+        color: $bg;
+    }
+}
+
+.full-width {
+    padding: 25px 15%;
+}
+
+.welcome {
+    background: $blue;
+}
+
+.features {
+    background: $green;
+}
+
+.screenshots {
+    background: $indigo;
+}
+
+.technical {
+    background: $purple;
+}

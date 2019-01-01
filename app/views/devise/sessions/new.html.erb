@@ -1,26 +1,106 @@
-<h2>Log in</h2>
+<div class="row text-light">
+  <div class="col-md-12 login-container">
+    <div class="login-form">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'email', class: 'form-control' %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'password', class: 'form-control', class: 'form-control' %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <% if devise_mapping.rememberable? -%>
+          <div class="form-group">
+            <%= f.label :remember_me, class: 'switch' do %>
+              <%= f.check_box :remember_me %>
+              <span class="slider"></span>
+            <% end %>
+            Remember me
+          </div>
+        <% end -%>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+        <div class="form-group">
+          <%= f.submit "Log in", class: ['btn', 'btn-success', 'btn-block', 'text-light'] %>
+        </div>
+      <% end %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="links">
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="row text-light">
+  <div class="about-container col-md-12">
+    <div class="welcome full-width">
+      <%= markdown( 
+"
+# Welcome to DnD Notes!
+---
+There are lots of ways to track your DnD campaign online these days, however, in the cursory search I made prior to starting work on this site I didn't see \
+one specifically for taking notes. Dndbeyond is great but the notes tab wasn't going to be enough to handle my 'Keen Mind' feat after my DM threatened violence if I didn't \
+start writing things down.
+
+So, here we are. 
+"
+)%>
+    </div>
+    <div class="features full-width">
+      <%= markdown( 
+"
+### Features
+---
+This site basically allows for quick and dirty wiki creation. You can add pages of various types then link them together \
+so you can quickly see any content related to the page you are looking at.
+
+The distinct page types currently supported currently are:
+
+* Campaigns
+* Locations
+* Quests
+
+If you need some other page type that isn't currently supported you can make a generic 'Note' page. All page types support markdown \
+in the bigger text field (usually called 'description' or something) and you can use that to make tables and stuff, idk. \
+(You can also open a feature request on Github, or make a pull request yourself.)
+"
+)%>
+    </div>
+    <div class="screenshots full-width">
+      <%= markdown( 
+"
+### Screenshots!
+---
+*screenshots here*
+*screenshots here*
+*screenshots here*
+*screenshots here*
+"
+)%>
+    </div>
+    <div class="technical full-width">
+      <%= markdown( 
+"
+### Technical Details
+---
+I'm about to list out a bunch of stuff here but if you really want to dig through how things work go check out \
+the [GitHub repo](https://github.com/landrevj/dndnotes) and tell me everything I'm doing wrong.
+
+#### Frameworks
+This site runs on [Ruby on Rails 5.2.2](https://github.com/rails/rails/releases/tag/v5.2.2) using [Ruby](https://www.ruby-lang.org/en/downloads) 2.5.3. \
+I am also using [Bootstrap](https://getbootstrap.com/) for styling structure.
+#### Accounts
+Given recent issues handling privacy in tech stuff (and me not caring to figure it out myself) I used the [Devise](https://github.com/plataformatec/devise) gem, \
+so you can go yell at them if something happens.
+#### Other Gems Used
+
+* [CanCanCan](https://github.com/CanCanCommunity/cancancan) for authorization
+* [Rails Admin](https://github.com/sferik/rails_admin) for an admin dashboard
+* [Redcarpet](https://github.com/vmg/redcarpet) for markdown support
+* [Rouge](https://github.com/jneen/rouge) for code highlighting
+  * I really don't know why I installed this for a DnD site, but maybe your character dreams in C# or something and wants to keep a dream journal
+  * This can still be used to make distinct looking sections of text so w/e
+"
+)%>
+    </div>
+    <%= render 'shared/footer' %>
+  </div>
+</div>
