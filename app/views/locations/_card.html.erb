@@ -4,7 +4,7 @@
             <%= location.name %>
         </div>
     <% end %>
-    <% if id && type %>
+    <% if local_assigns.has_key?(:id) && local_assigns.has_key?(:type) %>
         <%= link_to Link.find_link([id, type],[location.id, 'Location']).first, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-unlink' do %>
             <i class="material-icons">link_off</i>
         <% end %>
