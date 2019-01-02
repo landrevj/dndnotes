@@ -91,6 +91,21 @@ footer {
     }
 }
 
+.form-control {
+  background: $base01;
+  color: $font02;
+  border-width: 0px;
+  
+ &.is-invalid {
+    box-shadow: 0 0 0 0.2rem rgba($red, 0.25);
+ }
+
+  &:focus {
+    background: $bg;
+    color: $font01;
+  }
+}
+
 .card#error_explanation {
   background: $bg;
   margin-bottom: 1rem;
