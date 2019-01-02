@@ -6,23 +6,21 @@
         <%= render 'shared/logo'%>
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
+        <%= render 'devise/shared/error_messages', resource: resource %>
 
         <div class="form-group">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: 'form-control' %>
           <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "username", class: 'form-control' %>
         </div>
 
-        <div class="field">
-          <%= f.password_field :password, autocomplete: "off", placeholder: 'password', class: 'form-control' %>
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'password', class: 'form-control', 'aria-describedby': 'password_len' %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-        </div>
-
-        <div class="field">
+          <small id="password_len"><%= @minimum_password_length %> characters minimum</small>
+          <% end %>
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "confirm password", class: 'form-control' %>
         </div>
+
         <br/>
         <div class="form-group">
           <%= f.submit "Sign up", class: ['btn', 'btn-success', 'btn-block', 'text-light'] %>

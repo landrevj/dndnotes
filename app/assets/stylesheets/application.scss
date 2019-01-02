@@ -91,15 +91,23 @@ footer {
     }
 }
 
+.card#error_explanation {
+  background: $bg;
+  margin-bottom: 1rem;
+
+  ul {
+    margin: 1rem;
+  }
+}
+
 .alert {
   position: fixed;
   left: 2rem;
   bottom: 1rem;
 }
 
-section.index > .card {
+section > .card {
   background: $base03;
-  padding: 1rem;
 }
 
 .page-card {

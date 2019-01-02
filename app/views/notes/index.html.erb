@@ -1,14 +1,12 @@
-<div class="row">
-  <section class="index col-md-8 mx-auto">
-    <div class="card">
-      <h1 class="card-title">Notes</h1>
-      <div class="card-body">
-        <div class="card-columns">
-          <% @notes.each do |note| %>
-            <%= render 'notes/card', note: note %>
-          <% end %>
-        </div>
+<section class="index col-md-8 mx-auto">
+  <div class="card">
+    <h1 class="card-title">Notes</h1>
+    <div class="card-body">
+      <div class="card-columns">
+        <% @notes.each do |note| %>
+          <%= render 'notes/card', note: note %>
+        <% end %>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
