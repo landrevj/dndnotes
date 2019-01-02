@@ -79,16 +79,16 @@ nav + main > .container-fluid {
 }
 
 footer {
-    background: $base03;
+  background: $base03;
 
-    .links {
-        text-align: center;
-        color: #212529;
+  .links {
+      text-align: center;
+      color: #212529;
 
-        a {
-            color: $font03;
-        }
-    }
+      a {
+          color: $font03;
+      }
+  }
 }
 
 .form-control {
