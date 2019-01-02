@@ -1,23 +1,41 @@
-<p>
-  <strong>Name:</strong>
-  <%= @campaign.name %>
-</p>
+<% content_for :left_column do %>
+    <div class="card">
+      <h5 class="card-title"><%= @campaign.name %></h5>
+      <div class="card-body">
+        <%= @campaign.description %>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <%= render 'campaigns/list', campaigns: @campaign.related('campaigns'), id: @campaign.id, type: 'Campaign' %>
+      </div>
+    </div>
+    <%= link_to 'Edit', edit_campaign_path(@campaign) %> |
+    <%= link_to 'Link', new_link_path(origin_id: @campaign.id, origin_type: 'Campaign') %>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @campaign.description %>
-</p>
+<% content_for :center_column do %>
+  <div class="card">
+    <div class="card-body">
+      <%= markdown @campaign.content %>
+      <hr>
+      <div class="notes-container">
+        <%= render 'notes/list', notes: @campaign.related('notes'), id: @campaign.id, type: 'Campaign' %>      
+      </div>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %> |
-<%= link_to 'Link', new_link_path(origin_id: @campaign.id, origin_type: 'Campaign') %>
-
-<hr>
-<%= render 'campaigns/list', campaigns: @campaign.related('campaigns'), id: @campaign.id, type: 'Campaign' %>
-<hr>
-<%= render 'locations/list', locations: @campaign.related('locations'), id: @campaign.id, type: 'Campaign' %>
-<hr>
-<%= render 'quests/list', quests: @campaign.related('quests'), id: @campaign.id, type: 'Campaign' %>
-<hr>
-<%= render 'notes/list', notes: @campaign.related('notes'), id: @campaign.id, type: 'Campaign' %>
-<hr>
+<% content_for :right_column do %>
+  <div class="card">
+      <div class="card-body">
+        <%= render 'locations/list', locations: @campaign.related('locations'), id: @campaign.id, type: 'Campaign' %>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <%= render 'quests/list', quests: @campaign.related('quests'), id: @campaign.id, type: 'Campaign' %>    
+      </div>
+    </div>
+  </div>
+<% end %>

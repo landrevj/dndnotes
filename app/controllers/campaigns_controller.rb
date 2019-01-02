@@ -11,6 +11,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    render @show, layout: 'page'
   end
 
   # GET /campaigns/new
@@ -70,6 +71,6 @@ class CampaignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:name, :description)
+      params.require(:campaign).permit(:name, :description, :content)
     end
 end
