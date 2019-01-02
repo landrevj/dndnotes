@@ -12,6 +12,20 @@
     border-radius: 0.25rem;
     background: $base02;
 
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 25px 25px;
+        
+        svg {
+            width: 150px;
+            height: 150px;
+            fill: $bg;
+        }
+    }
+
     .links a {
         color: $font02;
     }
@@ -26,17 +40,15 @@
 }
 
 .about-container {
-    position: absolute;
-    left: 0;
     padding: 0;
+
+    & > div {
+        padding: 25px 15%;
+    }
 
     a {
         color: $bg;
     }
-}
-
-.full-width {
-    padding: 25px 15%;
 }
 
 .welcome {

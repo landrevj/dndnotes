@@ -2,6 +2,9 @@
 <div class="row text-light">
   <div class="col-md-12 login-container">
     <div class="login-form">
+      <div class="logo">
+        <%= render 'shared/logo'%>
+      </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
 

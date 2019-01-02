@@ -64,28 +64,22 @@ $theme-colors: (
 
 
 @import "bootstrap";
+@import "navbar";
 @import "login";
-
-html, body {
-  height: 100%;
-}
+@import "notes";
 
 body {
-    display: flex;
-    flex-direction: column;
     
     background: $bg;
     font-family: 'Open Sans', arial, sans-serif !important;
 }
 
-.container {
-  flex: 1 0 auto;
+nav + main > .container-fluid {
+  padding-top: 75px;
 }
 
 footer {
     background: $base03;
-    padding: 25px 15%;
-    flex-shrink: 0;
 
     .links {
         text-align: center;
@@ -101,6 +95,28 @@ footer {
   position: fixed;
   left: 2rem;
   bottom: 1rem;
+}
+
+section.index > .card {
+  background: $base03;
+  padding: 1rem;
+}
+
+.page-card {
+  background: $base01;
+  transition: background 0.1s ease-in-out;
+
+  &:hover {
+    background: $base02;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  a {
+    color: $font01;
+  }
 }
 
 // switch checkbox style from https://www.w3schools.com/howto/howto_css_switch.asp

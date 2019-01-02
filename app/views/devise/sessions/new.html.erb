@@ -1,6 +1,9 @@
 <div class="row text-light">
   <div class="col-md-12 login-container">
     <div class="login-form">
+      <div class="logo">
+        <%= render 'shared/logo'%>
+      </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'email', class: 'form-control' %>
@@ -31,7 +34,7 @@
 
 <div class="row text-light">
   <div class="about-container col-md-12">
-    <div class="welcome full-width">
+    <div class="welcome">
       <%= markdown( 
 "
 # Welcome to DnD Notes!
@@ -44,7 +47,7 @@ So, here we are.
 "
 )%>
     </div>
-    <div class="features full-width">
+    <div class="features">
       <%= markdown( 
 "
 ### Features
@@ -64,7 +67,7 @@ in the bigger text field (usually called 'description' or something) and you can
 "
 )%>
     </div>
-    <div class="screenshots full-width">
+    <div class="screenshots">
       <%= markdown( 
 "
 ### Screenshots!
@@ -76,7 +79,7 @@ in the bigger text field (usually called 'description' or something) and you can
 "
 )%>
     </div>
-    <div class="technical full-width">
+    <div class="technical">
       <%= markdown( 
 "
 ### Technical Details
@@ -101,6 +104,5 @@ so you can go yell at them if something happens.
 "
 )%>
     </div>
-    <%= render 'shared/footer' %>
   </div>
 </div>

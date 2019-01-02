@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-dark">
+  <div class="container-fluid">
+
+    <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= render 'shared/logo' %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+    <hr>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="icon-link">
+                        <i class="material-icons">account_circle</i>
+                        <div class="icon-text"><%= current_user.username %></div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <%= link_to edit_user_registration_path, class: ['icon-link', 'text-primary', 'dropdown-item'] do %>
+                        <i class="material-icons">vertical_split</i>
+                        <div class="icon-text">account</div>
+                    <% end %>
+                    <%# <div class="dropdown-divider"></div> %>
+                    <%= link_to destroy_user_session_path, method: :delete, class: ['icon-link', 'text-danger', 'dropdown-item'] do %>
+                        <i class="material-icons">logout</i>
+                        <div class="icon-text">logout</div>
+                    <% end %>
+                </div>
+            </li>
+        </ul>
+    </div>
+  </div>
+</nav>
