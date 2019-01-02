@@ -34,7 +34,7 @@ class Link < ApplicationRecord
   end
 
   def not_reflexive
-    if origin.id == linkable.id
+    if origin_id == linkable_id && origin_type == linkable_type
       errors.add(:Link, "cannot connect something to itself")
     end
   end
