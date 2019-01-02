@@ -1,0 +1,12 @@
+<div class="card link-card campaign-card">
+    <%= link_to campaign, class: 'link-target' do %>
+        <div class="card-body">
+            <%= campaign.name %>
+        </div>
+    <% end %>
+    <% if id && type %>
+        <%= link_to Link.find_link([id, type],[campaign.id, 'Campaign']).first, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-unlink' do %>
+            <i class="material-icons">link_off</i>
+        <% end %>
+    <% end %>
+</div>

@@ -1,0 +1,57 @@
+.page-layout {
+    .card {
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+
+    .card-actions {
+        position: absolute;
+        right: 1rem;
+        top: 0.8rem;
+        a:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.card-img-overlay {
+    background: rgba(0,0,0,0.5);
+}
+
+.link-card {
+    border: 0;
+    background: $base01;
+    transition: background 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    .card-body {
+        padding: 0.3rem 0.5rem;
+    }
+
+    a { color: $font01; }
+
+    &:hover {
+        background: $base02;
+        a { text-decoration: none; }
+    }
+}
+
+.link-unlink {
+    position: absolute;
+    right: 0;
+    margin: 5px;
+
+    &:hover { color: $red; }
+}
+
+$names: green yellow orange red pink purple indigo blue cyan teal;
+$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal;
+@for $i from 1 through length($names) {
+    $n: nth($names, $i);
+    $v: nth($values, $i);
+    &.border-#{$n} {
+        border-color: $v !important;
+    }
+    &.text-#{$n} {
+        color: $v !important;
+    }
+}

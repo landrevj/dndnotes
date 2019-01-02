@@ -11,6 +11,10 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @campaigns = @campaign.related('campaigns')
+    @locations = @campaign.related('locations')
+    @quests = @campaign.related('quests')
+    @notes = @campaign.related('notes')
     render @show, layout: 'page'
   end
 

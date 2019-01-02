@@ -1,18 +1,4 @@
-<table>
-  <strong>Campaigns</strong>
-  <thead>
-    <th>Campaign</th>
-    <th>ID</th>
-    <th colspan="1"></th>
-  </thead>
+<% campaigns.each do |campaign| %>
+  <%= render 'campaigns/card', campaign: campaign, id: id, type: type %>
+<% end %>
 
-  <tbody>
-    <% campaigns.each do |campaign| %>
-      <tr>
-        <td><%= campaign.name %></td>
-        <td><%= campaign.id %></td>
-        <td><%= link_to 'Unlink', Link.find_link([id, type],[campaign.id, 'Campaign']).first, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

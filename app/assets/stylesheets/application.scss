@@ -66,6 +66,11 @@ $theme-colors: (
 @import "bootstrap";
 @import "navbar";
 @import "login";
+
+@import "page";
+@import "campaigns";
+@import "locations";
+@import "quests";
 @import "notes";
 
 body {
@@ -123,23 +128,6 @@ footer {
 
 section > .card {
   background: $base03;
-}
-
-.page-card {
-  background: $base01;
-  transition: background 0.1s ease-in-out;
-
-  &:hover {
-    background: $base02;
-
-    a {
-      text-decoration: none;
-    }
-  }
-
-  a {
-    color: $font01;
-  }
 }
 
 // switch checkbox style from https://www.w3schools.com/howto/howto_css_switch.asp
