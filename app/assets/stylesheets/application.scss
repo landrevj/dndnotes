@@ -66,6 +66,7 @@ $theme-colors: (
 @import "bootstrap";
 @import "navbar";
 @import "login";
+@import "home";
 
 @import "page";
 @import "campaigns";
@@ -134,6 +135,41 @@ footer {
 
 section > .card {
   background: $base03;
+}
+
+$names: green yellow orange red pink purple indigo blue cyan teal gray;
+$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal $base01;
+@for $i from 1 through length($names) {
+    $n: nth($names, $i);
+    $v: nth($values, $i);
+    &.border-#{$n} {
+      border-color: $v !important;
+    }
+    &.text-#{$n} {
+      color: $v !important;
+
+    }
+    
+    &a.text-#{$n}:hover {
+      color: darken($v, 7.5%) !important;
+    }
+
+    &.bg-#{$n} {
+      background: $v;
+    }
+
+    // custom button colors
+    &.btn-#{$n} {
+      background-color: $v;
+      border-color: $v;
+    }
+    &.btn-#{$n}:hover {
+      background-color: darken($v, 7.5%);
+      border-color: darken($v, 7.5%);
+    }
+    &.btn-#{$n}:focus {
+      box-shadow: 0 0 0 0.2rem rgba($v, .5);
+    }
 }
 
 // switch checkbox style from https://www.w3schools.com/howto/howto_css_switch.asp

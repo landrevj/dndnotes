@@ -1,4 +1,4 @@
-<div class="card link-card <%= object.model_name.name.downcase %>-card">
+<div class="card <%= card_type %>-card <%= object.model_name.name.downcase %>-card">
     <%= link_to object, class: 'link-target' do %>
         <div class="card-body">
             <% if object.try :name %>

@@ -1,16 +1,16 @@
 <% unless !local_assigns.has_key?(:locations) || locations.empty? %>
     <div class="card locations-related border-green">
-        <div class="card-header">Locations</div>
+        <div class="card-header"><%= link_to 'Locations', locations_path %></div>
         <div class="card-body">
-            <%= render 'shared/list', objects: locations, renderer_id: renderer_id, renderer_type: renderer_type %>
+            <%= render 'shared/list', card_type: 'link', objects: locations, renderer_id: renderer_id, renderer_type: renderer_type %>
         </div>
     </div>
   <% end %>
 <% unless !local_assigns.has_key?(:quests) || quests.empty? %>
     <div class="card quests-related border-indigo">
-        <div class="card-header">Quests</div>
+        <div class="card-header"><%= link_to 'Quests', quests_path %></div>
         <div class="card-body">
-            <%= render 'shared/list', objects: quests, renderer_id: renderer_id, renderer_type: renderer_type %>
+            <%= render 'shared/list', card_type: 'link', objects: quests, renderer_id: renderer_id, renderer_type: renderer_type %>
         </div>
     </div>
 <% end %>

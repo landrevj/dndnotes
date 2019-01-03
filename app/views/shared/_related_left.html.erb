@@ -1,12 +1,12 @@
 <% unless !local_assigns.has_key?(:campaigns) || campaigns.empty? %>
     <div class="card campaigns-related border-blue">
         <% if renderer_type == 'Campaign' %>
-            <div class="card-header">Related</div>
+            <div class="card-header"><%= link_to 'Related', campaigns_path %></div>
         <% else%>
-            <div class="card-header">Campaigns</div>
+            <div class="card-header"><%= link_to 'Campaigns', campaigns_path %></div>
         <% end %>
         <div class="card-body">
-            <%= render 'shared/list', objects: campaigns, renderer_id: renderer_id, renderer_type: renderer_type %>
+            <%= render 'shared/list', card_type: 'link', objects: campaigns, renderer_id: renderer_id, renderer_type: renderer_type %>
         </div>
     </div>
 <% end %>

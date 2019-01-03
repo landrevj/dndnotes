@@ -1,5 +1,78 @@
-<h1>Home</h1>
-<div><%= link_to 'Campaigns', campaigns_path %></div>
-<div><%= link_to 'Locations', locations_path %></div>
-<div><%= link_to 'Quests', quests_path %></div>
-<div><%= link_to 'Notes', notes_path %></div>
+<div class="row page-layout">
+    <section class="left-col col-md-3 ml-auto">
+        <div class="card logo-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <%= render 'shared/logo' %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row greeter">
+                            <div class="col">
+                                <div class="greeting">Welcome <%= current_user.username %>!</div>
+                                <hr>
+                                <div>Last login was <%= time_ago_in_words current_user.last_sign_in_at %> ago.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card stats-card">
+            <div class="card-body">
+                <div class="stat-pair">
+                    <div class="stat-bubble bg-blue">Campaigns</div>
+                    <div class="stat-bubble bg-blue"><%= current_user.campaigns.count %></div>
+                </div>
+                <div class="stat-pair">
+                    <div class="stat-bubble bg-green">Locations</div>
+                    <div class="stat-bubble bg-green"><%= current_user.locations.count %></div>
+                </div>
+                <div class="stat-pair">                    
+                    <div class="stat-bubble bg-indigo">Quests</div>
+                    <div class="stat-bubble bg-indigo"><%= current_user.quests.count %></div>
+                </div>
+                <div class="stat-pair">                    
+                    <div class="stat-bubble bg-gray">Notes</div>
+                    <div class="stat-bubble bg-gray"><%= current_user.notes.count %></div>
+                </div>
+                <div class="stat-pair">                    
+                    <div class="stat-bubble bg-gray">Links</div>
+                    <div class="stat-bubble bg-gray"><%= current_user.links.count %></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="center-col col-md-9">
+        <div class="home-cards card-columns">
+            <section>
+                <div class="card campaigns-last-updated border-blue">
+                    <div class="card-header"><%= link_to 'Campaigns', campaigns_path %></div>
+                    <div class="card-body">
+                        <%= render 'shared/list', card_type: 'link', objects: current_user.campaigns.order(:updated_at).last(5) %>
+                    </div>
+                </div>
+                <div class="card locations-last-updated border-green">
+                    <div class="card-header"><%= link_to 'Locations', locations_path %></div>
+                    <div class="card-body">
+                        <%= render 'shared/list', card_type: 'link', objects: current_user.locations.order(:updated_at).last(5) %>
+                    </div>
+                </div>
+                <div class="card quests-last-updated border-indigo">
+                    <div class="card-header"><%= link_to 'Quests', quests_path %></div>
+                    <div class="card-body">
+                        <%= render 'shared/list', card_type: 'link', objects: current_user.quests.order(:updated_at).last(5) %>
+                    </div>
+                </div>
+                <div class="card notes-last-updated border-secondary">
+                    <div class="card-header"><%= link_to 'Notes', notes_path %></div>
+                    <div class="card-body">
+                        <%= render 'shared/list', card_type: 'link', objects: current_user.notes.order(:updated_at).last(5) %>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>

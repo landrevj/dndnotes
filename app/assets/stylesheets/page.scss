@@ -1,7 +1,15 @@
 .page-layout {
     .card {
         margin-bottom: 1rem;
-        overflow: hidden;
+        .card-header {
+            a {
+                color: $font01;
+                &:hover {
+                    color: $font02;
+                    text-decoration: none;
+                }
+            }
+        }
     }
 
     .card-actions {
@@ -29,10 +37,13 @@
     background: rgba(0,0,0,0.5);
 }
 
+.card .link-card { margin-bottom: 0.5rem; }
+
 .link-card {
     border: 0;
     background: $base01;
     transition: background 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
+
 
     .card-body {
         padding: 0.3rem 0.5rem;
@@ -46,36 +57,19 @@
     }
 }
 
+.full-card {
+    background: $base01;
+    a { color: $font01; }
+    &:hover {
+        background: $base02;
+    }
+    a:hover { text-decoration: none; }
+}
+
 .link-unlink {
     position: absolute;
     right: 0;
     margin: 5px;
 
     &:hover { color: $red; }
-}
-
-$names: green yellow orange red pink purple indigo blue cyan teal;
-$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal;
-@for $i from 1 through length($names) {
-    $n: nth($names, $i);
-    $v: nth($values, $i);
-    &.border-#{$n} {
-        border-color: $v !important;
-    }
-    &.text-#{$n} {
-        color: $v !important;
-    }
-
-    // custom button colors
-    &.btn-#{$n} {
-        background-color: $v;
-        border-color: $v;
-    }
-    &.btn-#{$n}:hover {
-        background-color: darken($v, 7.5%);
-        border-color: darken($v, 7.5%);
-    }
-    &.btn-#{$n}:focus {
-        box-shadow: 0 0 0 0.2rem rgba($v, .5);
-    }
 }

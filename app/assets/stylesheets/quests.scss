@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .quest-main .card-actions a { 
-    color: $indigo;
-    &:hover { color: darken($indigo, 7.5%) }
+    color: $indigo !important;
+    &:hover { color: darken($indigo, 7.5%) !important; }
 }
 
 .quest-card {

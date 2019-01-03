@@ -20,7 +20,7 @@
       <% unless @notes.empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'shared/list', objects: @notes, renderer_id: @note.id, renderer_type: 'Note' %>      
+          <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @note.id, renderer_type: 'Note' %>      
         </div>
       <% end %>
     </div>
