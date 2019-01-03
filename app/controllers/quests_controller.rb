@@ -6,7 +6,8 @@ class QuestsController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    @quests = current_user.quests
+    @q = current_user.quests.ransack(params[:q])
+    @quests = @q.result(distinct: true)
   end
 
   # GET /quests/1

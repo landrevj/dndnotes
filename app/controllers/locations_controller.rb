@@ -6,7 +6,8 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = current_user.locations
+    @q = current_user.locations.ransack(params[:q])
+    @locations = @q.result(distinct: true)
   end
 
   # GET /locations/1

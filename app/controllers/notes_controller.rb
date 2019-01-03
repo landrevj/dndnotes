@@ -6,7 +6,8 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = current_user.notes
+    @q = current_user.notes.ransack(params[:q])
+    @notes = @q.result(distinct: true)
   end
   
   # GET /notes/1

@@ -6,7 +6,8 @@ class CampaignsController < ApplicationController
   # GET /campaigns
   # GET /campaigns.json
   def index
-    @campaigns = current_user.campaigns
+    @q = current_user.campaigns.ransack(params[:q])
+    @campaigns = @q.result(distinct: true)
   end
 
   # GET /campaigns/1
