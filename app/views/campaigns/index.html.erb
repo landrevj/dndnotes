@@ -1,29 +1,10 @@
-<h1>Campaigns</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>ID</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @campaigns.each do |campaign| %>
-      <tr>
-        <td><%= campaign.name %></td>
-        <td><%= campaign.description %></td>
-        <td><%= campaign.id %></td>
-        <td><%= link_to 'Show', campaign %></td>
-        <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-        <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Campaign', new_campaign_path %>
+<section class="index col-md-8 mx-auto">
+  <div class="card">
+    <div class="card-header">Campaigns</div>
+    <div class="card-body">
+      <div class="card-columns">
+        <%= render 'shared/list', objects: @campaigns %>      
+      </div>
+    </div>
+  </div>
+</section>
