@@ -11,6 +11,11 @@ class QuestsController < ApplicationController
   # GET /quests/1
   # GET /quests/1.json
   def show
+    @campaigns = @quest.related('campaigns')
+    @locations = @quest.related('locations')
+    @quests = @quest.related('quests')
+    @notes = @quest.related('notes')
+    render :show, layout: 'page'
   end
 
   # GET /quests/new

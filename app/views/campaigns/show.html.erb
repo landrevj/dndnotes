@@ -1,5 +1,5 @@
 <% content_for :left_column do %>
-    <div class="card border-blue">
+    <div class="card page-main campaign-main border-blue">
       <div class="card-header">Campaign
         <div class="card-actions">
           <%= link_to edit_campaign_path(@campaign) do %>
@@ -34,7 +34,7 @@
       <% unless @notes.empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'notes/list', notes: @campaign.related('notes'), id: @campaign.id, type: 'Campaign' %>      
+          <%= render 'notes/list', notes: @notes, id: @campaign.id, type: 'Campaign' %>      
         </div>
       <% end %>
     </div>
@@ -46,7 +46,7 @@
     <div class="card border-green">
       <div class="card-header">Locations</div>
       <div class="card-body">
-        <%= render 'locations/list', locations: @campaign.related('locations'), id: @campaign.id, type: 'Campaign' %>
+        <%= render 'locations/list', locations: @locations, id: @campaign.id, type: 'Campaign' %>
       </div>
     </div>
   <% end %>
@@ -54,7 +54,7 @@
     <div class="card border-indigo">
       <div class="card-header">Quests</div>
       <div class="card-body">
-        <%= render 'quests/list', quests: @campaign.related('quests'), id: @campaign.id, type: 'Campaign' %>    
+        <%= render 'quests/list', quests: @quests, id: @campaign.id, type: 'Campaign' %>    
       </div>
     </div>
   <% end %>

@@ -15,7 +15,7 @@ class CampaignsController < ApplicationController
     @locations = @campaign.related('locations')
     @quests = @campaign.related('quests')
     @notes = @campaign.related('notes')
-    render @show, layout: 'page'
+    render :show, layout: 'page'
   end
 
   # GET /campaigns/new

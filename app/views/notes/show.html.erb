@@ -1,18 +1,44 @@
-<p>
-  <strong>Content:</strong>
-  <%= markdown @note.content %>
-</p>
+<% content_for :left_column do %>
+    <% unless @campaigns.empty? %>
+      <div class="card border-secondary">
+        <div class="card-header">Related</div>
+        <div class="card-body">
+          <%= render 'campaigns/list', campaigns: @campaigns, id: @note.id, type: 'Note' %>
+        </div>
+      </div>
+    <% end %>
+<% end %>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %> |
-<%= link_to 'Link', new_link_path(origin_id: @note.id, origin_type: 'Note') %>
+<% content_for :center_column do %>
+  <div class="card">
+    <div class="card-body">
+      <%= markdown @note.content %>
+      
+      <% unless @notes.empty? %>
+        <hr>
+        <div class="notes-container">
+          <%= render 'notes/list', notes: @notes, id: @note.id, type: 'Note' %>      
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<hr>
-<%= render 'campaigns/list', campaigns: @note.related('campaigns'), id: @note.id, type: 'Note' %>
-<hr>
-<%= render 'locations/list', locations: @note.related('locations'), id: @note.id, type: 'Note' %>
-<hr>
-<%= render 'quests/list', quests: @note.related('quests'), id: @note.id, type: 'Note' %>
-<hr>
-<%= render 'notes/list', notes: @note.related('notes'), id: @note.id, type: 'Note' %>
-<hr>
+<% content_for :right_column do %>
+  <% unless @locations.empty? %>
+    <div class="card border-green">
+      <div class="card-header">Locations</div>
+      <div class="card-body">
+        <%= render 'locations/list', locations: @locations, id: @note.id, type: 'Note' %>
+      </div>
+    </div>
+  <% end %>
+  <% unless @quests.empty? %>
+    <div class="card border-indigo">
+      <div class="card-header">Quests</div>
+      <div class="card-body">
+        <%= render 'quests/list', quests: @quests, id: @note.id, type: 'Note' %>    
+      </div>
+    </div>
+  <% end %>
+<% end %>

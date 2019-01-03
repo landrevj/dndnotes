@@ -11,6 +11,11 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+    @campaigns = @note.related('campaigns')
+    @locations = @note.related('locations')
+    @quests = @note.related('quests')
+    @notes = @note.related('notes')
+    render :show, layout: 'page'
   end
 
   # GET /notes/new

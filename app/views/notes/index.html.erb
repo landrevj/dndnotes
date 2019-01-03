@@ -1,7 +1,7 @@
 <section class="index col-md-8 mx-auto">
   <div class="card">
-    <h1 class="card-title">Notes</h1>
     <div class="card-body">
+      <h1 class="card-title">Notes</h1>
       <div class="card-columns">
         <% @notes.each do |note| %>
           <%= render 'notes/card', note: note %>
