@@ -102,6 +102,10 @@ footer {
   background: $base01;
   color: $font02;
   border-width: 0px;
+
+  &:disabled {
+    background: $base01;
+  }
   
  &.is-invalid {
     box-shadow: 0 0 0 0.2rem rgba($red, 0.25);
