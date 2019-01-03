@@ -35,6 +35,9 @@ gem 'cancancan', '~> 2.3'
 # Use Rails Admin for admin page
 gem 'rails_admin', '~> 1.4'
 
+# Use Ransack for searching
+gem 'ransack', '~> 2.1'
+
 # Use Bootstrap for styling
 gem 'bootstrap', '~> 4.2'
 # Use jQuery
