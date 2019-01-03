@@ -55,11 +55,11 @@ $colors: (
 ) !default;
 
 $theme-colors: (
-    primary: map-get($map: $colors, $key: blue),
-    success: map-get($map: $colors, $key: green),
-    info:    map-get($map: $colors, $key: cyan),
-    warning: map-get($map: $colors, $key: yellow),
-    danger:  map-get($map: $colors, $key: red),
+    primary: $blue,
+    success: $green,
+    info:    $cyan,
+    warning: $yellow,
+    danger:  $red,
 ) !default;
 
 
@@ -72,6 +72,8 @@ $theme-colors: (
 @import "locations";
 @import "quests";
 @import "notes";
+
+.material-icons { user-select: none; }
 
 body {
     
@@ -106,7 +108,7 @@ footer {
  }
 
   &:focus {
-    background: $bg;
+    background: $base01;
     color: $font01;
   }
 }

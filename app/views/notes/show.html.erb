@@ -1,23 +1,26 @@
 <% content_for :left_column do %>
-    <% unless @campaigns.empty? %>
-      <div class="card border-secondary">
-        <div class="card-header">Related</div>
-        <div class="card-body">
-          <%= render 'campaigns/list', campaigns: @campaigns, id: @note.id, type: 'Note' %>
-        </div>
-      </div>
-    <% end %>
+  <%= render 'shared/related_left', renderer_id: @note.id, renderer_type: 'Note', campaigns: @campaigns %>
 <% end %>
 
 <% content_for :center_column do %>
   <div class="card">
+    <div class="card-header">Note
+      <div class="card-actions">
+          <%= link_to edit_note_path(@note) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          <%= link_to new_link_path(origin_id: @note.id, origin_type: 'Note') do %>
+            <i class="material-icons">insert_link</i>
+          <% end %>
+        </div>
+    </div>
     <div class="card-body">
       <%= markdown @note.content %>
       
       <% unless @notes.empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'notes/list', notes: @notes, id: @note.id, type: 'Note' %>      
+          <%= render 'shared/list', objects: @notes, renderer_id: @note.id, renderer_type: 'Note' %>      
         </div>
       <% end %>
     </div>
@@ -25,20 +28,5 @@
 <% end %>
 
 <% content_for :right_column do %>
-  <% unless @locations.empty? %>
-    <div class="card border-green">
-      <div class="card-header">Locations</div>
-      <div class="card-body">
-        <%= render 'locations/list', locations: @locations, id: @note.id, type: 'Note' %>
-      </div>
-    </div>
-  <% end %>
-  <% unless @quests.empty? %>
-    <div class="card border-indigo">
-      <div class="card-header">Quests</div>
-      <div class="card-body">
-        <%= render 'quests/list', quests: @quests, id: @note.id, type: 'Note' %>    
-      </div>
-    </div>
-  <% end %>
+  <%= render 'shared/related_right', renderer_id: @note.id, renderer_type: 'Note', locations: @locations, quests: @quests %>
 <% end %>

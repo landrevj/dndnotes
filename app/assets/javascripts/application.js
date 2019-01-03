@@ -19,9 +19,13 @@
 //= require_tree .
 
 $(document).ready(function () {
-
     window.setTimeout(function () {
         $(".alert .close").click();
     }, 5000);
+});
 
+$(document).on('turbolinks:load', function () {
+    $("textarea").each(function (textarea) {
+        $(this).height($(this)[0].scrollHeight);
+    });
 });

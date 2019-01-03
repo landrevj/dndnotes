@@ -1,5 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
 
   # GET /campaigns
@@ -11,10 +12,6 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
-    @campaigns = @campaign.related('campaigns')
-    @locations = @campaign.related('locations')
-    @quests = @campaign.related('quests')
-    @notes = @campaign.related('notes')
     render :show, layout: 'page'
   end
 
@@ -71,6 +68,13 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find(params[:id])
+    end
+
+    def set_related
+      @campaigns = @campaign.related('campaigns')
+      @locations = @campaign.related('locations')
+      @quests = @campaign.related('quests')
+      @notes = @campaign.related('notes')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
   
   # GET /notes
@@ -11,18 +12,14 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @campaigns = @note.related('campaigns')
-    @locations = @note.related('locations')
-    @quests = @note.related('quests')
-    @notes = @note.related('notes')
     render :show, layout: 'page'
   end
-
+  
   # GET /notes/new
   def new
     @note = current_user.notes.build
   end
-
+  
   # GET /notes/1/edit
   def edit
   end
@@ -71,6 +68,13 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
+    end
+
+    def set_related
+      @campaigns = @note.related('campaigns')
+      @locations = @note.related('locations')
+      @quests = @note.related('quests')
+      @notes = @note.related('notes')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

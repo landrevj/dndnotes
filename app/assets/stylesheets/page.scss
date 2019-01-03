@@ -14,6 +14,17 @@
     }
 }
 
+.page-layout-edit {
+    .card-actions {
+        top: 0.6rem;
+        a {
+            position: relative;
+            top: 0.1rem;
+        }
+        .btn { margin-left: 0.5rem; }
+    }
+}
+
 .card-img-overlay {
     background: rgba(0,0,0,0.5);
 }
@@ -53,5 +64,18 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal;
     }
     &.text-#{$n} {
         color: $v !important;
+    }
+
+    // custom button colors
+    &.btn-#{$n} {
+        background-color: $v;
+        border-color: $v;
+    }
+    &.btn-#{$n}:hover {
+        background-color: darken($v, 7.5%);
+        border-color: darken($v, 7.5%);
+    }
+    &.btn-#{$n}:focus {
+        box-shadow: 0 0 0 0.2rem rgba($v, .5);
     }
 }

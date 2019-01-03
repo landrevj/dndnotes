@@ -15,14 +15,8 @@
         <%= markdown @campaign.description %>
       </div>
     </div>
-    <% unless @campaigns.empty? %>
-      <div class="card border-secondary">
-        <div class="card-header">Related</div>
-        <div class="card-body">
-          <%= render 'campaigns/list', campaigns: @campaigns, id: @campaign.id, type: 'Campaign' %>
-        </div>
-      </div>
-    <% end %>
+    
+    <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>
 <% end %>
 
 <% content_for :center_column do %>
@@ -34,7 +28,7 @@
       <% unless @notes.empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'notes/list', notes: @notes, id: @campaign.id, type: 'Campaign' %>      
+          <%= render 'shared/list', objects: @notes, renderer_id: @campaign.id, renderer_type: 'Campaign' %>      
         </div>
       <% end %>
     </div>
@@ -42,20 +36,5 @@
 <% end %>
 
 <% content_for :right_column do %>
-  <% unless @locations.empty? %>
-    <div class="card border-green">
-      <div class="card-header">Locations</div>
-      <div class="card-body">
-        <%= render 'locations/list', locations: @locations, id: @campaign.id, type: 'Campaign' %>
-      </div>
-    </div>
-  <% end %>
-  <% unless @quests.empty? %>
-    <div class="card border-indigo">
-      <div class="card-header">Quests</div>
-      <div class="card-body">
-        <%= render 'quests/list', quests: @quests, id: @campaign.id, type: 'Campaign' %>    
-      </div>
-    </div>
-  <% end %>
+  <%= render 'shared/related_right', renderer_id: @campaign.id, renderer_type: 'Campaign', locations: @locations, quests: @quests %>
 <% end %>

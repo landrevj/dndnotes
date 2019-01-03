@@ -1,0 +1,7 @@
+<% objects.each do |object| %>
+  <% if local_assigns.has_key?(:renderer_id) && local_assigns.has_key?(:renderer_type) %>
+    <%= render 'shared/card', object: object, renderer_id: renderer_id, renderer_type: renderer_type %>
+  <% else %>
+    <%= render 'shared/card', object: object %>
+  <% end %>
+<% end %>

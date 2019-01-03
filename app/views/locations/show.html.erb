@@ -2,7 +2,7 @@
     <div class="card page-main location-main border-green">
       <div class="card-header">Location
         <div class="card-actions">
-          <%= link_to edit_campaign_path(@location) do %>
+          <%= link_to edit_location_path(@location) do %>
             <i class="material-icons">edit</i>
           <% end %>
           <%= link_to new_link_path(origin_id: @location.id, origin_type: 'Location') do %>
@@ -15,14 +15,7 @@
         <%= markdown @location.description %>
       </div>
     </div>
-    <% unless @campaigns.empty? %>
-      <div class="card border-secondary">
-        <div class="card-header">Related</div>
-        <div class="card-body">
-          <%= render 'campaigns/list', campaigns: @campaigns, id: @location.id, type: 'Location' %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'shared/related_left', renderer_id: @location.id, renderer_type: 'Location', campaigns: @campaigns %>
 <% end %>
 
 <% content_for :center_column do %>
@@ -34,7 +27,7 @@
       <% unless @notes.empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'notes/list', notes: @notes, id: @location.id, type: 'Location' %>      
+          <%= render 'shared/list', objects: @notes, renderer_id: @location.id, renderer_type: 'Location' %>      
         </div>
       <% end %>
     </div>
@@ -42,20 +35,5 @@
 <% end %>
 
 <% content_for :right_column do %>
-  <% unless @locations.empty? %>
-    <div class="card border-green">
-      <div class="card-header">Locations</div>
-      <div class="card-body">
-        <%= render 'locations/list', locations: @locations, id: @location.id, type: 'Location' %>
-      </div>
-    </div>
-  <% end %>
-  <% unless @quests.empty? %>
-    <div class="card border-indigo">
-      <div class="card-header">Quests</div>
-      <div class="card-body">
-        <%= render 'quests/list', quests: @quests, id: @location.id, type: 'Location' %>    
-      </div>
-    </div>
-  <% end %>
+  <%= render 'shared/related_right', renderer_id: @location.id, renderer_type: 'Location', locations: @locations, quests: @quests %>
 <% end %>
