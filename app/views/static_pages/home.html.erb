@@ -48,30 +48,10 @@
     <section class="center-col col-md-9">
         <div class="home-cards card-columns">
             <section>
-                <div class="card campaigns-last-updated border-blue">
-                    <div class="card-header"><%= link_to 'Campaigns', campaigns_path %></div>
-                    <div class="card-body">
-                        <%= render 'shared/list', card_type: 'link', objects: current_user.campaigns.order(:updated_at).last(5) %>
-                    </div>
-                </div>
-                <div class="card locations-last-updated border-green">
-                    <div class="card-header"><%= link_to 'Locations', locations_path %></div>
-                    <div class="card-body">
-                        <%= render 'shared/list', card_type: 'link', objects: current_user.locations.order(:updated_at).last(5) %>
-                    </div>
-                </div>
-                <div class="card quests-last-updated border-indigo">
-                    <div class="card-header"><%= link_to 'Quests', quests_path %></div>
-                    <div class="card-body">
-                        <%= render 'shared/list', card_type: 'link', objects: current_user.quests.order(:updated_at).last(5) %>
-                    </div>
-                </div>
-                <div class="card notes-last-updated border-secondary">
-                    <div class="card-header"><%= link_to 'Notes', notes_path %></div>
-                    <div class="card-body">
-                        <%= render 'shared/list', card_type: 'link', objects: current_user.notes.order(:updated_at).last(5) %>
-                    </div>
-                </div>
+                <%= render 'campaigns/card', objects: current_user.campaigns.order(updated_at: :desc).last(5) %>
+                <%= render 'locations/card', objects: current_user.locations.order(updated_at: :desc).last(5) %>
+                <%= render 'quests/card',    objects: current_user.quests.order(updated_at: :desc).last(5) %>
+                <%= render 'notes/card',     objects: current_user.notes.order(updated_at: :desc).last(5) %>
             </section>
         </div>
     </section>

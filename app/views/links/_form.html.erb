@@ -1,39 +1,39 @@
 <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
 
-          <%= form_with(model: link, local: true, class: 'link-search-form') do |form| %>
-            <div class="modal-body">
-              <%= form.hidden_field :origin_id, value: origin_id %>
-              <%= form.hidden_field :origin_type, value: origin_type %>
-              <%= form.hidden_field :linkable_id %>
-              <%= form.hidden_field :linkable_type %>
+      <%= form_with(model: link, local: true, class: 'link-search-form') do |form| %>
+        <div class="modal-body">
+          <%= form.hidden_field :origin_id, value: origin_id %>
+          <%= form.hidden_field :origin_type, value: origin_type %>
+          <%= form.hidden_field :linkable_id %>
+          <%= form.hidden_field :linkable_type %>
 
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <select class="custom-select" id="linkable-search-type">
-                    <option selected>Type...</option>
-                    <option value="campaigns">Campaigns</option>
-                    <option value="locations">Locations</option>
-                    <option value="quests">Quests</option>
-                    <option value="notes">Notes</option>
-                  </select>
-                </div>
-                  <%= form.text_field :q, placeholder: 'Search', autocomplete: 'off', class: ['form-control', 'link-search'] %>
-              </div>
-              <hr>
-              <div class="link-search-results"></div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <select class="custom-select" id="linkable-search-type">
+                <option selected>Type...</option>
+                <option value="campaigns">Campaigns</option>
+                <option value="locations">Locations</option>
+                <option value="quests">Quests</option>
+                <option value="notes">Notes</option>
+              </select>
             </div>
-            <div class="modal-footer">
-              <div class="input-group">
-                <div class="input-group-prepend"><span class="input-group-text" id="inputGroup-sizing-sm">Target</span></div>
-                <div class="link-current-target"></div>
-              </div>
-              <%= form.submit 'Create Link', class: ['btn', 'btn-success', 'text-light'], disabled: true %>
-            </div>
-          <% end %>
-
+              <%= form.text_field :q, placeholder: 'Search', autocomplete: 'off', class: ['form-control', 'link-search'] %>
+          </div>
+          <hr>
+          <div class="link-search-results"></div>
         </div>
-      </div>
+        <div class="modal-footer">
+          <div class="input-group">
+            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup-sizing-sm">Target</span></div>
+            <div class="link-current-target"></div>
+          </div>
+          <%= form.submit 'Create Link', class: ['btn', 'btn-success', 'text-light'], disabled: true %>
+        </div>
+      <% end %>
+
     </div>
+  </div>
+</div>
 

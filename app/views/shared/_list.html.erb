@@ -1,6 +1,6 @@
 <% objects.each do |object| %>
-  <% if local_assigns.has_key?(:renderer_id) && local_assigns.has_key?(:renderer_type) %>
-    <%= render 'shared/card', card_type: card_type, object: object, renderer_id: renderer_id, renderer_type: renderer_type %>
+  <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+    <%= render 'shared/card', card_type: card_type, object: object, referrer_id: referrer_id, referrer_type: referrer_type %>
   <% else %>
     <%= render 'shared/card', card_type: card_type, object: object %>
   <% end %>

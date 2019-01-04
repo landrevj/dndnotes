@@ -6,6 +6,7 @@
             <i class="material-icons">edit</i>
           <% end %>
           <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
+          <a data-toggle="modal" data-target="#referredNewModal"><i class="material-icons">add</i></a>
         </div>
       </div>
       <div class="card-body">
@@ -13,8 +14,9 @@
         <%= markdown @campaign.description %>
       </div>
     </div>
-    <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>   
+    <%= render 'shared/related_left', referrer_id: @campaign.id, referrer_type: 'Campaign', campaigns: @campaigns %>   
     <%= render 'links/form', link: @link, origin_id: @campaign.id, origin_type: 'Campaign' %>
+    <%= render 'shared/referred_new_modal', referrer_id: @campaign.id, referrer_type: 'Campaign' %>   
 <% end %>
 
 <% content_for :center_column do %>
@@ -26,7 +28,7 @@
       <% unless @notes.empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @campaign.id, renderer_type: 'Campaign' %>      
+          <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @campaign.id, referrer_type: 'Campaign' %>      
         </div>
       <% end %>
     </div>
@@ -34,6 +36,6 @@
 <% end %>
 
 <% content_for :right_column do %>
-  <%= render 'shared/related_right', renderer_id: @campaign.id, renderer_type: 'Campaign', locations: @locations, quests: @quests %>
+  <%= render 'shared/related_right', referrer_id: @campaign.id, referrer_type: 'Campaign', locations: @locations, quests: @quests %>
 <% end %>
 

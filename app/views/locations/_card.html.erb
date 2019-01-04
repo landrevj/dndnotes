@@ -1,0 +1,23 @@
+<div class="card locations-related border-green">
+    <div class="card-header">
+        <%= link_to 'Locations', locations_path %>
+        <div class="card-actions">
+            <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+                <%= link_to new_location_path(referrer_id: referrer_id, referrer_type: referrer_type) do %>
+                    <i class="material-icons">add</i>
+                <% end %>
+            <% else %>
+                <%= link_to new_location_path do %>
+                    <i class="material-icons">add</i>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+            <%= render 'shared/list', card_type: 'link', objects: objects, referrer_id: referrer_id, referrer_type: referrer_type %>
+        <% else %>
+            <%= render 'shared/list', card_type: 'link', objects: objects %>
+        <% end %>
+    </div>
+</div>

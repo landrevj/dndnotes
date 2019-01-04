@@ -113,3 +113,11 @@
         max-width: 275px;
     }
 }
+
+#referredNewModal {
+    .material-icons { float: right; }
+    .link-card {
+        color: $font01;
+    }
+    a:hover { text-decoration: none; }
+}
