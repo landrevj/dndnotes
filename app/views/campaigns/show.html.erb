@@ -5,9 +5,7 @@
           <%= link_to edit_campaign_path(@campaign) do %>
             <i class="material-icons">edit</i>
           <% end %>
-          <%= link_to new_link_path(origin_id: @campaign.id, origin_type: 'Campaign') do %>
-            <i class="material-icons">insert_link</i>
-          <% end %>
+          <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
         </div>
       </div>
       <div class="card-body">
@@ -17,6 +15,8 @@
     </div>
     
     <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>
+    
+    <%= render 'links/form', link: @link, origin_id: @campaign.id, origin_type: 'Campaign' %>
 <% end %>
 
 <% content_for :center_column do %>
@@ -38,3 +38,4 @@
 <% content_for :right_column do %>
   <%= render 'shared/related_right', renderer_id: @campaign.id, renderer_type: 'Campaign', locations: @locations, quests: @quests %>
 <% end %>
+

@@ -32,7 +32,8 @@ class LinksController < ApplicationController
         format.html { redirect_to @link.origin, notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
-        format.html { render :new }
+        flash[:alert] = "Could not create link."
+        format.html { redirect_back fallback_location: root_path }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
     end

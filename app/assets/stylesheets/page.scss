@@ -37,7 +37,7 @@
     background: rgba(0,0,0,0.5);
 }
 
-.card .link-card { margin-bottom: 0.5rem; }
+.card.link-card { margin-bottom: 0.5rem; }
 
 .link-table {
     width: 100%;
@@ -96,4 +96,17 @@
     margin: 5px;
 
     &:hover { color: $red; }
+}
+
+
+.link-search-form {
+    .link-current-target {
+        .link-card { margin-bottom: 0; }
+    }
+    .input-group-text, input[type="submit"] { padding: 0.244rem 0.75rem; }
+    .link-current-target .card-body {
+        max-height: 34px;
+        overflow: hidden;
+        max-width: 275px;
+    }
 }

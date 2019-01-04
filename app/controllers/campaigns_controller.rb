@@ -13,6 +13,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @link = current_user.links.build
     render :show, layout: 'page'
   end
 
