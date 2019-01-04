@@ -107,6 +107,9 @@
     .link-current-target .card-body {
         max-height: 34px;
         overflow: hidden;
+        @include media-breakpoint-down(sm) {
+            max-width: 242px;
+        }
         max-width: 275px;
     }
 }
