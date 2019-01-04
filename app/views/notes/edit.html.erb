@@ -12,7 +12,7 @@
                     <%= form.submit 'Save', class: ['btn', 'btn-blue', 'btn-sm', 'text-light'] %>
                 </div>
                 <div class="card-body">
-                <%= form.text_area :content, class: 'form-control' %>
+                <%= form.text_area :content, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
                 
                 <% unless @notes.empty? %>
                     <hr>
