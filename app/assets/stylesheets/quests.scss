@@ -16,3 +16,11 @@
         // background: darken($color: $indigo, $amount: 7.5%)
     }
 }
+
+.quest-table {
+    thead tr { background: $indigo; }
+    tbody a {
+        color: $indigo;
+        &:hover { color: darken($indigo, 5%) }
+    }
+}

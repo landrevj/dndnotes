@@ -1,16 +1,35 @@
 <section class="index col-md-8 mx-auto">
-  <div class="card">
+  <div class="card border-indigo">
     <div class="card-header">Quests</div>
     <div class="card-body">
       <%= search_form_for @q do |form| %>
         <div class='form-group'>
           <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'search' %>
         </div>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <table class="table-borderless link-table quest-table">
+              <thead>
+                <th><%= sort_link(@q, :name) %></th>
+                <th><%= sort_link(@q, :created_at, 'Created') %></th>
+                <th><%= sort_link(@q, :updated_at, 'Updated') %></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% @quests.each do |quest| %>
+                  <tr>
+                    <td class="name"><%= quest.name.truncate(180, separator: ' ') %></td>
+                    <td class="created"><%= time_ago_in_words quest.created_at %> ago</td>
+                    <td class="updated"><%= time_ago_in_words quest.updated_at %> ago</td>
+                    <td class="link"><%= link_to quest do %><i class="material-icons">insert_link</i><% end %></td>
+                  </tr>
+                <% end %>
+              </thead>
+            </table>    
+          </div>
+        </div>
       <% end %>
-      <hr>
-      <div class="card-columns">
-        <%= render 'shared/list', card_type: 'link', objects: @quests %>      
-      </div>
     </div>
   </div>
 </section>

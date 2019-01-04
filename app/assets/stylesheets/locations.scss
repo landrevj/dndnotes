@@ -15,3 +15,11 @@
         // background: darken($color: $green, $amount: 7.5%)
     }
 }
+
+.location-table {
+    thead tr { background: $green; }
+    tbody a {
+        color: $green;
+        &:hover { color: darken($green, 10%) }
+    }
+}

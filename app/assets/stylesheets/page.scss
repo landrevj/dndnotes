@@ -39,6 +39,30 @@
 
 .card .link-card { margin-bottom: 0.5rem; }
 
+.link-table {
+    width: 100%;
+    thead tr {
+        background: $blue;
+    }
+    td, th { padding: 0.3rem 0.5rem; }
+    th {
+        a {
+            color: $font01;
+            &:hover {
+                color: $font02;
+                text-decoration: none;
+            }
+        }
+    }
+    tr {
+        background: $base02;
+        &:nth-child(even) { background: darken($base02, 5%); }
+    }
+    td.content, td.name {
+        width: 75%;
+    }
+}
+
 .link-card {
     border: 0;
     background: $base01;
