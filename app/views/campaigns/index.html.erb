@@ -19,7 +19,7 @@
               <tbody>
                 <% @campaigns.each do |campaign| %>
                   <tr>
-                    <td class="name"><%= campaign.name.truncate(180, separator: ' ') %></td>
+                    <td class="name"><%= campaign.name.truncate(105, separator: ' ') %></td>
                     <td class="created"><%= time_ago_in_words campaign.created_at %> ago</td>
                     <td class="updated"><%= time_ago_in_words campaign.updated_at %> ago</td>
                     <td class="link"><%= link_to campaign do %><i class="material-icons">insert_link</i><% end %></td>

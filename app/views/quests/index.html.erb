@@ -19,7 +19,7 @@
               <tbody>
                 <% @quests.each do |quest| %>
                   <tr>
-                    <td class="name"><%= quest.name.truncate(180, separator: ' ') %></td>
+                    <td class="name"><%= quest.name.truncate(105, separator: ' ') %></td>
                     <td class="created"><%= time_ago_in_words quest.created_at %> ago</td>
                     <td class="updated"><%= time_ago_in_words quest.updated_at %> ago</td>
                     <td class="link"><%= link_to quest do %><i class="material-icons">insert_link</i><% end %></td>
