@@ -10,6 +10,11 @@
         color: $blue !important;
         &:hover { color: darken($blue, 15%) !important; }
     }
+
+    .cancel-link { 
+        color: $blue;
+        &:hover { color: darken($blue, 15%); }
+    }
 }
 
 .campaign-card {

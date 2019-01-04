@@ -16,8 +16,9 @@
             <div class="card page-main campaign-main border-blue">
                 <div class="card-header">Campaign
                     <div class="card-actions">
-                        <%= link_to 'Cancel', @campaign %>
+                        <%= link_to 'Cancel', @campaign, class: 'cancel-link' %>
                         <%= form.submit 'Save', class: ['btn', 'btn-blue', 'btn-sm', 'text-light'] %>
+                        <%= link_to 'Delete', @campaign, method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
                     </div>
                 </div>
                 <div class="card-body">

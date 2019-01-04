@@ -1,13 +1,13 @@
 <div class="card notes-related border-secondary">
     <div class="card-header">
-        <%= link_to 'Notes', notes_path %>
+        <%= link_to 'Notes', notes_path, class: 'index-link' %>
         <div class="card-actions">
             <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
-                <%= link_to new_note_path(referrer_id: referrer_id, referrer_type: referrer_type) do %>
+                <%= link_to new_note_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-link' do %>
                     <i class="material-icons">add</i>
                 <% end %>
             <% else %>
-                <%= link_to new_note_path do %>
+                <%= link_to new_note_path, class: 'new-link' do %>
                     <i class="material-icons">add</i>
                 <% end %>
             <% end %>
