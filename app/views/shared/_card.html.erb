@@ -2,9 +2,13 @@
     <%= link_to object, class: 'link-target' do %>
         <div class="card-body">
             <% if object.try :name %>
-                <%= object.name %>
+                <%= object.name.truncate(100, separator: ' ') %>
             <% else object.try :content %>
-                <%= object.content %>
+                <% if  card_type == 'full' %>
+                    <%= markdown object.content %>
+                <% else %>
+                    <%= object.content.truncate(100, separator: ' ') %>
+                <% end %>
             <% end %>
         </div>
     <% end %>
