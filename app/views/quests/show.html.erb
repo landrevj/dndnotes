@@ -5,9 +5,7 @@
           <%= link_to edit_quest_path(@quest) do %>
             <i class="material-icons">edit</i>
           <% end %>
-          <%= link_to new_link_path(origin_id: @quest.id, origin_type: 'Quest') do %>
-            <i class="material-icons">insert_link</i>
-          <% end %>
+          <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
         </div>
       </div>
       <div class="card-body">
@@ -16,6 +14,7 @@
       </div>
     </div>
     <%= render 'shared/related_left', renderer_id: @quest.id, renderer_type: 'Quest', campaigns: @campaigns %>
+    <%= render 'links/form', link: @link, origin_id: @quest.id, origin_type: 'Quest' %>
 <% end %>
 
 <% content_for :center_column do %>

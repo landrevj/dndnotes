@@ -9,9 +9,7 @@
           <%= link_to edit_note_path(@note) do %>
             <i class="material-icons">edit</i>
           <% end %>
-          <%= link_to new_link_path(origin_id: @note.id, origin_type: 'Note') do %>
-            <i class="material-icons">insert_link</i>
-          <% end %>
+          <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
         </div>
     </div>
     <div class="card-body">
@@ -25,6 +23,7 @@
       <% end %>
     </div>
   </div>
+  <%= render 'links/form', link: @link, origin_id: @note.id, origin_type: 'Note' %>
 <% end %>
 
 <% content_for :right_column do %>

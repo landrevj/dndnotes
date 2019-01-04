@@ -13,6 +13,7 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
+    @link = current_user.links.build
     render :show, layout: 'page'
   end
   

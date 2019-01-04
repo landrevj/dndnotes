@@ -13,6 +13,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @link = current_user.links.build
     render :show, layout: 'page'
   end
 

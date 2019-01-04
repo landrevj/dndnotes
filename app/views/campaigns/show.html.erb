@@ -13,9 +13,7 @@
         <%= markdown @campaign.description %>
       </div>
     </div>
-    
-    <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>
-    
+    <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>   
     <%= render 'links/form', link: @link, origin_id: @campaign.id, origin_type: 'Campaign' %>
 <% end %>
 
