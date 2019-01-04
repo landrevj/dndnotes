@@ -1,3 +1,23 @@
 // Place all the styles related to the Campaigns controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.campaign-main {
+    & + .campaigns-related {
+        border-color: #6c757d !important;
+    }
+
+    .card-actions a { 
+        color: $blue !important;
+        &:hover { color: darken($blue, 15%) !important; }
+    }
+}
+
+.campaign-card {
+    background: $blue;
+    
+    &:hover {
+        background: $blue;
+        box-shadow: 0 0 0 0.2rem rgba($blue, .5);
+        // background: darken($color: $blue, $amount: 7.5%)
+    }
+}

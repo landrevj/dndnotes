@@ -1,18 +1,32 @@
-<p>
-  <strong>Content:</strong>
-  <%= markdown @note.content %>
-</p>
+<% content_for :left_column do %>
+  <%= render 'shared/related_left', renderer_id: @note.id, renderer_type: 'Note', campaigns: @campaigns %>
+<% end %>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %> |
-<%= link_to 'Link', new_link_path(origin_id: @note.id, origin_type: 'Note') %>
+<% content_for :center_column do %>
+  <div class="card">
+    <div class="card-header">Note
+      <div class="card-actions">
+          <%= link_to edit_note_path(@note) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          <%= link_to new_link_path(origin_id: @note.id, origin_type: 'Note') do %>
+            <i class="material-icons">insert_link</i>
+          <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+      <%= markdown @note.content %>
+      
+      <% unless @notes.empty? %>
+        <hr>
+        <div class="notes-container">
+          <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @note.id, renderer_type: 'Note' %>      
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<hr>
-<%= render 'campaigns/list', campaigns: @note.related('campaigns'), id: @note.id, type: 'Note' %>
-<hr>
-<%= render 'locations/list', locations: @note.related('locations'), id: @note.id, type: 'Note' %>
-<hr>
-<%= render 'quests/list', quests: @note.related('quests'), id: @note.id, type: 'Note' %>
-<hr>
-<%= render 'notes/list', notes: @note.related('notes'), id: @note.id, type: 'Note' %>
-<hr>
+<% content_for :right_column do %>
+  <%= render 'shared/related_right', renderer_id: @note.id, renderer_type: 'Note', locations: @locations, quests: @quests %>
+<% end %>

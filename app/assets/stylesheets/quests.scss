@@ -1,3 +1,26 @@
 // Place all the styles related to the Quests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.quest-main .card-actions a { 
+    color: $indigo !important;
+    &:hover { color: darken($indigo, 7.5%) !important; }
+}
+
+.quest-card {
+    background: $indigo;
+
+    
+    &:hover {
+        background: $indigo;
+        box-shadow: 0 0 0 0.2rem rgba($indigo, .5);
+        // background: darken($color: $indigo, $amount: 7.5%)
+    }
+}
+
+.quest-table {
+    thead tr { background: $indigo; }
+    tbody a {
+        color: $indigo;
+        &:hover { color: darken($indigo, 5%) }
+    }
+}

@@ -1,0 +1,17 @@
+<%= extends :application do %>
+  <div class="row page-layout">
+
+    <section class="left-col col-md-3 ml-auto">
+      <%= yield :left_column %>
+    </section>
+
+    <section class="center-col col-md-6">
+      <%= yield :center_column %>
+    </section>
+
+    <section class="right-col col-md-3 mr-auto">
+      <%= yield :right_column %>
+    </section>
+  
+  </div>
+<% end %>

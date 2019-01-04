@@ -1,0 +1,115 @@
+.page-layout {
+    .card {
+        margin-bottom: 1rem;
+        .card-header {
+            a {
+                color: $font01;
+                &:hover {
+                    color: $font02;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .card-actions {
+        position: absolute;
+        right: 1rem;
+        top: 0.8rem;
+        a:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.page-layout-edit {
+    .card-actions {
+        top: 0.6rem;
+        a {
+            position: relative;
+            top: 0.1rem;
+        }
+        .btn { margin-left: 0.5rem; }
+    }
+}
+
+.card-img-overlay {
+    background: rgba(0,0,0,0.5);
+}
+
+.card.link-card { margin-bottom: 0.5rem; }
+
+.link-table {
+    width: 100%;
+    thead tr {
+        background: $blue;
+    }
+    td, th { padding: 0.3rem 0.5rem; }
+    th {
+        a {
+            color: $font01;
+            &:hover {
+                color: $font02;
+                text-decoration: none;
+            }
+        }
+    }
+    tr {
+        background: $base02;
+        &:nth-child(even) { background: darken($base02, 5%); }
+    }
+    td.content, td.name {
+        width: 75%;
+    }
+}
+
+.link-card {
+    border: 0;
+    background: $base01;
+    transition: background 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
+
+
+    .card-body {
+        padding: 0.3rem 0.5rem;
+    }
+
+    a { color: $font01; }
+
+    &:hover {
+        background: $base02;
+        a { text-decoration: none; }
+    }
+}
+
+.full-card {
+    background: $base01;
+    a { color: $font01; }
+    &:hover {
+        background: $base02;
+    }
+    a:hover { text-decoration: none; }
+}
+
+.link-unlink {
+    position: absolute;
+    right: 0;
+    margin: 5px;
+
+    &:hover { color: $red; }
+}
+
+
+.link-search-form {
+    .link-current-target {
+        .link-card { margin-bottom: 0; }
+    }
+    .input-group-text, input[type="submit"] { padding: 0.244rem 0.75rem; }
+    .link-current-target .card-body {
+        max-height: 34px;
+        overflow: hidden;
+        @include media-breakpoint-down(sm) {
+            max-width: 242px;
+        }
+        max-width: 275px;
+    }
+}

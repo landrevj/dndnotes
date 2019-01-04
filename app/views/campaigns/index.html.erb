@@ -1,29 +1,35 @@
-<h1>Campaigns</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>About</th>
-      <th>ID</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @campaigns.each do |campaign| %>
-      <tr>
-        <td><%= campaign.name %></td>
-        <td><%= campaign.about %></td>
-        <td><%= campaign.id %></td>
-        <td><%= link_to 'Show', campaign %></td>
-        <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
-        <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Campaign', new_campaign_path %>
+<section class="index col-md-8 mx-auto">
+  <div class="card border-blue">
+    <div class="card-header">Campaigns</div>
+    <div class="card-body">
+      <%= search_form_for @q do |form| %>
+        <div class='form-group'>
+          <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'search' %>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <table class="table-borderless link-table campaign-table">
+              <thead>
+                <th><%= sort_link(@q, :name) %></th>
+                <th><%= sort_link(@q, :created_at, 'Created') %></th>
+                <th><%= sort_link(@q, :updated_at, 'Updated') %></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% @campaigns.each do |campaign| %>
+                  <tr>
+                    <td class="name"><%= campaign.name.truncate(105, separator: ' ') %></td>
+                    <td class="created"><%= time_ago_in_words campaign.created_at %> ago</td>
+                    <td class="updated"><%= time_ago_in_words campaign.updated_at %> ago</td>
+                    <td class="link"><%= link_to campaign do %><i class="material-icons">insert_link</i><% end %></td>
+                  </tr>
+                <% end %>
+              </thead>
+            </table>    
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

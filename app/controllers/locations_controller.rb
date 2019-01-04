@@ -1,16 +1,19 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = current_user.locations
+    @q = current_user.locations.ransack(params[:q])
+    @locations = @q.result(distinct: true)
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    render :show, layout: 'page'
   end
 
   # GET /locations/new
@@ -66,6 +69,13 @@ class LocationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_location
       @location = Location.find(params[:id])
+    end
+
+    def set_related
+      @campaigns = @location.related('campaigns')
+      @locations = @location.related('locations')
+      @quests = @location.related('quests')
+      @notes = @location.related('notes')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

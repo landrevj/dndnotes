@@ -1,0 +1,232 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+$blue:    #4084D6;
+$indigo:  #7B53DF;
+$purple:  #9F5ED1;
+$pink:    #D66799;
+$red:     #D05353;
+$orange:  #DC7C54;
+$yellow:  #E0E07E;
+$green:   #87AF5F;
+$teal:    #4CDCCF;
+$cyan:    #4CB1DC;
+$white:   #E8E8E8;
+
+$font01:   #E8E8E8;
+$font02:   #a7a7a7;
+$font03:   #7e7e7e;
+$base01:   #4B4B4B;
+$base02:   #444444;
+$base03:   #3C3C3C;
+$bg:       #313131;
+
+$linkColor: $red !default;
+
+$colors: (
+    blue:   $blue,
+    indigo: $indigo,
+    purple: $purple,
+    pink:   $pink,
+    red:    $red,
+    orange: $orange,
+    yellow: $yellow,
+    green:  $green,
+    teal:   $teal,
+    cyan:   $cyan,
+    white:  $white,
+    font01:  $font01,
+    font02:  $font02,
+    font03:  $font03,
+    base01:  $base01,
+    base02:  $base02,
+    base03:  $base03,
+    bg:      $bg
+) !default;
+
+$theme-colors: (
+    primary: $blue,
+    success: $green,
+    info:    $cyan,
+    warning: $yellow,
+    danger:  $red,
+) !default;
+
+
+@import "bootstrap";
+@import "navbar";
+@import "login";
+@import "home";
+
+@import "page";
+@import "campaigns";
+@import "locations";
+@import "quests";
+@import "notes";
+
+.material-icons { user-select: none; }
+
+body {
+    
+    background: $bg;
+    font-family: 'Open Sans', arial, sans-serif !important;
+}
+
+nav + main > .container-fluid {
+  padding-top: 75px;
+}
+
+footer {
+  background: $base03;
+
+  .links {
+      text-align: center;
+      color: #212529;
+
+      a {
+          color: $font03;
+      }
+  }
+}
+
+.modal {
+  .modal-content { background-color: $base03; }
+  .modal-footer { border-color: $bg; }
+  .close { color: $font01; }
+}
+
+.form-control {
+  background: $base01;
+  color: $font02;
+  border-width: 0px;
+
+  &:disabled {
+    background: $base01;
+  }
+  
+ &.is-invalid {
+    box-shadow: 0 0 0 0.2rem rgba($red, 0.25);
+ }
+
+  &:focus {
+    background: $base01;
+    color: $font01;
+  }
+}
+
+.card#error_explanation {
+  background: $bg;
+  margin-bottom: 1rem;
+
+  ul {
+    margin: 1rem;
+  }
+}
+
+.alert {
+  position: fixed;
+  left: 2rem;
+  bottom: 1rem;
+}
+
+section > .card {
+  background: $base03;
+}
+
+$names: green yellow orange red pink purple indigo blue cyan teal gray;
+$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal $base01;
+@for $i from 1 through length($names) {
+    $n: nth($names, $i);
+    $v: nth($values, $i);
+    &.border-#{$n} {
+      border-color: $v !important;
+    }
+    &.text-#{$n} {
+      color: $v !important;
+
+    }
+    
+    &a.text-#{$n}:hover {
+      color: darken($v, 7.5%) !important;
+    }
+
+    &.bg-#{$n} {
+      background: $v;
+    }
+
+    // custom button colors
+    &.btn-#{$n} {
+      background-color: $v;
+      border-color: $v;
+    }
+    &.btn-#{$n}:hover {
+      background-color: darken($v, 7.5%);
+      border-color: darken($v, 7.5%);
+    }
+    &.btn-#{$n}:focus {
+      box-shadow: 0 0 0 0.2rem rgba($v, .5);
+    }
+}
+
+// switch checkbox style from https://www.w3schools.com/howto/howto_css_switch.asp
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 25px;
+  margin-bottom: 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+
+}
+
+input:checked + .slider {
+  background-color: $blue;
+}
+
+input:checked + .slider:before {
+  transform: translateX(15px);
+}

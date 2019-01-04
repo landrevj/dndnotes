@@ -1,23 +1,39 @@
-<p>
-  <strong>Name:</strong>
-  <%= @quest.name %>
-</p>
+<% content_for :left_column do %>
+    <div class="card page-main quest-main border-indigo">
+      <div class="card-header">Quest
+        <div class="card-actions">
+          <%= link_to edit_quest_path(@quest) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          <%= link_to new_link_path(origin_id: @quest.id, origin_type: 'Quest') do %>
+            <i class="material-icons">insert_link</i>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title text-indigo"><%= @quest.name %></h3>
+        <%= markdown @quest.description %>
+      </div>
+    </div>
+    <%= render 'shared/related_left', renderer_id: @quest.id, renderer_type: 'Quest', campaigns: @campaigns %>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @quest.description %>
-</p>
+<% content_for :center_column do %>
+  <div class="card">
+    <div class="card-header">Notes</div>
+    <div class="card-body">
+      <%= markdown @quest.content %>
+      
+      <% unless @notes.empty? %>
+        <hr>
+        <div class="notes-container">
+          <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @quest.id, renderer_type: 'Quest' %>      
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_quest_path(@quest) %> |
-<%= link_to 'Back', quests_path %> |
-<%= link_to 'Link', new_link_path(origin_id: @quest.id, origin_type: 'Quest') %>
-
-<hr>
-<%= render 'campaigns/list', campaigns: @quest.related('campaigns'), id: @quest.id, type: 'Quest' %>
-<hr>
-<%= render 'locations/list', locations: @quest.related('locations'), id: @quest.id, type: 'Quest' %>
-<hr>
-<%= render 'quests/list', quests: @quest.related('quests'), id: @quest.id, type: 'Quest' %>
-<hr>
-<%= render 'notes/list', notes: @quest.related('notes'), id: @quest.id, type: 'Quest' %>
-<hr>
+<% content_for :right_column do %>
+  <%= render 'shared/related_right', renderer_id: @quest.id, renderer_type: 'Quest', locations: @locations, quests: @quests %>
+<% end %>

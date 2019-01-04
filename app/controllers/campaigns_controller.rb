@@ -1,16 +1,20 @@
 class CampaignsController < ApplicationController
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
 
   # GET /campaigns
   # GET /campaigns.json
   def index
-    @campaigns = current_user.campaigns
+    @q = current_user.campaigns.ransack(params[:q])
+    @campaigns = @q.result(distinct: true)
   end
 
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
+    @link = current_user.links.build
+    render :show, layout: 'page'
   end
 
   # GET /campaigns/new
@@ -68,8 +72,15 @@ class CampaignsController < ApplicationController
       @campaign = Campaign.find(params[:id])
     end
 
+    def set_related
+      @campaigns = @campaign.related('campaigns')
+      @locations = @campaign.related('locations')
+      @quests = @campaign.related('quests')
+      @notes = @campaign.related('notes')
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:name, :about)
+      params.require(:campaign).permit(:name, :description, :content)
     end
 end

@@ -1,0 +1,68 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+.login-form {
+    padding: 25px;
+    border-radius: 0.25rem;
+    background: $base03;
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 25px 25px;
+        
+        svg {
+            width: 150px;
+            height: 150px;
+            fill: $font03;
+        }
+    }
+
+    .links a {
+        color: $font02;
+    }
+
+    input {
+        min-width: 250px;
+    }
+
+    #user_email {
+        margin-bottom: 5px;
+    }
+}
+
+.about-container {
+    padding: 0;
+
+    & > div {
+        padding: 25px 15%;
+    }
+
+    a {
+        color: $bg;
+    }
+}
+
+.welcome {
+    background: $blue;
+}
+
+.features {
+    background: $green;
+}
+
+.screenshots {
+    background: $indigo;
+}
+
+.technical {
+    background: $purple;
+}

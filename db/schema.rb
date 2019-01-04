@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_051314) do
+ActiveRecord::Schema.define(version: 2019_01_03_001049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
-    t.text "about"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.text "content"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_051314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.text "content"
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_051314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.text "content"
     t.index ["user_id"], name: "index_quests_on_user_id"
   end
 

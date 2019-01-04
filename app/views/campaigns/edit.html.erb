@@ -1,6 +1,56 @@
-<h1>Editing Campaign</h1>
+<%= form_with(model: @campaign, local: true) do |form| %>
+    <div class="row page-layout page-layout-edit">
+        <% if @campaign.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
 
-<%= render 'form', campaign: @campaign %>
+                <ul>
+                <% @campaign.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
 
-<%= link_to 'Show', @campaign %> |
-<%= link_to 'Back', campaigns_path %>
+        <section class="left-col col-md-3 ml-auto">
+            <div class="card page-main campaign-main border-blue">
+                <div class="card-header">Campaign
+                    <div class="card-actions">
+                        <%= link_to 'Cancel', @campaign %>
+                        <%= form.submit 'Save', class: ['btn', 'btn-blue', 'btn-sm', 'text-light'] %>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <%= form.text_field :name, class: 'form-control' %><br/>
+                        <%= form.text_area :description, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>                    
+                    </div>
+                </div>
+            </div>
+            <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>
+        </section>
+
+        <section class="center-col col-md-6">
+            <div class="card">
+                <div class="card-header">Notes</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <%= form.text_area :content, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
+                    </div>
+                
+                    <% unless @notes.empty? %>
+                        <hr>
+                        <div class="notes-container">
+                        <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @campaign.id, renderer_type: 'Campaign' %>      
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-col col-md-3 mr-auto">
+            <%= render 'shared/related_right', renderer_id: @campaign.id, renderer_type: 'Campaign', locations: @locations, quests: @quests %>
+        </section>
+    </div>
+<% end %>
+

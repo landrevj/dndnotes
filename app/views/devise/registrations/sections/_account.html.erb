@@ -1,0 +1,41 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render 'devise/shared/error_messages', resource: resource %>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <%= f.label :username %>
+                <%= f.text_field :username, autofocus: true, autocomplete: "username", class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <hr>
+
+            <div class="form-group">
+                <%= f.label :change_password %>
+                <%= f.password_field :password, autocomplete: "off", placeholder: 'New password', class: 'form-control', 'aria-describedby': 'password_len' %><br>
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm new password', class: 'form-control' %><br>
+                <%= f.password_field :current_password, autocomplete: "off", placeholder: 'Confirm current password', class: 'form-control', 'aria-describedby': 'password_req' %>
+                <small id="password_req">Only needed if changing password</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+    <%= f.submit "Update", class: ['btn', 'btn-success', 'text-light'] %>
+    </div>
+<% end %>
+
+<hr>
+
+<h3 class="text-danger">Delete account</h3>
+<label>Warning! This action is permanent.</label>
+<%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: ['btn', 'btn-danger', 'text-light'] %>

@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>DnD Notes</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
+    <%= render 'shared/alerts' %>
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.username %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
-    <% end %>
-    <%= link_to "Home", root_path, :class => 'navbar-link'  %>
-    
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+      <%= render 'shared/navbar' %>
     <% end %>
     
-    <%= yield %>
+    <main role="main" class="flex-shrink-0">
+      <div class="container-fluid text-light">  
+        <%= yield %>
+      </div>
+    </main>
+
+    <%= render 'shared/footer' %>
   </body>
 </html>

@@ -1,6 +1,56 @@
-<h1>Editing Location</h1>
+<%= form_with(model: @location, local: true) do |form| %>
+    <div class="row page-layout page-layout-edit">
+        <% if @location.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
 
-<%= render 'form', location: @location %>
+                <ul>
+                <% @location.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
 
-<%= link_to 'Show', @location %> |
-<%= link_to 'Back', locations_path %>
+        <section class="left-col col-md-3 ml-auto">
+            <div class="card page-main location-main border-green">
+                <div class="card-header">Location
+                    <div class="card-actions">
+                        <%= link_to 'Cancel', @location %>
+                        <%= form.submit 'Save', class: ['btn', 'btn-green', 'btn-sm', 'text-light'] %>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <%= form.text_field :name, class: 'form-control' %><br/>
+                        <%= form.text_area :description, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>                    
+                    </div>
+                </div>
+            </div>
+            <%= render 'shared/related_left', renderer_id: @location.id, renderer_type: 'Location', campaigns: @campaigns %>
+        </section>
+
+        <section class="center-col col-md-6">
+            <div class="card">
+                <div class="card-header">Notes</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <%= form.text_area :content, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
+                    </div>
+                
+                    <% unless @notes.empty? %>
+                        <hr>
+                        <div class="notes-container">
+                            <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @location.id, renderer_type: 'Location' %>      
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </section>
+
+        <section class="right-col col-md-3 mr-auto">
+            <%= render 'shared/related_right', renderer_id: @location.id, renderer_type: 'Location', locations: @locations, quests: @quests %>
+        </section>
+    </div>
+<% end %>
+

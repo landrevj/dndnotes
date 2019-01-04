@@ -1,23 +1,41 @@
-<p>
-  <strong>Name:</strong>
-  <%= @campaign.name %>
-</p>
+<% content_for :left_column do %>
+    <div class="card page-main campaign-main border-blue">
+      <div class="card-header">Campaign
+        <div class="card-actions">
+          <%= link_to edit_campaign_path(@campaign) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+          <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title text-blue"><%= @campaign.name %></h3>
+        <%= markdown @campaign.description %>
+      </div>
+    </div>
+    
+    <%= render 'shared/related_left', renderer_id: @campaign.id, renderer_type: 'Campaign', campaigns: @campaigns %>
+    
+    <%= render 'links/form', link: @link, origin_id: @campaign.id, origin_type: 'Campaign' %>
+<% end %>
 
-<p>
-  <strong>About:</strong>
-  <%= @campaign.about %>
-</p>
+<% content_for :center_column do %>
+  <div class="card">
+    <div class="card-header">Notes</div>
+    <div class="card-body">
+      <%= markdown @campaign.content %>
+      
+      <% unless @notes.empty? %>
+        <hr>
+        <div class="notes-container">
+          <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @campaign.id, renderer_type: 'Campaign' %>      
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %> |
-<%= link_to 'Link', new_link_path(origin_id: @campaign.id, origin_type: 'Campaign') %>
+<% content_for :right_column do %>
+  <%= render 'shared/related_right', renderer_id: @campaign.id, renderer_type: 'Campaign', locations: @locations, quests: @quests %>
+<% end %>
 
-<hr>
-<%= render 'campaigns/list', campaigns: @campaign.related('campaigns'), id: @campaign.id, type: 'Campaign' %>
-<hr>
-<%= render 'locations/list', locations: @campaign.related('locations'), id: @campaign.id, type: 'Campaign' %>
-<hr>
-<%= render 'quests/list', quests: @campaign.related('quests'), id: @campaign.id, type: 'Campaign' %>
-<hr>
-<%= render 'notes/list', notes: @campaign.related('notes'), id: @campaign.id, type: 'Campaign' %>
-<hr>
