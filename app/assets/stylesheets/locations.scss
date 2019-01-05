@@ -1,25 +1,12 @@
 // Place all the styles related to the Locations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.location-main .card-actions a { 
-    color: $green !important;
-    &:hover { color: darken($green, 15%) !important; }
-}
 
-.location-card {
+.link-card.location-card {
     background: $green;
     
     &:hover {
         background: $green;
         box-shadow: 0 0 0 0.2rem rgba($green, .5);
-        // background: darken($color: $green, $amount: 7.5%)
-    }
-}
-
-.location-table {
-    thead tr { background: $green; }
-    tbody a {
-        color: $green;
-        &:hover { color: darken($green, 10%) }
     }
 }

@@ -1,5 +1,5 @@
 <% content_for :left_column do %>
-    <div class="card page-main quest-main border-indigo">
+    <div class="card page-main quest-main card-motif-indigo">
       <div class="card-header">Quest
         <div class="card-actions">
           <%= link_to edit_quest_path(@quest) do %>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="card-body">
-        <h3 class="card-title text-indigo"><%= @quest.name %></h3>
+        <h3 class="card-title"><%= @quest.name %></h3>
         <%= markdown @quest.description %>
       </div>
     </div>

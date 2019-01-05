@@ -1,5 +1,5 @@
 <% content_for :left_column do %>
-    <div class="card page-main location-main border-green">
+    <div class="card page-main location-main card-motif-green">
       <div class="card-header">Location
         <div class="card-actions">
           <%= link_to edit_location_path(@location) do %>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="card-body">
-        <h3 class="card-title text-green"><%= @location.name %></h3>
+        <h3 class="card-title"><%= @location.name %></h3>
         <%= markdown @location.description %>
       </div>
     </div>

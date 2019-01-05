@@ -13,11 +13,11 @@
         <% end %>
 
         <section class="left-col col-md-3 ml-auto">
-            <div class="card page-main quest-main border-indigo">
+            <div class="card page-main quest-main card-motif-indigo">
                 <div class="card-header">Quest
                     <div class="card-actions">
-                        <%= link_to 'Cancel', @quest %>
-                        <%= form.submit 'Save', class: ['btn', 'btn-indigo', 'btn-sm', 'text-light'] %>
+                        <%= link_to 'Cancel', @quest, class: 'cancel-link' %>
+                        <%= form.submit 'Save', class: ['btn', 'btn-sm', 'save-btn', 'text-light'] %>
                         <%= link_to 'Delete', @quest, method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 <% content_for :left_column do %>
-    <div class="card page-main campaign-main border-blue">
+    <div class="card page-main campaign-main card-motif-blue">
       <div class="card-header">Campaign
         <div class="card-actions">
           <%= link_to edit_campaign_path(@campaign) do %>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="card-body">
-        <h3 class="card-title text-blue"><%= @campaign.name %></h3>
+        <h3 class="card-title"><%= @campaign.name %></h3>
         <%= markdown @campaign.description %>
       </div>
     </div>

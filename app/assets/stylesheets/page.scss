@@ -33,17 +33,11 @@
     }
 }
 
-.card-img-overlay {
-    background: rgba(0,0,0,0.5);
-}
-
 .card.link-card { margin-bottom: 0.5rem; }
 
 .link-table {
     width: 100%;
-    thead tr {
-        background: $blue;
-    }
+    
     td, th { padding: 0.3rem 0.5rem; }
     th {
         a {

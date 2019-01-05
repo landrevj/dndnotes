@@ -69,6 +69,7 @@ $theme-colors: (
 @import "home";
 
 @import "page";
+@import "card";
 @import "campaigns";
 @import "locations";
 @import "quests";
@@ -144,7 +145,7 @@ section > .card {
 }
 
 $names: green yellow orange red pink purple indigo blue cyan teal gray;
-$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal $base01;
+$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c757d;
 @for $i from 1 through length($names) {
     $n: nth($names, $i);
     $v: nth($values, $i);
