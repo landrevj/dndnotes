@@ -1,0 +1,27 @@
+<div class="card campaigns-related card-motif-blue">
+    <div class="card-header">
+        <% if local_assigns.has_key?(:referrer_type) && referrer_type == 'Campaign' %>
+            <%= link_to 'Related', campaigns_path, class: 'index-link' %>
+        <% else%>
+            <%= link_to 'Campaigns', campaigns_path, class: 'index-link' %>
+        <% end %>
+        <div class="card-actions">
+            <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+                <%= link_to new_campaign_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-link' do %>
+                    <i class="material-icons">add</i>
+                <% end %>
+            <% else %>
+                <%= link_to new_campaign_path, class: 'new-link' do %>
+                    <i class="material-icons">add</i>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+            <%= render 'shared/list', card_type: 'link', objects: objects, referrer_id: referrer_id, referrer_type: referrer_type %>
+        <% else %>
+            <%= render 'shared/list', card_type: 'link', objects: objects %>
+        <% end %>
+    </div>
+</div>

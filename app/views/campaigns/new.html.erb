@@ -1,5 +1,12 @@
-<h1>New Campaign</h1>
-
-<%= render 'form', campaign: @campaign %>
-
-<%= link_to 'Back', campaigns_path %>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <section>
+            <div class="card">
+                <div class="card-header">New campaign...</div>
+                <div class="card-body">
+                    <%= render 'form', campaign: @campaign %>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

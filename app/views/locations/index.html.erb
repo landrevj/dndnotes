@@ -1,6 +1,12 @@
 <section class="index col-md-8 mx-auto">
-  <div class="card border-green">
-    <div class="card-header">Locations</div>
+  <div class="card card-motif-green">
+    <div class="card-header">Locations
+      <div class="card-actions">
+        <%= link_to new_location_path, class: 'new-link' do %>
+            <i class="material-icons">add</i>
+        <% end %>
+      </div>
+    </div>
     <div class="card-body">
       <%= search_form_for @q do |form| %>
         <div class='form-group'>

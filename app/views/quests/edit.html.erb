@@ -13,11 +13,12 @@
         <% end %>
 
         <section class="left-col col-md-3 ml-auto">
-            <div class="card page-main quest-main border-indigo">
+            <div class="card page-main quest-main card-motif-indigo">
                 <div class="card-header">Quest
                     <div class="card-actions">
-                        <%= link_to 'Cancel', @quest %>
-                        <%= form.submit 'Save', class: ['btn', 'btn-indigo', 'btn-sm', 'text-light'] %>
+                        <%= link_to 'Cancel', @quest, class: 'cancel-link' %>
+                        <%= form.submit 'Save', class: ['btn', 'btn-sm', 'save-btn', 'text-light'] %>
+                        <%= link_to 'Delete', @quest, method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
                     </div>
                 </div>
                 <div class="card-body">
@@ -27,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <%= render 'shared/related_left', renderer_id: @quest.id, renderer_type: 'Quest', campaigns: @campaigns %>
+            <%= render 'shared/related_left', referrer_id: @quest.id, referrer_type: 'Quest', campaigns: @campaigns %>
         </section>
 
         <section class="center-col col-md-6">
@@ -41,7 +42,7 @@
                     <% unless @notes.empty? %>
                         <hr>
                         <div class="notes-container">
-                        <%= render 'shared/list', card_type: 'full', objects: @notes, renderer_id: @quest.id, renderer_type: 'Quest' %>      
+                        <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @quest.id, referrer_type: 'Quest' %>      
                         </div>
                     <% end %>
                 </div>
@@ -49,7 +50,7 @@
         </section>
 
         <section class="right-col col-md-3 mr-auto">
-            <%= render 'shared/related_right', renderer_id: @quest.id, renderer_type: 'Quest', locations: @locations, quests: @quests %>
+            <%= render 'shared/related_right', referrer_id: @quest.id, referrer_type: 'Quest', locations: @locations, quests: @quests %>
         </section>
     </div>
 <% end %>

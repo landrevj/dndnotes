@@ -1,0 +1,30 @@
+$names: green yellow orange red pink purple indigo blue cyan teal gray;
+$values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c757d;
+@for $i from 1 through length($names) {
+    $n: nth($names, $i);
+    $v: nth($values, $i);
+    &.card-motif-#{$n} {
+        border-color: $v;  
+        .card-title { color: $v;}
+        .card-actions a {
+            color: $v;
+            &:hover { color: darken($v, 15%); }
+        }
+        thead tr {
+            background: $v;
+        }
+        tbody a {
+            color: $v;
+            &:hover { color: darken($v, 10%); }
+        }
+        .cancel-link { 
+            color: $v;
+            &:hover { color: darken($v, 15%); }
+        }
+        .save-btn { 
+            background-color: $v;
+            &:hover { background-color: darken($v, 7.5%); }
+            &:focus { box-shadow: 0 0 0 0.2rem rgba($v, .5) }
+        }
+    }
+}

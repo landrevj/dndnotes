@@ -33,6 +33,9 @@ class CampaignsController < ApplicationController
 
     respond_to do |format|
       if @campaign.save
+        if params[:referrer_id] && params[:referrer_type] 
+          @campaign.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
+        end
         format.html { redirect_to @campaign, notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }
       else
@@ -81,6 +84,6 @@ class CampaignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:name, :description, :content)
+      params.require(:campaign).permit(:name, :description, :content, :referrer_id, :referrer_type)
     end
 end

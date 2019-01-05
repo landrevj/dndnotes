@@ -1,4 +1,4 @@
-<%= form_with(model: campaign, local: true) do |form| %>
+<%= form_with(model: campaign, local: true, url: campaigns_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type])) do |form| %>
   <% if campaign.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
@@ -11,22 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %><br/>
+    <%= form.text_area :description, placeholder: 'Description', class: 'form-control' %><br/>
+    <%= form.text_area :content, placeholder: 'Content', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit 'Create', class: ['btn', 'btn-success', 'text-light'] %>
   </div>
 <% end %>

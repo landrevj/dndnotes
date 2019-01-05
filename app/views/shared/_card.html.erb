@@ -3,7 +3,7 @@
         <div class="card-body">
             <% if object.try :name %>
                 <%= object.name.truncate(100, separator: ' ') %>
-            <% else object.try :content %>
+            <% elsif object.try :content %>
                 <% if  card_type == 'full' %>
                     <%= markdown object.content %>
                 <% else %>
@@ -12,8 +12,8 @@
             <% end %>
         </div>
     <% end %>
-    <% if local_assigns.has_key?(:renderer_id) && local_assigns.has_key?(:renderer_type) %>
-        <%= link_to Link.find_link([renderer_id, renderer_type],[object.id, object.model_name.name]).first, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-unlink' do %>
+    <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+        <%= link_to Link.find_link([referrer_id, referrer_type],[object.id, object.model_name.name]).first, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-unlink' do %>
             <i class="material-icons">link_off</i>
         <% end %>
     <% end %>

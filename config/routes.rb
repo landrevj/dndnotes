@@ -21,6 +21,6 @@ Rails.application.routes.draw do
   resources :quests
   resources :locations
   resources :campaigns
-  resources :links, only: [:new, :create, :destroy]
+  resources :links, only: [:create, :destroy]
   resources :notes
 end

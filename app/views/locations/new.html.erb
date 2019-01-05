@@ -1,5 +1,12 @@
-<h1>New Location</h1>
-
-<%= render 'form', location: @location %>
-
-<%= link_to 'Back', locations_path %>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <section>
+            <div class="card">
+                <div class="card-header">New location...</div>
+                <div class="card-body">
+                    <%= render 'form', location: @location %>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

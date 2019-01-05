@@ -2,7 +2,7 @@
     .card {
         margin-bottom: 1rem;
         .card-header {
-            a {
+            .index-link, .new-link {
                 color: $font01;
                 &:hover {
                     color: $font02;
@@ -12,14 +12,14 @@
         }
     }
 
-    .card-actions {
-        position: absolute;
-        right: 1rem;
-        top: 0.8rem;
-        a:hover {
-            text-decoration: none;
-        }
-    }
+}
+
+.card-actions {
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    a:hover { text-decoration: none; }
+    .delete-btn, .delete-btn:hover { color: $font01 !important; }
 }
 
 .page-layout-edit {
@@ -33,17 +33,11 @@
     }
 }
 
-.card-img-overlay {
-    background: rgba(0,0,0,0.5);
-}
-
 .card.link-card { margin-bottom: 0.5rem; }
 
 .link-table {
     width: 100%;
-    thead tr {
-        background: $blue;
-    }
+    
     td, th { padding: 0.3rem 0.5rem; }
     th {
         a {
@@ -98,7 +92,6 @@
     &:hover { color: $red; }
 }
 
-
 .link-search-form {
     .link-current-target {
         .link-card { margin-bottom: 0; }
@@ -112,4 +105,12 @@
         }
         max-width: 275px;
     }
+}
+
+#referredNewModal {
+    .material-icons { float: right; }
+    .link-card {
+        color: $font01;
+    }
+    a:hover { text-decoration: none; }
 }

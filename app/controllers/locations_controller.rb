@@ -33,6 +33,9 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
+        if params[:referrer_id] && params[:referrer_type] 
+          @location.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
+        end
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
@@ -81,6 +84,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :description)
+      params.require(:location).permit(:name, :description, :content, :referrer_id, :referrer_type)
     end
 end

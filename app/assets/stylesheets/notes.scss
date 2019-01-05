@@ -1,6 +1,13 @@
 // Place all the styles related to the Notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.note-main {
+  .card-actions a { 
+        color: $blue !important;
+        &:hover { color: darken($blue, 15%) !important; }
+    }
+}
+
 .note-card {
   &.full-card .card-body { padding: 1.25rem; }
   
@@ -10,10 +17,4 @@
       // background: darken($color: $blue, $amount: 7.5%)
   }
   .link-unlink:hover { color: $red; }
-}
-
-.note-table {
-  td.content {
-    width: 75%;
-  }
 }
