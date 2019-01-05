@@ -12,13 +12,14 @@
         }
     }
 
-    .card-actions {
-        position: absolute;
-        right: 1rem;
-        top: 0.8rem;
-        a:hover { text-decoration: none; }
-        .delete-btn, .delete-btn:hover { color: $font01 !important; }
-    }
+}
+
+.card-actions {
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+    a:hover { text-decoration: none; }
+    .delete-btn, .delete-btn:hover { color: $font01 !important; }
 }
 
 .page-layout-edit {
