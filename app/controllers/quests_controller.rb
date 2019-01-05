@@ -33,6 +33,9 @@ class QuestsController < ApplicationController
 
     respond_to do |format|
       if @quest.save
+        if params[:referrer_id] && params[:referrer_type] 
+          @quest.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
+        end
         format.html { redirect_to @quest, notice: 'Quest was successfully created.' }
         format.json { render :show, status: :created, location: @quest }
       else
@@ -81,6 +84,6 @@ class QuestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quest_params
-      params.require(:quest).permit(:name, :description)
+      params.require(:quest).permit(:name, :description, :content, :referrer_id, :referrer_type)
     end
 end

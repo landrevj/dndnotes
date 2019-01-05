@@ -33,6 +33,9 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
+        if params[:referrer_id] && params[:referrer_type] 
+          @note.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
+        end
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
@@ -81,6 +84,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:content)
+      params.require(:note).permit(:content, :referrer_id, :referrer_type)
     end
 end

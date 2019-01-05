@@ -1,4 +1,4 @@
-<%= form_with(model: campaign, local: true) do |form| %>
+<%= form_with(model: campaign, local: true, url: campaigns_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type])) do |form| %>
   <% if campaign.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
@@ -9,11 +9,6 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <% if params[:referrer_id] && params[:referrer_type] %>
-    <%= form.hidden_field :referrer_id, value: params[:referrer_id] %>    
-    <%= form.hidden_field :referrer_type, value: params[:referrer_type] %>    
   <% end %>
 
   <div class="form-group">
