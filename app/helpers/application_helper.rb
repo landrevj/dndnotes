@@ -12,7 +12,7 @@ module ApplicationHelper
     options = {
       filter_html:     true,
       hard_wrap:       true,
-      no_images:       true,
+      no_images:       false,
       space_after_headers: true,
       safe_links_only: true,
     }
