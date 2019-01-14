@@ -26,5 +26,11 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c
             &:hover { background-color: darken($v, 7.5%); }
             &:focus { box-shadow: 0 0 0 0.2rem rgba($v, .5) }
         }
+
+        .relation-tag { color: darken($v, 20%) }
     }
 }
+
+.full-card .relation-tag { display: none; }
+
+.relation-tag { float: right; }

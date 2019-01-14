@@ -19,9 +19,9 @@
     </div>
     <div class="card-body">
         <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
-            <%= render 'shared/list', card_type: 'link', objects: objects, referrer_id: referrer_id, referrer_type: referrer_type %>
+            <%= render 'shared/list', card_type: 'link', objects: objects, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
         <% else %>
-            <%= render 'shared/list', card_type: 'link', objects: objects %>
+            <%= render 'shared/list', card_type: 'link', objects: objects, show_unlink: false %>
         <% end %>
     </div>
 </div>

@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <%= render 'shared/related_left', referrer_id: @quest.id, referrer_type: 'Quest', campaigns: @campaigns %>
+            <%= render 'shared/related_left', referrer_id: @quest.id, referrer_type: 'Quest', campaigns: @campaigns, show_unlink: true %>
         </section>
 
         <section class="center-col col-md-6">
@@ -42,7 +42,7 @@
                     <% unless @notes.empty? %>
                         <hr>
                         <div class="notes-container">
-                        <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @quest.id, referrer_type: 'Quest' %>      
+                        <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @quest.id, referrer_type: 'Quest', show_unlink: true %>      
                         </div>
                     <% end %>
                 </div>
@@ -50,7 +50,7 @@
         </section>
 
         <section class="right-col col-md-3 mr-auto">
-            <%= render 'shared/related_right', referrer_id: @quest.id, referrer_type: 'Quest', locations: @locations, quests: @quests %>
+            <%= render 'shared/related_right', referrer_id: @quest.id, referrer_type: 'Quest', locations: @locations, quests: @quests, show_unlink: true %>
         </section>
     </div>
 <% end %>

@@ -1,14 +1,14 @@
 <%= form_with(model: @note, local: true) do |form| %>
     <div class="row page-layout page-layout-edit">
         <section class="left-col col-md-3 ml-auto">    
-            <%= render 'shared/related_left', referrer_id: @note.id, referrer_type: 'Note', campaigns: @campaigns %>
+            <%= render 'shared/related_left', referrer_id: @note.id, referrer_type: 'Note', campaigns: @campaigns, show_unlink: true %>
         </section>
 
         <section class="center-col col-md-6">
-            <div class="card">
+            <div class="card note-main">
                 <div class="card-header">Note
                 <div class="card-actions">
-                    <%= link_to 'Cancel', @note %>
+                    <%= link_to 'Cancel', @note, class: 'cancel-link' %>
                     <%= form.submit 'Save', class: ['btn', 'btn-blue', 'btn-sm', 'text-light'] %>
                     <%= link_to 'Delete', @note, method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
                 </div>
@@ -18,7 +18,7 @@
                 <% unless @notes.empty? %>
                     <hr>
                     <div class="notes-container">
-                    <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @note.id, referrer_type: 'Note' %>      
+                    <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @note.id, referrer_type: 'Note', show_unlink: true %>      
                     </div>
                 <% end %>
                 </div>
@@ -26,7 +26,7 @@
         </section>
 
         <section class="right-col col-md-3 mr-auto">
-            <%= render 'shared/related_right', referrer_id: @note.id, referrer_type: 'Note', locations: @locations, quests: @quests %>
+            <%= render 'shared/related_right', referrer_id: @note.id, referrer_type: 'Note', locations: @locations, quests: @quests, show_unlink: true %>
         </section>
     </div>
 <% end %>

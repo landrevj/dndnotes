@@ -22,15 +22,14 @@
     .delete-btn, .delete-btn:hover { color: $font01 !important; }
 }
 
-.page-layout-edit {
-    .card-actions {
-        top: 0.6rem;
-        a {
-            position: relative;
-            top: 0.1rem;
-        }
-        .btn { margin-left: 0.5rem; }
+.page-layout-edit .page-main,
+.page-layout-edit .note-main {
+    .card-actions { top: 0.55rem; }
+    .cancel-link {
+        position: relative;
+        top: 0.1rem;
     }
+    .btn { margin-left: 0.5rem; }
 }
 
 .card.link-card { margin-bottom: 0.5rem; }

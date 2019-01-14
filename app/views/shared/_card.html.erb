@@ -1,3 +1,7 @@
+<% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+    <% link = Link.find_link([referrer_id, referrer_type],[object.id, object.model_name.name]).first %>
+<% end %>
+
 <div class="card <%= card_type %>-card <%= object.model_name.name.downcase %>-card">
     <%= link_to object, class: 'link-target' do %>
         <div class="card-body">
@@ -10,10 +14,23 @@
                     <%= object.content.truncate(100, separator: ' ') %>
                 <% end %>
             <% end %>
+            <% if !show_unlink && link %>
+                <div class="relation-tag">
+                    <% if object.get_relationship(referrer_id, referrer_type) == 'linkable' %>
+                        <% if link.linkable_tag != '' %>
+                            <i><%= link.linkable_tag %></i>
+                        <% end %>
+                    <% else %>
+                        <% if link.origin_tag != '' %>
+                            <i><%= link.origin_tag %></i>
+                        <% end %>
+                    <% end %>
+                </div>
+            <% end %>
         </div>
     <% end %>
-    <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
-        <%= link_to Link.find_link([referrer_id, referrer_type],[object.id, object.model_name.name]).first, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-unlink' do %>
+    <% if show_unlink && link %>
+        <%= link_to link, method: :delete, data: { confirm: 'Are you sure?' }, class: 'link-unlink' do %>
             <i class="material-icons">link_off</i>
         <% end %>
     <% end %>

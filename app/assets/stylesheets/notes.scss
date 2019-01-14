@@ -3,9 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .note-main {
   .card-actions a { 
-        color: $blue !important;
-        &:hover { color: darken($blue, 15%) !important; }
+        color: $blue;
+        &:hover { color: darken($blue, 15%); }
     }
+    .delete-btn { color: $font01 !important; }
 }
 
 .note-card {
