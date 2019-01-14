@@ -16,7 +16,7 @@
             <div class="card page-main location-main card-motif-green">
                 <div class="card-header">Location
                     <div class="card-actions">
-                        <%= link_to 'Cancel', @location, class: 'cancel-link' %>
+                        <%= link_to 'Back', @location, class: 'back-link' %>
                         <%= form.submit 'Save', class: ['btn', 'btn-sm', 'save-btn', 'text-light'] %>
                         <%= link_to 'Delete', @location, method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
                     </div>

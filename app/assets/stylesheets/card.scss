@@ -17,7 +17,7 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c
             color: $v;
             &:hover { color: darken($v, 10%); }
         }
-        .cancel-link { 
+        .back-link { 
             color: $v;
             &:hover { color: darken($v, 15%); }
         }
