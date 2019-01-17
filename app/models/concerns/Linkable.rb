@@ -38,7 +38,7 @@ module Linkable
         elsif self_id == link.linkable.id && self_type == link.linkable.model_name.name
             'linkable'
         else
-            'undefined'
+            'none'
         end
     end
 end

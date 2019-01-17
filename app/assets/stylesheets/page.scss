@@ -83,12 +83,12 @@
     a:hover { text-decoration: none; }
 }
 
-.link-unlink {
+.link-actions {
     position: absolute;
     right: 0;
     margin: 5px;
 
-    &:hover { color: $red; }
+    a:hover { color: $font02; }
 }
 
 .link-search-form {

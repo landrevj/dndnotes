@@ -24,7 +24,7 @@
       <% end %>
     </div>
   </div>
-  <%= render 'links/form', link: @link, origin_id: @note.id, origin_type: 'Note' %>
+  <%= render 'links/modal_form', link: @link, origin_id: @note.id, origin_type: 'Note' %>
   <%= render 'shared/referred_new_modal', referrer_id: @note.id, referrer_type: 'Note' %>   
 <% end %>
 
