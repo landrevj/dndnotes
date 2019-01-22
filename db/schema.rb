@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_001049) do
+ActiveRecord::Schema.define(version: 2019_01_06_082155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_01_03_001049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "origin_tag"
+    t.string "linkable_tag"
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id"
     t.index ["origin_type", "origin_id"], name: "index_links_on_origin_type_and_origin_id"
     t.index ["user_id"], name: "index_links_on_user_id"

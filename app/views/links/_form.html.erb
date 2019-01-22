@@ -1,39 +1,35 @@
-<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<%= form_with(model: @link, local: true) do |form| %>
+  <% if @link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
 
-      <%= form_with(model: link, local: true, class: 'link-search-form') do |form| %>
-        <div class="modal-body">
-          <%= form.hidden_field :origin_id, value: origin_id %>
-          <%= form.hidden_field :origin_type, value: origin_type %>
-          <%= form.hidden_field :linkable_id %>
-          <%= form.hidden_field :linkable_type %>
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <select class="custom-select" id="linkable-search-type">
-                <option selected>Type...</option>
-                <option value="campaigns">Campaigns</option>
-                <option value="locations">Locations</option>
-                <option value="quests">Quests</option>
-                <option value="notes">Notes</option>
-              </select>
-            </div>
-              <%= form.text_field :q, placeholder: 'Search', autocomplete: 'off', class: ['form-control', 'link-search'] %>
-          </div>
-          <hr>
-          <div class="link-search-results"></div>
-        </div>
-        <div class="modal-footer">
-          <div class="input-group">
-            <div class="input-group-prepend"><span class="input-group-text" id="inputGroup-sizing-sm">Target</span></div>
-            <div class="link-current-target"></div>
-          </div>
-          <%= form.submit 'Create Link', class: ['btn', 'btn-success', 'text-light'], disabled: true %>
-        </div>
+      <ul>
+      <% @link.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
+      </ul>
+    </div>
+  <% end %>
 
+  <div class="form-group row">
+    <div class="col-md-6">
+      <% if @link.origin.try :name %>
+        <%= form.label @link.origin.name.truncate(100, separator: ' '), for: :origin_tag, class: 'link_tag_label' %>
+      <% elsif @link.origin.try :content %>
+        <%= form.label @link.origin.content.truncate(500, separator: ' '), for: :origin_tag, class: 'link_tag_label' %>
+      <% end %>
+      <%= form.text_field :origin_tag, placeholder: 'Tag...', class: 'form-control', autocomplete: 'off' %>
+    </div>
+    <div class="col-md-6">
+      <% if @link.linkable.try :name %>
+        <%= form.label @link.linkable.name.truncate(100, separator: ' '), for: :linkable_tag, class: 'link_tag_label' %>
+      <% elsif @link.linkable.try :content %>
+        <%= form.label @link.linkable.content.truncate(500, separator: ' '), for: :linkable_tag, class: 'link_tag_label' %>
+      <% end %>
+      <%= form.text_field :linkable_tag, placeholder: 'Tag...', class: 'form-control', autocomplete: 'off' %>
     </div>
   </div>
-</div>
-
+  <div class="form-group">
+    <%= form.submit 'Update', class: ['btn', 'btn-success', 'text-light'] %>
+  </div>
+<% end %>

@@ -36,6 +36,8 @@ $(document).on('turbolinks:load', function () {
 // had a modal open, the modal becomes unresponsive and cant be closed.
 // This just clears them out when navigating away from a page.
 $(document).on('turbolinks:before-render', function () {
+    $('body').removeClass('modal-open').removeAttr('style');
+    $('nav').removeAttr('style');
     $(".modal.show").modal('hide').css('display', 'none');
     $(".modal-backdrop").remove();
 });

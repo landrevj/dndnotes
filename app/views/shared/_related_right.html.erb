@@ -1,7 +1,7 @@
 <% unless !local_assigns.has_key?(:locations) || locations.empty? %>
-    <%= render 'locations/card', objects: locations, referrer_id: referrer_id, referrer_type: referrer_type %>
+    <%= render 'locations/card', objects: locations, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
 <% end %>
 
 <% unless !local_assigns.has_key?(:quests) || quests.empty? %>
-    <%= render 'quests/card', objects: quests, referrer_id: referrer_id, referrer_type: referrer_type %>
+    <%= render 'quests/card', objects: quests, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
 <% end %>

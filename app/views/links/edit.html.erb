@@ -1,6 +1,12 @@
-<h1>Editing Link</h1>
-
-<%= render 'form', link: @link %>
-
-<%= link_to 'Show', @link %> |
-<%= link_to 'Back', links_path %>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <section>
+            <div class="card">
+                <div class="card-header">Edit link tags...</div>
+                <div class="card-body">
+                    <%= render 'form', link: @link %>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

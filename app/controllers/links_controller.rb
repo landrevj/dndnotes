@@ -44,7 +44,7 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'Link was successfully updated.' }
         format.json { render :show, status: :ok, location: @link }
       else
         format.html { render :edit }
@@ -71,6 +71,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:origin_id, :origin_type, :linkable_id, :linkable_type)
+      params.require(:link).permit(:origin_id, :origin_type, :origin_tag, :linkable_id, :linkable_type, :linkable_tag)
     end
 end

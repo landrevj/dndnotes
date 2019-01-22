@@ -1,7 +1,8 @@
 class Link < ApplicationRecord
   validates :origin_id, :origin_type, :linkable_id, :linkable_type, presence: true
   
-  validate :unique_link, :permissions, :not_reflexive
+  validate :unique_link, on: :create
+  validate :permissions, :not_reflexive
 
   # validates :origin, presence: true
   # validates :linkable, presence: true
