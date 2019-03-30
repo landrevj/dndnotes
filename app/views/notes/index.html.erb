@@ -1,0 +1,41 @@
+<section class="index col-md-8 mx-auto">
+  <div class="card card-motif-gray">
+    <div class="card-header">Notes
+      <div class="card-actions">
+        <%= link_to new_note_path, class: 'new-link' do %>
+            <i class="material-icons">add</i>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= search_form_for @q do |form| %>
+        <div class='form-group'>
+          <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'search' %>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <table class="table-borderless link-table note-table">
+              <thead>
+                <th><%= sort_link(@q, :name) %></th>
+                <th><%= sort_link(@q, :created_at, 'Created') %></th>
+                <th><%= sort_link(@q, :updated_at, 'Updated') %></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                    <td class="name"><%= note.name.truncate(105, separator: ' ') %></td>
+                    <td class="created"><%= time_ago_in_words note.created_at %> ago</td>
+                    <td class="updated"><%= time_ago_in_words note.updated_at %> ago</td>
+                    <td class="link"><%= link_to note do %><i class="material-icons">insert_link</i><% end %></td>
+                  </tr>
+                <% end %>
+              </thead>
+            </table>    
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

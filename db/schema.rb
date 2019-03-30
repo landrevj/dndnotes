@@ -10,39 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_045829) do
+ActiveRecord::Schema.define(version: 2019_03_30_222148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "campaigns", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.text "content"
-    t.index ["user_id"], name: "index_campaigns_on_user_id"
-  end
-
-  create_table "encounters", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.text "content"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_encounters_on_user_id"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_groups_on_user_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -60,16 +39,6 @@ ActiveRecord::Schema.define(version: 2019_03_30_045829) do
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.text "content"
-    t.index ["user_id"], name: "index_locations_on_user_id"
-  end
-
   create_table "notes", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -77,17 +46,9 @@ ActiveRecord::Schema.define(version: 2019_03_30_045829) do
     t.bigint "user_id"
     t.string "name"
     t.text "description"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_notes_on_category_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
-  end
-
-  create_table "quests", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.text "content"
-    t.index ["user_id"], name: "index_quests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,11 +70,8 @@ ActiveRecord::Schema.define(version: 2019_03_30_045829) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "campaigns", "users"
-  add_foreign_key "encounters", "users"
-  add_foreign_key "groups", "users"
+  add_foreign_key "categories", "users"
   add_foreign_key "links", "users"
-  add_foreign_key "locations", "users"
+  add_foreign_key "notes", "categories"
   add_foreign_key "notes", "users"
-  add_foreign_key "quests", "users"
 end

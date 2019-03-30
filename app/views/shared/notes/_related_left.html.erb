@@ -1,8 +1,0 @@
-<% if related[:campaigns] != nil && !related[:campaigns].empty? %>
-    <%= render 'campaigns/card', objects: related[:campaigns], referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
-<% end %>
-
-<% if related[:groups] != nil && !related[:groups].empty? %>
-    <%= render 'shared/related_list_card', type_class: Group, objects: related[:groups], path: groups_path, new_path: new_group_path,
-                                           referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
-<% end %>

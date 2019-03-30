@@ -1,33 +1,29 @@
 class NotesController < ApplicationController
-  include Relater
   before_action :set_note, only: [:show, :edit, :update, :destroy]
-  before_action -> { set_related(@note) }, only: [:show, :edit]
+  before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
-
+  
   # GET /notes
   # GET /notes.json
   def index
     @q = current_user.notes.ransack(params[:q])
     @notes = @q.result(distinct: true)
-    render 'shared/notes/index', locals: { type_class: Note, objects: @notes, new_path: new_note_path }
   end
   
   # GET /notes/1
   # GET /notes/1.json
   def show
     @link = current_user.links.build
-    render 'shared/notes/show', layout: 'page', locals: { object: @note, edit_path: edit_note_path(@note) }
+    render :show, layout: 'page'
   end
   
   # GET /notes/new
   def new
     @note = current_user.notes.build
-    render 'shared/notes/new', locals: { object: @note, url: notes_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type]) }
   end
   
   # GET /notes/1/edit
   def edit
-    render 'shared/notes/edit', locals: { object: @note }
   end
 
   # POST /notes
@@ -77,6 +73,10 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
+    end
+
+    def set_related
+      @notes = @note.related('notes')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

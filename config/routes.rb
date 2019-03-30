@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     root to: 'static_pages#home', as: :authenticated_root
   end
   root to: redirect('/login')
-
+  
   # custom routes for devise
   devise_for :users, controllers: { registrations: "registrations" }, skip: [:sessions]
   devise_scope :user do
@@ -14,15 +14,11 @@ Rails.application.routes.draw do
     post 'login', to: 'devise/sessions#create', as: :user_session
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
-
+  
   get :search, controller: :search, defaults: {format: 'json'}
-
+  
   # resources
-  resources :quests
-  resources :locations
-  resources :campaigns
+  resources :categories
   resources :links, only: [:edit, :update, :create, :destroy]
   resources :notes
-  resources :encounters
-  resources :groups
 end

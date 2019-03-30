@@ -1,6 +1,5 @@
 class Note < ApplicationRecord
     include Linkable
     belongs_to :user
-
-    MOTIF_COLOR = 'gray'
+    belongs_to :category
 end
