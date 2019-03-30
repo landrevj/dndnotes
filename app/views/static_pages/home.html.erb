@@ -34,6 +34,10 @@
                     <div class="stat-bubble bg-<%= Quest::MOTIF_COLOR %>"><%= current_user.quests.count %></div>
                 </div>
                 <div class="stat-pair">                    
+                    <div class="stat-bubble bg-<%= Group::MOTIF_COLOR %>">Groups</div>
+                    <div class="stat-bubble bg-<%= Group::MOTIF_COLOR %>"><%= current_user.groups.count %></div>
+                </div>
+                <div class="stat-pair">                    
                     <div class="stat-bubble bg-<%= Note::MOTIF_COLOR %>">Notes</div>
                     <div class="stat-bubble bg-<%= Note::MOTIF_COLOR %>"><%= current_user.notes.count %></div>
                 </div>
@@ -48,13 +52,15 @@
     <section class="center-col col-md-9">
         <div class="home-cards card-columns">
             <section>
-                <%= render 'shared/related_list_card', objects: current_user.campaigns.order(updated_at: :desc).last(5),
+                <%= render 'shared/related_list_card', type_class: Campaign, objects: current_user.campaigns.order(updated_at: :desc).last(5),
                                                        path: campaigns_path, new_path: new_campaign_path %>
-                <%= render 'shared/related_list_card', objects: current_user.locations.order(updated_at: :desc).last(5),
+                <%= render 'shared/related_list_card', type_class: Location, objects: current_user.locations.order(updated_at: :desc).last(5),
                                                        path: locations_path, new_path: new_location_path %>
-                <%= render 'shared/related_list_card', objects: current_user.quests.order(updated_at: :desc).last(5),
+                <%= render 'shared/related_list_card', type_class: Quest, objects: current_user.quests.order(updated_at: :desc).last(5),
                                                        path: quests_path, new_path: new_quest_path %>
-                <%= render 'shared/related_list_card', objects: current_user.notes.order(updated_at: :desc).last(5),
+                <%= render 'shared/related_list_card', type_class: Group, objects: current_user.groups.order(updated_at: :desc).last(5),
+                                                       path: groups_path, new_path: new_group_path %>
+                <%= render 'shared/related_list_card', type_class: Note, objects: current_user.notes.order(updated_at: :desc).last(5),
                                                        path: notes_path, new_path: new_note_path %>
             </section>
         </div>

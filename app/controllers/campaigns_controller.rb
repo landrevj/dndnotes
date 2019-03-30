@@ -8,7 +8,7 @@ class CampaignsController < ApplicationController
   def index
     @q = current_user.campaigns.ransack(params[:q])
     @campaigns = @q.result(distinct: true)
-    render 'shared/notes/index', locals: { objects: @campaigns, new_path: new_campaign_path }
+    render 'shared/notes/index', locals: { type_class: Campaign, objects: @campaigns, new_path: new_campaign_path }
   end
 
   # GET /campaigns/1
@@ -83,6 +83,7 @@ class CampaignsController < ApplicationController
       @locations = @campaign.related('locations')
       @quests = @campaign.related('quests')
       @notes = @campaign.related('notes')
+      @groups = @campaign.related('groups')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

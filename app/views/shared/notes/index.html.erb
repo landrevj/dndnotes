@@ -1,6 +1,6 @@
 <section class="index col-md-8 mx-auto">
-  <div class="card card-motif-<%= objects.first.class::MOTIF_COLOR %>">
-    <div class="card-header"><%= objects.first.model_name.name.pluralize %>
+  <div class="card card-motif-<%= type_class::MOTIF_COLOR %>">
+    <div class="card-header"><%= type_class.model_name.name.pluralize %>
       <div class="card-actions">
         <%= link_to new_path, class: 'new-link' do %>
             <i class="material-icons">add</i>
@@ -15,7 +15,7 @@
         <hr>
         <div class="row">
           <div class="col">
-            <table class="table-borderless link-table <%= objects.first.model_name.name.downcase %>-table">
+            <table class="table-borderless link-table <%= type_class.model_name.name.downcase %>-table">
               <thead>
                 <th><%= sort_link(@q, :name) %></th>
                 <th><%= sort_link(@q, :created_at, 'Created') %></th>

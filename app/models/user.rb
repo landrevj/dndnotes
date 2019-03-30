@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :quests, dependent: :destroy
+  has_many :groups, dependent: :destroy
 end

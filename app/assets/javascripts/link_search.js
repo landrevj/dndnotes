@@ -68,18 +68,19 @@ function do_search(empty_query) {
             /////////////
             // IMPORTANT: SETTING VALUE FOR HIDDEN FORM FIELD
             /////////////
-            $('.link-search-form #link_linkable_type').val(data[0].type);
+            $('.link-search-form #link_linkable_type').val(data.type.charAt(0).toUpperCase() + data.type.slice(1));
 
             // populate the search results div
-            data.forEach(e => {
-                let lower_type = data[0].type.substring(0, 1).toLowerCase() + data[0].type.substring(1, data[0].type.length);
-                $('.link-search-results').append(card(lower_type, e.text, e.id));
+            let color = data.motif_color;
+            let type = data.type;
+            data.objects.forEach(e => {
+                $('.link-search-results').append( card(color, type, e.text, e.id) );
             });
         });
     }
 }
 
 // create the html for the result link-cards
-function card(type, text, id) {
-    return "<div class=\"card link-card " + type + "-card\" data-id=\"" + id + "\"><div class=\"card-body\">" + text + "</div></div>"
+function card(color, type, text, id) {
+    return "<div class=\"card link-card " + type + "-card card-motif-" + color + "\" data-id=\"" + id + "\"><div class=\"card-body\">" + text + "</div></div>"
 }

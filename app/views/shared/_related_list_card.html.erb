@@ -1,6 +1,6 @@
-<div class="card <%= objects.first.model_name.name.downcase.pluralize %>-related card-motif-<%= objects.first.class::MOTIF_COLOR %>">
+<div class="card <%= type_class.model_name.name.downcase.pluralize %>-related card-motif-<%= type_class::MOTIF_COLOR %>">
     <div class="card-header">
-        <%= link_to objects.first.model_name.name.pluralize, path, class: 'index-link' %>
+        <%= link_to type_class.model_name.name.pluralize, path, class: 'index-link' %>
         <div class="card-actions">
             <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
                 <%= link_to new_note_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-link' do %>
@@ -14,10 +14,12 @@
         </div>
     </div>
     <div class="card-body">
-        <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
-            <%= render 'shared/list', card_type: 'link', objects: objects, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
-        <% else %>
-            <%= render 'shared/list', card_type: 'link', objects: objects, show_unlink: false %>
+        <% if objects %>
+            <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+                <%= render 'shared/list', card_type: 'link', objects: objects, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
+            <% else %>
+                <%= render 'shared/list', card_type: 'link', objects: objects, show_unlink: false %>
+            <% end %>
         <% end %>
     </div>
 </div>

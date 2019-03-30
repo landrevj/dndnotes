@@ -17,6 +17,9 @@ module Linkable
         has_many :outgoing_quests, through: :outgoing_links, source: :linkable, source_type: "Quest"
         has_many :incoming_quests, through: :incoming_links, source: :origin, source_type: "Quest"
         
+        has_many :outgoing_groups, through: :outgoing_links, source: :linkable, source_type: "Group"
+        has_many :incoming_groups, through: :incoming_links, source: :origin, source_type: "Group"
+        
         has_many :outgoing_notes, through: :outgoing_links, source: :linkable, source_type: "Note"
         has_many :incoming_notes, through: :incoming_links, source: :origin, source_type: "Note"
     end

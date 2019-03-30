@@ -8,7 +8,7 @@ class NotesController < ApplicationController
   def index
     @q = current_user.notes.ransack(params[:q])
     @notes = @q.result(distinct: true)
-    render 'shared/notes/index', locals: { objects: @notes, new_path: new_note_path }
+    render 'shared/notes/index', locals: { type_class: Note, objects: @notes, new_path: new_note_path }
   end
   
   # GET /notes/1
@@ -83,6 +83,7 @@ class NotesController < ApplicationController
       @locations = @note.related('locations')
       @quests = @note.related('quests')
       @notes = @note.related('notes')
+      @groups = @note.related('groups')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

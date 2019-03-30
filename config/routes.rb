@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :groups
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   # different roots for authenticated users

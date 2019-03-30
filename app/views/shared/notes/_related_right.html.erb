@@ -1,9 +1,9 @@
 <% if local_assigns.has_key?(:locations) && !locations.empty? %>
-    <%= render 'shared/related_list_card', objects: locations, path: locations_path, new_path: new_location_path,
+    <%= render 'shared/related_list_card', type_class: Location, objects: locations, path: locations_path, new_path: new_location_path,
                                            referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
 <% end %>
 
 <% if local_assigns.has_key?(:quests) && !quests.empty? %>
-    <%= render 'shared/related_list_card', objects: quests, path: locations_path, new_path: new_location_path,
+    <%= render 'shared/related_list_card', type_class: Quest, objects: quests, path: quests_path, new_path: new_quest_path,
                                            referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
 <% end %>
