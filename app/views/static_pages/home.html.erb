@@ -22,20 +22,20 @@
         <div class="card stats-card">
             <div class="card-body">
                 <div class="stat-pair">
-                    <div class="stat-bubble bg-blue">Campaigns</div>
-                    <div class="stat-bubble bg-blue"><%= current_user.campaigns.count %></div>
+                    <div class="stat-bubble bg-<%= Campaign::MOTIF_COLOR %>">Campaigns</div>
+                    <div class="stat-bubble bg-<%= Campaign::MOTIF_COLOR %>"><%= current_user.campaigns.count %></div>
                 </div>
                 <div class="stat-pair">
-                    <div class="stat-bubble bg-green">Locations</div>
-                    <div class="stat-bubble bg-green"><%= current_user.locations.count %></div>
+                    <div class="stat-bubble bg-<%= Location::MOTIF_COLOR %>">Locations</div>
+                    <div class="stat-bubble bg-<%= Location::MOTIF_COLOR %>"><%= current_user.locations.count %></div>
                 </div>
                 <div class="stat-pair">                    
-                    <div class="stat-bubble bg-indigo">Quests</div>
-                    <div class="stat-bubble bg-indigo"><%= current_user.quests.count %></div>
+                    <div class="stat-bubble bg-<%= Quest::MOTIF_COLOR %>">Quests</div>
+                    <div class="stat-bubble bg-<%= Quest::MOTIF_COLOR %>"><%= current_user.quests.count %></div>
                 </div>
                 <div class="stat-pair">                    
-                    <div class="stat-bubble bg-gray">Notes</div>
-                    <div class="stat-bubble bg-gray"><%= current_user.notes.count %></div>
+                    <div class="stat-bubble bg-<%= Note::MOTIF_COLOR %>">Notes</div>
+                    <div class="stat-bubble bg-<%= Note::MOTIF_COLOR %>"><%= current_user.notes.count %></div>
                 </div>
                 <div class="stat-pair">                    
                     <div class="stat-bubble bg-gray">Links</div>
@@ -48,10 +48,14 @@
     <section class="center-col col-md-9">
         <div class="home-cards card-columns">
             <section>
-                <%= render 'campaigns/card', objects: current_user.campaigns.order(updated_at: :desc).last(5) %>
-                <%= render 'locations/card', objects: current_user.locations.order(updated_at: :desc).last(5) %>
-                <%= render 'quests/card',    objects: current_user.quests.order(updated_at: :desc).last(5) %>
-                <%= render 'notes/card',     objects: current_user.notes.order(updated_at: :desc).last(5) %>
+                <%= render 'shared/related_list_card', objects: current_user.campaigns.order(updated_at: :desc).last(5),
+                                                       path: campaigns_path, new_path: new_campaign_path %>
+                <%= render 'shared/related_list_card', objects: current_user.locations.order(updated_at: :desc).last(5),
+                                                       path: locations_path, new_path: new_location_path %>
+                <%= render 'shared/related_list_card', objects: current_user.quests.order(updated_at: :desc).last(5),
+                                                       path: quests_path, new_path: new_quest_path %>
+                <%= render 'shared/related_list_card', objects: current_user.notes.order(updated_at: :desc).last(5),
+                                                       path: notes_path, new_path: new_note_path %>
             </section>
         </div>
     </section>

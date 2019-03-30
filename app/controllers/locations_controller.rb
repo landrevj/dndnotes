@@ -8,22 +8,25 @@ class LocationsController < ApplicationController
   def index
     @q = current_user.locations.ransack(params[:q])
     @locations = @q.result(distinct: true)
+    render 'shared/notes/index', locals: { objects: @locations, new_path: new_location_path }
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
     @link = current_user.links.build
-    render :show, layout: 'page'
+    render 'shared/notes/show', layout: 'page', locals: { object: @location, edit_path: edit_location_path(@location) }
   end
 
   # GET /locations/new
   def new
     @location = current_user.locations.build
+    render 'shared/notes/new', locals: { object: @location, url: locations_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type]) }
   end
 
   # GET /locations/1/edit
   def edit
+    render 'shared/notes/edit', locals: { object: @location }
   end
 
   # POST /locations

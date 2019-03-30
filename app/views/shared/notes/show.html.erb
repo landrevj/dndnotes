@@ -1,0 +1,40 @@
+<% content_for :left_column do %>
+  <div class="card page-main <%= object.model_name.name.downcase %>-main card-motif-<%= object.class::MOTIF_COLOR %>">
+    <div class="card-header"><%= object.model_name.name %>
+      <div class="card-actions">
+        <%= link_to edit_path do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+        <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
+        <a data-toggle="modal" data-target="#referredNewModal"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title"><%= object.name %></h3>
+      <%= markdown object.description %>
+    </div>
+  </div>
+  <%= render 'shared/notes/related_left', referrer_id: object.id, referrer_type: object.model_name.name, campaigns: @campaigns, show_unlink: false %>
+  <%= render 'links/modal_form', link: @link, origin_id: object.id, origin_type: object.model_name.name %>
+  <%= render 'shared/referred_new_modal', referrer_id: object.id, referrer_type: object.model_name.name %>   
+<% end %>
+
+<% content_for :center_column do %>
+  <div class="card">
+    <div class="card-header">Notes</div>
+    <div class="card-body">
+      <%= markdown object.content %>
+      
+      <% unless @notes.empty? %>
+        <hr>
+        <div class="notes-container">
+          <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false %>      
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :right_column do %>
+  <%= render 'shared/notes/related_right', referrer_id: object.id, referrer_type: object.model_name.name, locations: @locations, quests: @quests, show_unlink: false %>
+<% end %>

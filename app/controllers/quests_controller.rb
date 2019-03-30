@@ -8,22 +8,25 @@ class QuestsController < ApplicationController
   def index
     @q = current_user.quests.ransack(params[:q])
     @quests = @q.result(distinct: true)
+    render 'shared/notes/index', locals: { objects: @quests, new_path: new_quest_path }
   end
 
   # GET /quests/1
   # GET /quests/1.json
   def show
     @link = current_user.links.build
-    render :show, layout: 'page'
+    render 'shared/notes/show', layout: 'page', locals: { object: @quest, edit_path: edit_quest_path(@quest) }   
   end
 
   # GET /quests/new
   def new
     @quest = current_user.quests.build
+    render 'shared/notes/new', locals: { object: @quest, url: quests_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type]) }
   end
 
   # GET /quests/1/edit
   def edit
+    render 'shared/notes/edit', locals: { object: @quest }
   end
 
   # POST /quests

@@ -2,28 +2,31 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
-  
+
   # GET /notes
   # GET /notes.json
   def index
     @q = current_user.notes.ransack(params[:q])
     @notes = @q.result(distinct: true)
+    render 'shared/notes/index', locals: { objects: @notes, new_path: new_note_path }
   end
   
   # GET /notes/1
   # GET /notes/1.json
   def show
     @link = current_user.links.build
-    render :show, layout: 'page'
+    render 'shared/notes/show', layout: 'page', locals: { object: @note, edit_path: edit_note_path(@note) }
   end
   
   # GET /notes/new
   def new
     @note = current_user.notes.build
+    render 'shared/notes/new', locals: { object: @note, url: notes_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type]) }
   end
   
   # GET /notes/1/edit
   def edit
+    render 'shared/notes/edit', locals: { object: @note }
   end
 
   # POST /notes

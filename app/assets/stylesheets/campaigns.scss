@@ -5,11 +5,3 @@
     border-color: #6c757d !important;
 }
 
-.link-card.campaign-card {
-    background: $blue;
-    
-    &:hover {
-        background: $blue;
-        box-shadow: 0 0 0 0.2rem rgba($blue, .5);
-    }
-}

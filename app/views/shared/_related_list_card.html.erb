@@ -1,13 +1,13 @@
-<div class="card quests-related card-motif-indigo">
+<div class="card <%= objects.first.model_name.name.downcase.pluralize %>-related card-motif-<%= objects.first.class::MOTIF_COLOR %>">
     <div class="card-header">
-        <%= link_to 'Quests', quests_path, class: 'index-link' %>
+        <%= link_to objects.first.model_name.name.pluralize, path, class: 'index-link' %>
         <div class="card-actions">
             <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
-                <%= link_to new_quest_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-link' do %>
+                <%= link_to new_note_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-link' do %>
                     <i class="material-icons">add</i>
                 <% end %>
             <% else %>
-                <%= link_to new_quest_path, class: 'new-link' do %>
+                <%= link_to new_path, class: 'new-link' do %>
                     <i class="material-icons">add</i>
                 <% end %>
             <% end %>

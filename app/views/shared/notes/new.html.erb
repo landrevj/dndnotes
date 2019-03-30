@@ -2,9 +2,9 @@
     <div class="col-md-6 mx-auto">
         <section>
             <div class="card">
-                <div class="card-header">New quest...</div>
+                <div class="card-header">New <%= object.model_name.name.downcase %>...</div>
                 <div class="card-body">
-                    <%= render 'form', quest: @quest %>
+                    <%= render 'shared/notes/form', object: object, url: url %>
                 </div>
             </div>
         </section>

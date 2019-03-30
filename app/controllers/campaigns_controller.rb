@@ -8,22 +8,25 @@ class CampaignsController < ApplicationController
   def index
     @q = current_user.campaigns.ransack(params[:q])
     @campaigns = @q.result(distinct: true)
+    render 'shared/notes/index', locals: { objects: @campaigns, new_path: new_campaign_path }
   end
 
   # GET /campaigns/1
   # GET /campaigns/1.json
   def show
     @link = current_user.links.build
-    render :show, layout: 'page'
+    render 'shared/notes/show', layout: 'page', locals: { object: @campaign, edit_path: edit_campaign_path(@campaign) }
   end
 
   # GET /campaigns/new
   def new
     @campaign = current_user.campaigns.build
+    render 'shared/notes/new', locals: { object: @campaign, url: campaigns_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type]) }
   end
 
   # GET /campaigns/1/edit
   def edit
+    render 'shared/notes/edit', locals: { object: @campaign }
   end
 
   # POST /campaigns

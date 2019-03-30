@@ -1,10 +1,10 @@
-<%= form_with(model: location, local: true, url: locations_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type])) do |form| %>
-  <% if location.errors.any? %>
+<%= form_with(model: object, local: true, url: url) do |form| %>
+  <% if object.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <h2><%= pluralize(object.errors.count, "error") %> prohibited this <%= object.model_name.name %> from being saved:</h2>
 
       <ul>
-      <% location.errors.full_messages.each do |message| %>
+      <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

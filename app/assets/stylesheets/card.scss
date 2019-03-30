@@ -27,10 +27,21 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c
             &:focus { box-shadow: 0 0 0 0.2rem rgba($v, .5) }
         }
 
+        &.link-card {
+            background: $v;
+            &:hover {
+                background: $v;
+                box-shadow: 0 0 0 0.2rem rgba($v, .5);
+            }
+        }
+
         .relation-tag { color: darken($v, 20%) }
     }
 }
 
-.full-card .relation-tag { display: none; }
+.full-card {
+    border: none;
+    .relation-tag { display: none; }
+}
 
 .relation-tag { float: right; }

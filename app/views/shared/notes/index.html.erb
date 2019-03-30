@@ -1,8 +1,8 @@
 <section class="index col-md-8 mx-auto">
-  <div class="card card-motif-gray">
-    <div class="card-header">Notes
+  <div class="card card-motif-<%= objects.first.class::MOTIF_COLOR %>">
+    <div class="card-header"><%= objects.first.model_name.name.pluralize %>
       <div class="card-actions">
-        <%= link_to new_note_path, class: 'new-link' do %>
+        <%= link_to new_path, class: 'new-link' do %>
             <i class="material-icons">add</i>
         <% end %>
       </div>
@@ -15,7 +15,7 @@
         <hr>
         <div class="row">
           <div class="col">
-            <table class="table-borderless link-table note-table">
+            <table class="table-borderless link-table <%= objects.first.model_name.name.downcase %>-table">
               <thead>
                 <th><%= sort_link(@q, :name) %></th>
                 <th><%= sort_link(@q, :created_at, 'Created') %></th>
@@ -23,12 +23,12 @@
                 <th></th>
               </thead>
               <tbody>
-                <% @notes.each do |note| %>
+                <% objects.each do |object| %>
                   <tr>
-                    <td class="name"><%= note.name.truncate(105, separator: ' ') %></td>
-                    <td class="created"><%= time_ago_in_words note.created_at %> ago</td>
-                    <td class="updated"><%= time_ago_in_words note.updated_at %> ago</td>
-                    <td class="link"><%= link_to note do %><i class="material-icons">insert_link</i><% end %></td>
+                    <td class="name"><%= object.name.truncate(105, separator: ' ') %></td>
+                    <td class="created"><%= time_ago_in_words object.created_at %> ago</td>
+                    <td class="updated"><%= time_ago_in_words object.updated_at %> ago</td>
+                    <td class="link"><%= link_to object do %><i class="material-icons">insert_link</i><% end %></td>
                   </tr>
                 <% end %>
               </thead>
