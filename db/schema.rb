@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_06_082155) do
+ActiveRecord::Schema.define(version: 2019_03_29_233616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2019_01_06_082155) do
     t.bigint "user_id"
     t.text "content"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "generic_notes", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "content"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_generic_notes_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -55,6 +66,8 @@ ActiveRecord::Schema.define(version: 2019_01_06_082155) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "name"
+    t.text "description"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -88,6 +101,7 @@ ActiveRecord::Schema.define(version: 2019_01_06_082155) do
   end
 
   add_foreign_key "campaigns", "users"
+  add_foreign_key "generic_notes", "users"
   add_foreign_key "links", "users"
   add_foreign_key "locations", "users"
   add_foreign_key "notes", "users"

@@ -1,22 +1,22 @@
 <% content_for :left_column do %>
-    <div class="card page-main location-main card-motif-green">
-      <div class="card-header">Location
-        <div class="card-actions">
-          <%= link_to edit_location_path(@location) do %>
-            <i class="material-icons">edit</i>
-          <% end %>
-          <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
-          <a data-toggle="modal" data-target="#referredNewModal"><i class="material-icons">add</i></a>
-        </div>
-      </div>
-      <div class="card-body">
-        <h3 class="card-title"><%= @location.name %></h3>
-        <%= markdown @location.description %>
+  <div class="card page-main location-main card-motif-green">
+    <div class="card-header">Location
+      <div class="card-actions">
+        <%= link_to edit_location_path(@location) do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+        <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
+        <a data-toggle="modal" data-target="#referredNewModal"><i class="material-icons">add</i></a>
       </div>
     </div>
-    <%= render 'shared/related_left', referrer_id: @location.id, referrer_type: 'Location', campaigns: @campaigns, show_unlink: false %>
-    <%= render 'links/modal_form', link: @link, origin_id: @location.id, origin_type: 'Location' %>
-    <%= render 'shared/referred_new_modal', referrer_id: @location.id, referrer_type: 'Location' %>   
+    <div class="card-body">
+      <h3 class="card-title"><%= @location.name %></h3>
+      <%= markdown @location.description %>
+    </div>
+  </div>
+  <%= render 'shared/related_left', referrer_id: @location.id, referrer_type: 'Location', campaigns: @campaigns, show_unlink: false %>
+  <%= render 'links/modal_form', link: @link, origin_id: @location.id, origin_type: 'Location' %>
+  <%= render 'shared/referred_new_modal', referrer_id: @location.id, referrer_type: 'Location' %>   
 <% end %>
 
 <% content_for :center_column do %>
