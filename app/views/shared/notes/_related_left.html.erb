@@ -1,8 +1,8 @@
-<% if local_assigns.has_key?(:campaigns) && !campaigns.empty? %>
-    <%= render 'campaigns/card', objects: campaigns, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
+<% if related[:campaigns] != nil && !related[:campaigns].empty? %>
+    <%= render 'campaigns/card', objects: related[:campaigns], referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
 <% end %>
 
-<% if local_assigns.has_key?(:groups) && !groups.empty? %>
-    <%= render 'shared/related_list_card', type_class: Group, objects: groups, path: groups_path, new_path: new_group_path,
+<% if related[:groups] != nil && !related[:groups].empty? %>
+    <%= render 'shared/related_list_card', type_class: Group, objects: related[:groups], path: groups_path, new_path: new_group_path,
                                            referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
 <% end %>

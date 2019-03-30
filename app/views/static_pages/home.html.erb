@@ -38,6 +38,10 @@
                     <div class="stat-bubble bg-<%= Group::MOTIF_COLOR %>"><%= current_user.groups.count %></div>
                 </div>
                 <div class="stat-pair">                    
+                    <div class="stat-bubble bg-<%= Encounter::MOTIF_COLOR %>">Encounters</div>
+                    <div class="stat-bubble bg-<%= Encounter::MOTIF_COLOR %>"><%= current_user.encounters.count %></div>
+                </div>
+                <div class="stat-pair">                    
                     <div class="stat-bubble bg-<%= Note::MOTIF_COLOR %>">Notes</div>
                     <div class="stat-bubble bg-<%= Note::MOTIF_COLOR %>"><%= current_user.notes.count %></div>
                 </div>
@@ -60,6 +64,8 @@
                                                        path: quests_path, new_path: new_quest_path %>
                 <%= render 'shared/related_list_card', type_class: Group, objects: current_user.groups.order(updated_at: :desc).last(5),
                                                        path: groups_path, new_path: new_group_path %>
+                <%= render 'shared/related_list_card', type_class: Encounter, objects: current_user.encounters.order(updated_at: :desc).last(5),
+                                                       path: encounters_path, new_path: new_encounter_path %>
                 <%= render 'shared/related_list_card', type_class: Note, objects: current_user.notes.order(updated_at: :desc).last(5),
                                                        path: notes_path, new_path: new_note_path %>
             </section>

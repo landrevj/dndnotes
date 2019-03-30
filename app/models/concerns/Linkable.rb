@@ -20,6 +20,9 @@ module Linkable
         has_many :outgoing_groups, through: :outgoing_links, source: :linkable, source_type: "Group"
         has_many :incoming_groups, through: :incoming_links, source: :origin, source_type: "Group"
         
+        has_many :outgoing_encounters, through: :outgoing_links, source: :linkable, source_type: "Encounter"
+        has_many :incoming_encounters, through: :incoming_links, source: :origin, source_type: "Encounter"
+        
         has_many :outgoing_notes, through: :outgoing_links, source: :linkable, source_type: "Note"
         has_many :incoming_notes, through: :incoming_links, source: :origin, source_type: "Note"
     end

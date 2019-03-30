@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
+  include Relater
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-  before_action :set_related, only: [:show, :edit]
+  before_action -> { set_related(@location) }, only: [:show, :edit]  
   load_and_authorize_resource
 
   # GET /locations
@@ -77,15 +78,7 @@ class LocationsController < ApplicationController
     def set_location
       @location = Location.find(params[:id])
     end
-
-    def set_related
-      @campaigns = @location.related('campaigns')
-      @locations = @location.related('locations')
-      @quests = @location.related('quests')
-      @notes = @location.related('notes')
-      @groups = @location.related('groups')
-    end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params.require(:location).permit(:name, :description, :content, :referrer_id, :referrer_type)

@@ -40,13 +40,18 @@
 
             <div class="row">
                 <div class="col">
+                    <%= link_to new_encounter_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-bubble' do %>
+                        <div class="card link-card encounter-card card-motif-<%= Encounter::MOTIF_COLOR %>">
+                            <div class="card-body">Encounter<i class="material-icons">add</i></div>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="col">
                     <%= link_to new_note_path(referrer_id: referrer_id, referrer_type: referrer_type), class: 'new-bubble' do %>
                         <div class="card link-card note-card card-motif-<%= Note::MOTIF_COLOR %>">
                             <div class="card-body">Note<i class="material-icons">add</i></div>
                         </div>
                     <% end %>
-                </div>
-                <div class="col">
                 </div>
             </div>
 

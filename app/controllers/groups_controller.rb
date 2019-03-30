@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
+  include Relater
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :set_related, only: [:show, :edit]
+  before_action -> { set_related(@group) }, only: [:show, :edit]
   load_and_authorize_resource
 
   # GET /groups
@@ -76,14 +77,6 @@ class GroupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_group
       @group = Group.find(params[:id])
-    end
-
-    def set_related
-      @campaigns = @group.related('campaigns')
-      @locations = @group.related('locations')
-      @quests = @group.related('quests')
-      @notes = @group.related('notes')
-      @groups = @group.related('groups')
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <%= render 'shared/notes/related_left', referrer_id: object.id, referrer_type: object.model_name.name, campaigns: @campaigns, groups: @groups, show_unlink: true %>
+            <%= render 'shared/notes/related_left', referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false, related: @related %>
         </section>
 
         <section class="center-col col-md-6">
@@ -39,7 +39,7 @@
                         <%= form.text_area :content, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
                     </div>
                 
-                    <% unless @notes.empty? %>
+                    <% if @related[:notes] != nil && !@related[:notes].empty? %>
                         <hr>
                         <div class="notes-container">
                             <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: true %>      
@@ -50,7 +50,7 @@
         </section>
 
         <section class="right-col col-md-3 mr-auto">
-            <%= render 'shared/notes/related_right', referrer_id: object.id, referrer_type: object.model_name.name, locations: @locations, quests: @quests, show_unlink: true %>
+            <%= render 'shared/notes/related_right', referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false, related: @related %>
         </section>
     </div>
 <% end %>

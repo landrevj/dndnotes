@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :groups
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   # different roots for authenticated users
@@ -24,4 +23,6 @@ Rails.application.routes.draw do
   resources :campaigns
   resources :links, only: [:edit, :update, :create, :destroy]
   resources :notes
+  resources :encounters
+  resources :groups
 end

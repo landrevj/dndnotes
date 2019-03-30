@@ -12,4 +12,5 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :quests, dependent: :destroy
   has_many :groups, dependent: :destroy
+  has_many :encounters, dependent: :destroy
 end

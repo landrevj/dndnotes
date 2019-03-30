@@ -10,6 +10,7 @@ class Ability
       can :manage, Note, user_id: user.id
       can :manage, Quest, user_id: user.id
       can :manage, Group, user_id: user.id
+      can :manage, Encounter, user_id: user.id
     end
     
     # See the wiki for details:

@@ -1,7 +1,9 @@
-<% objects.each do |object| %>
-  <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
-    <%= render 'shared/card', card_type: card_type, object: object, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
-  <% else %>
-    <%= render 'shared/card', card_type: card_type, object: object, show_unlink: false %>
+<% if objects != nil %>
+  <% objects.each do |object| %>
+    <% if local_assigns.has_key?(:referrer_id) && local_assigns.has_key?(:referrer_type) %>
+      <%= render 'shared/card', card_type: card_type, object: object, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
+    <% else %>
+      <%= render 'shared/card', card_type: card_type, object: object, show_unlink: false %>
+    <% end %>
   <% end %>
 <% end %>

@@ -14,7 +14,7 @@
       <%= markdown object.description %>
     </div>
   </div>
-  <%= render 'shared/notes/related_left', referrer_id: object.id, referrer_type: object.model_name.name, campaigns: @campaigns, groups: @groups, show_unlink: false %>
+  <%= render 'shared/notes/related_left', referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false, related: @related %>
   <%= render 'links/modal_form', link: @link, origin_id: object.id, origin_type: object.model_name.name %>
   <%= render 'shared/referred_new_modal', referrer_id: object.id, referrer_type: object.model_name.name %>   
 <% end %>
@@ -25,10 +25,10 @@
     <div class="card-body">
       <%= markdown object.content %>
       
-      <% unless @notes.empty? %>
+      <% if @related[:notes] != nil && !@related[:notes].empty? %>
         <hr>
         <div class="notes-container">
-          <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false %>      
+          <%= render 'shared/list', card_type: 'full', objects: @related[:notes], referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false %>      
         </div>
       <% end %>
     </div>
@@ -36,5 +36,5 @@
 <% end %>
 
 <% content_for :right_column do %>
-  <%= render 'shared/notes/related_right', referrer_id: object.id, referrer_type: object.model_name.name, locations: @locations, quests: @quests, show_unlink: false %>
+  <%= render 'shared/notes/related_right', referrer_id: object.id, referrer_type: object.model_name.name, show_unlink: false, related: @related %>
 <% end %>
