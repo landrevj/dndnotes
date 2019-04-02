@@ -1,6 +1,6 @@
-json.motif_color @motif_color
-json.type @type_singular
-json.objects @objects do |object|
-    json.text object.name
-    json.id   object.id
+json.motif_color @category.color
+json.category_id @category.id
+json.notes @notes do |note|
+    json.text note.name
+    json.id   note.id
 end

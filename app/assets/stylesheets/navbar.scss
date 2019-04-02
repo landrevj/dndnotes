@@ -27,7 +27,7 @@
   }
 
   &:hover svg {
-      fill: $cyan;
+      fill: lighten($indigo, 25);
   }
 }
 

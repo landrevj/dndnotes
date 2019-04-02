@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   # different roots for authenticated users
   authenticated :user do
-    root to: 'static_pages#home', as: :authenticated_root
+    root to: 'categories#index', as: :authenticated_root
   end
   root to: redirect('/login')
   
@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   get :search, controller: :search, defaults: {format: 'json'}
   
   # resources
-  resources :categories
+  resources :categories do
+    resources :notes, except: [:index] 
+  end
   resources :links, only: [:edit, :update, :create, :destroy]
-  resources :notes
 end

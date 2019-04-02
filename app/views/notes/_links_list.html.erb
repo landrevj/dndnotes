@@ -1,0 +1,13 @@
+<div class="card bg-card note-main">
+  <div class="card-header">Links</div>
+  <div class="card-body">
+    <% @linked_notes.each do |category, notes| %>
+      <h3><%= category.name %></h3>
+      <% notes.each do |note| %>
+        <p>
+          <%= note.name %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

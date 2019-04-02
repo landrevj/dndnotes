@@ -1,29 +1,51 @@
-<p id="notice"><%= notice %></p>
+<div class="row page-layout">
+  <section class="left-col col-md-3 ml-auto">
+    <div class="card bg-card logo-card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <%= render 'shared/logo' %>
+          </div>
+          <div class="col-md-8">
+            <div class="row greeter">
+              <div class="col">
+                <div class="greeting">Welcome <%= current_user.username %>!</div>
+                <hr>
+                <div>Last login was <%= time_ago_in_words current_user.last_sign_in_at %> ago.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<h1>Categories</h1>
+    <div class="card bg-card stats-card">
+      <div class="card-body">
+        <% @categories.each do |category| %>
+          <% if category.id != nil %>
+            <div class="stat-pair">
+              <div class="stat-bubble bg-<%= category.color %>"><%= category.name.pluralize %></div>
+              <div class="stat-bubble bg-<%= category.color %>"><%= category.notes.count %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Color</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <section class="action-col">
+    <%= render 'button_new' %>
+  </section>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.color %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <section class="main-col col-md">
+    <div class="home-cards card-columns">
+      <% @categories.each do |category| %>
+        <% if category.id != nil %>
+          <%= render 'card', category: category, notes: category.notes.order(updated_at: :desc).first(5) %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+</div>
 
-<br>
-
-<%= link_to 'New Category', new_category_path %>
+<%= render 'new_modal', category: @category %>

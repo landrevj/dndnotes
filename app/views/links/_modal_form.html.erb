@@ -5,21 +5,13 @@
       <%= form_with(model: link, local: true, class: 'link-search-form') do |form| %>
         <div class="modal-body">
           <%= form.hidden_field :origin_id, value: origin_id %>
-          <%= form.hidden_field :origin_type, value: origin_type %>
+          <%= form.hidden_field :origin_type, value: 'Note' %>
           <%= form.hidden_field :linkable_id %>
-          <%= form.hidden_field :linkable_type %>
+          <%= form.hidden_field :linkable_type, value: 'Note' %>
 
           <div class="input-group">
             <div class="input-group-prepend">
-              <select class="custom-select" id="linkable-search-type">
-                <option selected>Type...</option>
-                <option value="campaigns">Campaigns</option>
-                <option value="locations">Locations</option>
-                <option value="quests">Quests</option>
-                <option value="groups">Groups</option>
-                <option value="encounters">Encounters</option>
-                <option value="notes">Notes</option>
-              </select>
+              <%= select_tag :categories, options_from_collection_for_select(current_user.categories, :id, :name), class: 'custom-select', id: 'linkable-search-type' %>
             </div>
               <%= form.text_field :q, placeholder: 'Search', autocomplete: 'off', class: ['form-control', 'link-search'] %>
           </div>

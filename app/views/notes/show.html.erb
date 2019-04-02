@@ -1,8 +1,8 @@
 <% content_for :left_column do %>
-  <div class="card page-main note-main card-motif-gray">
-    <div class="card-header">Note
+  <div class="card bg-card note-main card-motif-<%= @note.category.color %>">
+    <div class="card-header"><%= @note.category.name.singularize %>
       <div class="card-actions">
-        <%= link_to edit_note_path(@note) do %>
+        <%= link_to edit_category_note_path(@note) do %>
           <i class="material-icons">edit</i>
         <% end %>
         <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>
@@ -19,20 +19,21 @@
 <% end %>
 
 <% content_for :center_column do %>
-  <div class="card">
+  <div class="card bg-card">
     <div class="card-header">Notes</div>
     <div class="card-body">
       <%= markdown @note.content %>
       
-      <% unless @notes.empty? %>
+      <%# <% unless @notes.empty? %/>
         <hr>
         <div class="notes-container">
-          <%= render 'shared/list', card_type: 'full', objects: @notes, referrer_id: @note.id, referrer_type: 'Note', show_unlink: false %>      
+          <%= render 'shared/list', card_type: 'full', notes: @notes, referrer_id: @note.id, referrer_type: 'Note', show_unlink: false %/>      
         </div>
-      <% end %>
+      <% end %/> %>
     </div>
   </div>
 <% end %>
 
 <% content_for :right_column do %>
+  <%# <%= render 'links_list' %/> %>
 <% end %>

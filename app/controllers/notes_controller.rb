@@ -1,19 +1,20 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
-  before_action :set_related, only: [:show, :edit]
   load_and_authorize_resource
   
   # GET /notes
   # GET /notes.json
   def index
-    @q = current_user.notes.ransack(params[:q])
-    @notes = @q.result(distinct: true)
   end
   
   # GET /notes/1
   # GET /notes/1.json
   def show
     @link = current_user.links.build
+
+    # @linked_notes = @note.related.where('category_id IN (?)', current_user.categories.map(&:id))
+    #                      .includes(:category)
+    #                      .group_by { |n| n.category }
     render :show, layout: 'page'
   end
   
@@ -36,7 +37,7 @@ class NotesController < ApplicationController
         if params[:referrer_id] && params[:referrer_type] 
           @note.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
         end
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
+        format.html { redirect_to [@note.category, @note], notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -50,8 +51,8 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
-        format.json { render :show, status: :ok, location: @note }
+        format.html { redirect_to [@note.category, @note], notice: 'Note was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@note.category, @note] }
       else
         format.html { render :edit }
         format.json { render json: @note.errors, status: :unprocessable_entity }
@@ -62,9 +63,10 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    category = @note.category
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to category, notice: 'Note was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,12 +77,8 @@ class NotesController < ApplicationController
       @note = Note.find(params[:id])
     end
 
-    def set_related
-      @notes = @note.related('notes')
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:name, :description, :content, :referrer_id, :referrer_type)
+      params.require(:note).permit(:name, :description, :content, :referrer_id, :referrer_type, :category_id)
     end
 end

@@ -17,6 +17,8 @@ $(document).on('turbolinks:load', function () {
         do_search();
     });
 
+    do_search(true);
+
     // whenever the select changes
     $('#linkable-search-type').change(function() {
         // empty out the search bar, results div, and target div
@@ -26,8 +28,7 @@ $(document).on('turbolinks:load', function () {
         /////////////
         // IMPORTANT: REMOVING VALUES FROM HIDDEN FORM FIELDS
         /////////////
-        $('.link-search-form #link_linkable_id').val('').trigger('change');     
-        $('.link-search-form #link_linkable_type').val('');   
+        $('.link-search-form #link_linkable_id').val('').trigger('change');
     });
 
     // when the user clicks a result card
@@ -53,34 +54,28 @@ $(document).on('turbolinks:load', function () {
 // query and fill the results div
 function do_search(empty_query) {
     // grab the type from the select and the query
-    let type = $('.link-search-form #linkable-search-type').val();
+    let category_id = $('.link-search-form #linkable-search-type').val();
     let query = '';
     if (!empty_query) {
         query = $('.link-search').val();
     }
 
-    // dont search for the default value
-    if (type !== 'Type...') {
-        // query the search controller
-        $.getJSON('/search?type=' + type + '&q=' + query, (data) => {
-            // empty out the results div
-            $('.link-search-results').empty();
-            /////////////
-            // IMPORTANT: SETTING VALUE FOR HIDDEN FORM FIELD
-            /////////////
-            $('.link-search-form #link_linkable_type').val(data.type.charAt(0).toUpperCase() + data.type.slice(1));
+    // query the search controller
+    let search_path = '/search?category_id=' + category_id + '&q=' + query;
+    console.log(search_path);
+    $.getJSON(search_path, (data) => {
+        // empty out the results div
+        $('.link-search-results').empty();
 
-            // populate the search results div
-            let color = data.motif_color;
-            let type = data.type;
-            data.objects.forEach(e => {
-                $('.link-search-results').append( card(color, type, e.text, e.id) );
-            });
+        // populate the search results div
+        let color = data.motif_color;
+        data.notes.forEach(e => {
+            $('.link-search-results').append( card(color, e.text, e.id) );
         });
-    }
+    });
 }
 
 // create the html for the result link-cards
-function card(color, type, text, id) {
-    return "<div class=\"card link-card " + type + "-card card-motif-" + color + "\" data-id=\"" + id + "\"><div class=\"card-body\">" + text + "</div></div>"
+function card(color, text, id) {
+    return "<div class=\"card link-card card-motif-" + color + "\" data-id=\"" + id + "\"><div class=\"card-body\">" + text + "</div></div>"
 }

@@ -1,5 +1,5 @@
 class Link < ApplicationRecord
-  validates :origin_id, :origin_type, :linkable_id, :linkable_type, presence: true
+  validates :origin_id, :linkable_id, presence: true
   
   validate :unique_link, on: :create
   validate :permissions, :not_reflexive
@@ -13,15 +13,15 @@ class Link < ApplicationRecord
   belongs_to :user
   
   def self.find_link(one, another)
-    Link.where('origin_id = ? AND origin_type = ? AND linkable_id = ? AND linkable_type = ? OR origin_id = ? AND origin_type = ? AND linkable_id = ? AND linkable_type = ?',
-                       one[0],             one[1],         another[0],           another[1],      another[0],         another[1],             one[0],               one[1])
+    Link.where('origin_id = ? AND linkable_id = ? OR origin_id = ? AND linkable_id = ?',
+                one,              another,           another,          one)
   end
 
   private
 
   # TODO: these error when the user gives something for type that isnt a valid model
   def unique_link
-    unless Link.find_link([origin.id, origin.class.name],[linkable.id, linkable.class.name]).empty?
+    unless Link.find_link(origin.id, linkable.id).empty?
       errors.add(:Link, "already exists")
     end
   end
@@ -35,7 +35,7 @@ class Link < ApplicationRecord
   end
 
   def not_reflexive
-    if origin_id == linkable_id && origin_type == linkable_type
+    if origin.id == linkable.id
       errors.add(:Link, "cannot connect something to itself")
     end
   end

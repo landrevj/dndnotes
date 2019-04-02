@@ -1,15 +1,19 @@
 class CategoriesController < ApplicationController
+  include Colors
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = current_user.categories
+    @category = current_user.categories.build
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @q = @category.notes.ransack(params[:q])
+    @notes = @q.result(distinct: true)
   end
 
   # GET /categories/new
@@ -24,11 +28,11 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to categories_path, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }

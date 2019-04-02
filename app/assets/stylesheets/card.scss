@@ -30,7 +30,7 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c
         &.link-card {
             background: $v;
             &:hover {
-                background: $v;
+                background: darken($v, 3%);
                 box-shadow: 0 0 0 0.2rem rgba($v, .5);
             }
         }

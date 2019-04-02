@@ -13,19 +13,11 @@
 
   <div class="form-group row">
     <div class="col-md-6">
-      <% if @link.origin.try :name %>
-        <%= form.label @link.origin.name.truncate(100, separator: ' '), for: :origin_tag, class: 'link_tag_label' %>
-      <% elsif @link.origin.try :content %>
-        <%= form.label @link.origin.content.truncate(500, separator: ' '), for: :origin_tag, class: 'link_tag_label' %>
-      <% end %>
+      <%= form.label @link.origin.name.truncate(100, separator: ' '), for: :origin_tag, class: 'link_tag_label' %>
       <%= form.text_field :origin_tag, placeholder: 'Tag...', class: 'form-control', autocomplete: 'off' %>
     </div>
     <div class="col-md-6">
-      <% if @link.linkable.try :name %>
-        <%= form.label @link.linkable.name.truncate(100, separator: ' '), for: :linkable_tag, class: 'link_tag_label' %>
-      <% elsif @link.linkable.try :content %>
-        <%= form.label @link.linkable.content.truncate(500, separator: ' '), for: :linkable_tag, class: 'link_tag_label' %>
-      <% end %>
+      <%= form.label @link.linkable.name.truncate(100, separator: ' '), for: :linkable_tag, class: 'link_tag_label' %>
       <%= form.text_field :linkable_tag, placeholder: 'Tag...', class: 'form-control', autocomplete: 'off' %>
     </div>
   </div>

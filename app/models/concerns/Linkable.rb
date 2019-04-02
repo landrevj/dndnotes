@@ -13,17 +13,16 @@ module Linkable
         outgoing_links.or(incoming_links)
     end
 
-    def related(type)
-        self.send("outgoing_" + type) + self.send("incoming_" + type)
+    def related
+        outgoing_notes.merge(incoming_notes)
     end
 
-    def get_relationship(other_id, other_type)
+    def get_relationship(other_id)
         self_id = self.id
-        self_type = self.model_name.name
-        link = Link.find_link([self_id, self_type], [other_id, other_type]).first
-        if self_id == link.origin.id && self_type == link.origin.model_name.name
+        link = Link.find_link(self_id, other_id).first
+        if self_id == link.origin.id
             'origin'
-        elsif self_id == link.linkable.id && self_type == link.linkable.model_name.name
+        elsif self_id == link.linkable.id
             'linkable'
         else
             'none'

@@ -1,3 +1,32 @@
 // Place all the styles related to the Categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn-category-new {
+    $bgcolor: $blue;
+    
+    width: 40px;
+    height: 40px;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    background: $base01;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+        background: $base02;
+        // box-shadow: 0 0 0 0.2rem rgba($bgcolor, .5);
+    }
+
+    i.material-icons {
+        position: relative;
+        top: 8px;
+        left: 7.8px;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .action-col {
+        padding-left: 15px; 
+        padding-right: 15px; 
+    }
+}
