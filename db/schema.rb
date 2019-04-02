@@ -24,21 +24,6 @@ ActiveRecord::Schema.define(version: 2019_03_30_222148) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "links", force: :cascade do |t|
-    t.string "origin_type"
-    t.bigint "origin_id"
-    t.string "linkable_type"
-    t.bigint "linkable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.string "origin_tag"
-    t.string "linkable_tag"
-    t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id"
-    t.index ["origin_type", "origin_id"], name: "index_links_on_origin_type_and_origin_id"
-    t.index ["user_id"], name: "index_links_on_user_id"
-  end
-
   create_table "notes", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", null: false
@@ -71,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_03_30_222148) do
   end
 
   add_foreign_key "categories", "users"
-  add_foreign_key "links", "users"
   add_foreign_key "notes", "categories"
   add_foreign_key "notes", "users"
 end

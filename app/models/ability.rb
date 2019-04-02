@@ -5,7 +5,6 @@ class Ability
     # alias_action :update, :destroy, to: :modify
     if user.present?
       can :manage, Category, user_id: user.id
-      can :manage, Link, user_id: user.id
       can :manage, Note, user_id: user.id
     end
     

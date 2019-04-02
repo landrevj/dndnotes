@@ -10,8 +10,6 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @link = current_user.links.build
-
     # @linked_notes = @note.related.where('category_id IN (?)', current_user.categories.map(&:id))
     #                      .includes(:category)
     #                      .group_by { |n| n.category }
@@ -34,8 +32,8 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        if params[:referrer_id] && params[:referrer_type] 
-          @note.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
+        if params[:referrer_id]
+          # @note.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
         end
         format.html { redirect_to [@note.category, @note], notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
