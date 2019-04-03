@@ -14,7 +14,7 @@
 
         <section class="left-col col-md-3 ml-auto">
             <div class="card bg-card note-main card-motif-<%= @note.category.color %>">
-                <div class="card-header"><%= @note.category.name %>
+                <div class="card-header"><%= @note.category.name.singularize %>
                     <div class="card-actions">
                         <%= link_to 'Back', [@note.category, @note], class: 'back-link' %>
                         <%= form.submit 'Save', class: ['btn', 'btn-sm', 'save-btn', 'text-light'] %>
