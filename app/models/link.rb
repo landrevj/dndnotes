@@ -1,5 +1,6 @@
 class Link < ApplicationRecord
   validate :not_self_referential
+  validates :note_id, uniqueness: { scope: :linked_note_id }
 
   belongs_to :note, touch: true
   belongs_to :linked_note, class_name: 'Note'
