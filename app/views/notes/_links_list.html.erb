@@ -2,12 +2,7 @@
   <div class="card-header">Links</div>
   <div class="card-body">
     <% @linked_notes.each do |category, notes| %>
-      <h3><%= category.name %></h3>
-      <% notes.each do |note| %>
-        <p>
-          <%= note.name %>
-        </p>
-      <% end %>
+      <%= render 'categories/link_list_card', category: category, notes: notes, edit: edit %>
     <% end %>
   </div>
 </div>

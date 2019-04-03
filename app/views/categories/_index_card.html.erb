@@ -8,6 +8,14 @@
         </div>
     </div>
     <div class="card-body">
-        <%= render 'shared/list', card_type: 'link', notes: notes, show_unlink: false %>
+        <% notes.each do |note| %>
+            <div class="card link-card card-motif-<%= note.category.color %>">
+                <%= link_to [note.category, note], class: 'link-target' do %>
+                    <div class="card-body">
+                        <%= note.name.truncate(100, separator: ' ') %>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
     </div>
 </div>

@@ -21,13 +21,15 @@
 
     <div class="card bg-card stats-card">
       <div class="card-body">
-        <% @categories.each do |category| %>
-          <% if category.id != nil %>
+        <% if @categories.length > 0 %>
+          <% @categories.each do |category| %>
             <div class="stat-pair">
               <div class="stat-bubble bg-<%= category.color %>"><%= category.name.pluralize %></div>
               <div class="stat-bubble bg-<%= category.color %>"><%= category.notes.count %></div>
             </div>
           <% end %>
+        <% else %>
+          You haven't created any categories yet!
         <% end %>
       </div>
     </div>
@@ -40,9 +42,7 @@
   <section class="main-col col-md">
     <div class="home-cards card-columns">
       <% @categories.each do |category| %>
-        <% if category.id != nil %>
-          <%= render 'card', category: category, notes: category.notes.order(updated_at: :desc).first(5) %>
-        <% end %>
+        <%= render 'index_card', category: category, notes: category.notes.order(updated_at: :desc).first(5) %>
       <% end %>
     </div>
   </section>

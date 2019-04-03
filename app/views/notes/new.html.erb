@@ -2,7 +2,7 @@
     <div class="col-md-6 mx-auto">
         <section>
             <div class="card bg-card">
-                <div class="card-header">New note...</div>
+                <div class="card-header">New <%= @category_name.singularize %>...</div>
                 <div class="card-body">
                     <%= render 'form', note: @note %>
                 </div>

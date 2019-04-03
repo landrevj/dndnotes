@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   has_many :categories, dependent: :destroy
   has_many :notes, dependent: :destroy
+  has_many :links, dependent: :destroy
 end

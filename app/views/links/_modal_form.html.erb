@@ -2,30 +2,28 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
-      <%= form_with(model: link, local: true, class: 'link-search-form') do |form| %>
+      <%= form_with(model: object, local: true, class: 'link-search-form') do |form| %>
         <div class="modal-body">
-          <%= form.hidden_field :origin_id, value: origin_id %>
-          <%= form.hidden_field :origin_type, value: 'Note' %>
-          <%= form.hidden_field :linkable_id %>
-          <%= form.hidden_field :linkable_type, value: 'Note' %>
+          <%= form.hidden_field :note_id, value: @note.id %>
+          <%= form.hidden_field :linked_note_id %>
 
           <div class="input-group">
             <div class="input-group-prepend">
-              <%= select_tag :categories, options_from_collection_for_select(current_user.categories, :id, :name), class: 'custom-select', id: 'linkable-search-type' %>
+              <%= select_tag :categories, options_from_collection_for_select(current_user.categories.order(name: :asc), :id, :name), class: 'custom-select', id: 'linkable-search-type' %>
             </div>
               <%= form.text_field :q, placeholder: 'Search', autocomplete: 'off', class: ['form-control', 'link-search'] %>
           </div>
           <hr>
           <div class="link-search-results"></div>
-          <hr>
-          <div class="row">
+          <%# <hr> %>
+          <%# <div class="row">
             <div class="col">
-              <%= form.text_field :origin_tag, placeholder: 'This tag...', class: 'form-control' %>
+              <%= form.text_field :origin_tag, placeholder: 'This tag...', class: 'form-control' %/>
             </div>
             <div class="col">
-              <%= form.text_field :linkable_tag, placeholder: 'Target tag...', class: 'form-control' %>
+              <%= form.text_field :linkable_tag, placeholder: 'Target tag...', class: 'form-control' %/>
             </div>
-          </div>
+          </div> %>
         </div>
         <div class="modal-footer">
           <div class="input-group">

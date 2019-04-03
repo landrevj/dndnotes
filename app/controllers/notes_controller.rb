@@ -10,19 +10,20 @@ class NotesController < ApplicationController
   # GET /notes/1
   # GET /notes/1.json
   def show
-    # @linked_notes = @note.related.where('category_id IN (?)', current_user.categories.map(&:id))
-    #                      .includes(:category)
-    #                      .group_by { |n| n.category }
+    @linked_notes = @note.all_linked_notes.group_by { |n| n.category }.sort_by { |c, n| c.name }
+    @link = current_user.links.build
     render :show, layout: 'page'
   end
   
   # GET /notes/new
   def new
+    @category_name = current_user.categories.find(params[:category_id]).name
     @note = current_user.notes.build
   end
   
   # GET /notes/1/edit
   def edit
+    @linked_notes = @note.all_linked_notes.group_by { |n| n.category }.sort_by { |c, n| c.name }
   end
 
   # POST /notes
@@ -33,7 +34,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         if params[:referrer_id]
-          # @note.incoming_links.build(origin_id: params[:referrer_id], origin_type: params[:referrer_type], user_id: current_user.id).save
+          @note.links.build(linked_note_id: params[:referrer_id], user_id: current_user.id).save
         end
         format.html { redirect_to [@note.category, @note], notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
@@ -77,6 +78,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:name, :description, :content, :referrer_id, :referrer_type, :category_id)
+      params.require(:note).permit(:name, :description, :content, :referrer_id, :category_id)
     end
 end
