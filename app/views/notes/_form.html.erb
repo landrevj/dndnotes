@@ -1,4 +1,4 @@
-<%= form_with(model: note, local: true, url: notes_path(referrer_id: params[:referrer_id], referrer_type: params[:referrer_type])) do |form| %>
+<%= form_with(model: note, local: true, url: category_notes_path(referrer_id: params[:referrer_id])) do |form| %>
   <% if note.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
@@ -12,8 +12,12 @@
   <% end %>
 
   <div class="form-group">
+    <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %><br/>
+    <%= form.text_area :description, placeholder: 'Description', class: 'form-control' %><br/>
     <%= form.text_area :content, placeholder: 'Content', class: 'form-control' %>
   </div>
+
+  <%= form.hidden_field :category_id, value: params[:category_id] %>
 
   <div class="form-group">
     <%= form.submit 'Create', class: ['btn', 'btn-success', 'text-light'] %>

@@ -1,3 +1,0 @@
-<% unless !local_assigns.has_key?(:campaigns) || campaigns.empty? %>
-    <%= render 'campaigns/card', objects: campaigns, referrer_id: referrer_id, referrer_type: referrer_type, show_unlink: show_unlink %>
-<% end %>

@@ -10,44 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_06_082155) do
+ActiveRecord::Schema.define(version: 2019_04_02_063212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "campaigns", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.text "content"
-    t.index ["user_id"], name: "index_campaigns_on_user_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
-    t.string "origin_type"
-    t.bigint "origin_id"
-    t.string "linkable_type"
-    t.bigint "linkable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "note_id"
+    t.bigint "linked_note_id"
     t.bigint "user_id"
-    t.string "origin_tag"
-    t.string "linkable_tag"
-    t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable_type_and_linkable_id"
-    t.index ["origin_type", "origin_id"], name: "index_links_on_origin_type_and_origin_id"
+    t.index ["linked_note_id"], name: "index_links_on_linked_note_id"
+    t.index ["note_id", "linked_note_id"], name: "index_links_on_note_id_and_linked_note_id", unique: true
+    t.index ["note_id"], name: "index_links_on_note_id"
     t.index ["user_id"], name: "index_links_on_user_id"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.text "content"
-    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -55,17 +41,11 @@ ActiveRecord::Schema.define(version: 2019_01_06_082155) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_notes_on_user_id"
-  end
-
-  create_table "quests", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.text "content"
-    t.index ["user_id"], name: "index_quests_on_user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_notes_on_category_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,9 +67,8 @@ ActiveRecord::Schema.define(version: 2019_01_06_082155) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "campaigns", "users"
+  add_foreign_key "categories", "users"
   add_foreign_key "links", "users"
-  add_foreign_key "locations", "users"
+  add_foreign_key "notes", "categories"
   add_foreign_key "notes", "users"
-  add_foreign_key "quests", "users"
 end

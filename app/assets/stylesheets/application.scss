@@ -17,9 +17,9 @@ $purple:  #9F5ED1;
 $pink:    #D66799;
 $red:     #D05353;
 $orange:  #DC7C54;
-$yellow:  #E0E07E;
+$yellow:  #ceca5a;//#E0E07E;
 $green:   #87AF5F;
-$teal:    #4CDCCF;
+$teal:    #61ad9b;
 $cyan:    #4CB1DC;
 $white:   #E8E8E8;
 
@@ -68,13 +68,9 @@ $theme-colors: (
 @import "login";
 @import "home";
 
+@import "categories";
 @import "page";
 @import "card";
-@import "campaigns";
-@import "locations";
-@import "quests";
-@import "notes";
-@import "links";
 
 .material-icons { user-select: none; }
 
@@ -146,7 +142,7 @@ footer {
   bottom: 1rem;
 }
 
-section > .card {
+.bg-card {
   background: $base03;
 }
 
@@ -224,7 +220,6 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
   transition: .4s;
   border-radius: 50%;
 
@@ -238,11 +233,17 @@ input:checked + .slider:before {
   transform: translateX(15px);
 }
 
-.custom-select,
-.input-group-text {
+.custom-select {
   background-color: lighten($base01, 5%);
   color: $font01;
   border: 0;
 }
 
 .custom-select:focus { box-shadow: 0 0 0 0.2rem rgba($blue, .5); }
+
+
+.input-group-text { 
+  background-color: $base01;
+  border-color: $base01;
+  color: #fff;
+}

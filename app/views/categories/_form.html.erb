@@ -1,0 +1,25 @@
+<%= form_with(model: category, local: true) do |form| %>
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.text_field :name, placeholder: 'New category name', class: 'form-control' %><br/>
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Color</div>
+      </div>
+      <%= form.select :color, Colors::LIST, {}, { class: 'custom-select' } %>
+    </div>
+  </div>
+
+  <%= form.submit 'Save', class: ['btn', 'btn-success', 'text-light'] %>
+<% end %>

@@ -24,13 +24,41 @@ $values: $green $yellow $orange $red $pink $purple $indigo $blue $cyan $teal #6c
         .save-btn { 
             background-color: $v;
             &:hover { background-color: darken($v, 7.5%); }
-            &:focus { box-shadow: 0 0 0 0.2rem rgba($v, .5) }
+            &:focus { box-shadow: 0 0 0 0.2rem rgba($v, .5); }
+        }
+
+        &.link-card {
+            background: $v;
+            &:hover {
+                background: darken($v, 3%);
+                box-shadow: 0 0 0 0.2rem rgba($v, .5);
+            }
         }
 
         .relation-tag { color: darken($v, 20%) }
     }
+    .category-link-list.motif-#{$n} {
+        .title-container a {
+            color: $v;
+            &:hover { color: darken($v, 15%); }
+        }
+        .linked-note-card {
+            background: $v;
+            &:hover {
+                background: darken($v, 3%);
+                box-shadow: 0 0 0 0.2rem rgba($v, .5);
+            }
+
+        }
+        .linked-note-actions i {
+            background: $v;
+        }
+    }
 }
 
-.full-card .relation-tag { display: none; }
+.full-card {
+    border: none;
+    .relation-tag { display: none; }
+}
 
 .relation-tag { float: right; }

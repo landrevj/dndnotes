@@ -2,7 +2,7 @@
     .card {
         margin-bottom: 1rem;
         .card-header {
-            .index-link, .new-link {
+            .index-link, .title-link {
                 color: $font01;
                 &:hover {
                     color: $font02;
@@ -22,7 +22,14 @@
     .delete-btn, .delete-btn:hover { color: $font01 !important; }
 }
 
-.page-layout-edit .page-main,
+.card-actions-divider {
+    display: inline-block;
+    width: 1px;
+    height: 24px;
+    margin: 0 5px;
+    background-color: $base01;
+}
+
 .page-layout-edit .note-main {
     .card-actions { top: 0.55rem; }
     .back-link {
@@ -49,6 +56,7 @@
     }
     tr {
         background: $base02;
+        .name a:hover { text-decoration: none; }
         &:nth-child(even) { background: darken($base02, 5%); }
     }
     td.content, td.name {
@@ -58,8 +66,7 @@
 
 .link-card {
     border: 0;
-    background: $base01;
-    transition: background 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 
     .card-body {
@@ -68,10 +75,7 @@
 
     a { color: $font01; }
 
-    &:hover {
-        background: $base02;
-        a { text-decoration: none; }
-    }
+    &:hover a {text-decoration: none; }
 }
 
 .full-card {

@@ -1,0 +1,87 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn-category-new {
+    $bgcolor: $blue;
+    
+    width: 40px;
+    height: 40px;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    background: $base01;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+        background: $base02;
+        // box-shadow: 0 0 0 0.2rem rgba($bgcolor, .5);
+    }
+
+    i.material-icons {
+        position: relative;
+        top: 8px;
+        left: 7.8px;
+    }
+}
+
+.category-link-list {
+    .title-container {
+        display: flex;
+        .title { 
+            flex-grow: 1;
+            a:hover { text-decoration: none; }
+        }
+    }
+
+    .category-link-list-card {
+        background: $base01;
+        border: none;
+        padding: 0.5rem 0.8rem;
+
+        .linked-note-row {
+            & + .linked-note-row { margin-top: 0.25rem; }
+            display: flex;
+
+            .linked-note-link {
+                flex-grow: 1;
+                &:hover { text-decoration: none; }
+            }
+
+            .linked-note-card {
+                padding: 0 0.5rem;
+            }
+
+            .linked-note-actions { 
+                height: 0;
+                opacity: 0.4;
+                transition: opacity 0.15s ease-in-out;
+                &:hover { opacity: 0.7;}
+            }
+
+            .linked-note-card,
+            .linked-note-actions i {
+                border-radius: 0.25rem;
+                
+                transition: background 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                
+                color: white;
+            }
+
+            .linked-note-actions a {
+                margin-left: 0.25rem;
+                i { 
+                    font-size: 1.35em;
+                    padding: 0.1rem;
+                }
+                &:hover { text-decoration: none; }
+            }
+        }
+}
+}
+
+@include media-breakpoint-down(sm) {
+    .action-col {
+        padding-left: 15px; 
+        padding-right: 15px; 
+    }
+}

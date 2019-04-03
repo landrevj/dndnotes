@@ -1,9 +1,6 @@
-json.array!(@objects) do |object|
-    if @name
-        json.text object.name
-    else
-        json.text object.content
-    end
-    json.type object.model_name.name
-    json.id   object.id
+json.motif_color @category.color
+json.category_id @category.id
+json.notes @notes do |note|
+    json.text note.name
+    json.id   note.id
 end

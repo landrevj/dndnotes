@@ -1,0 +1,21 @@
+<div class="card bg-card category-index-card card-motif-<%= category.color %>">
+    <div class="card-header">
+        <%= link_to category.name.pluralize, category, class: 'title-link' %>
+        <div class="card-actions">
+            <%= link_to new_category_note_path(category) do %>
+                <i class="material-icons">add</i>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <% notes.each do |note| %>
+            <div class="card link-card card-motif-<%= note.category.color %>">
+                <%= link_to [note.category, note], class: 'link-target' do %>
+                    <div class="card-body">
+                        <%= note.name.truncate(100, separator: ' ') %>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>

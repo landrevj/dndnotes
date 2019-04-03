@@ -1,0 +1,8 @@
+<div class="card bg-card note-main">
+  <div class="card-header">Links</div>
+  <div class="card-body">
+    <% @linked_notes.each do |category, notes| %>
+      <%= render 'categories/link_list_card', category: category, notes: notes, edit: edit %>
+    <% end %>
+  </div>
+</div>
