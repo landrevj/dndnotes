@@ -5,6 +5,7 @@
         <%= render 'shared/logo' %>
     <% end %>
 
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,14 +22,20 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <% if current_user.admin? %>
+                        <%= link_to rails_admin.dashboard_path, class: ['icon-link', 'text-primary', 'dropdown-item'] do %>
+                            <i class="material-icons">dashboard</i>
+                            <div class="icon-text">Dashboard</div>
+                        <% end %>
+                        <div class="dropdown-divider"></div>
+                    <%end%>
                     <%= link_to edit_user_registration_path, class: ['icon-link', 'text-primary', 'dropdown-item'] do %>
                         <i class="material-icons">vertical_split</i>
-                        <div class="icon-text">account</div>
+                        <div class="icon-text">Account</div>
                     <% end %>
-                    <%# <div class="dropdown-divider"></div> %>
                     <%= link_to destroy_user_session_path, method: :delete, class: ['icon-link', 'text-danger', 'dropdown-item'] do %>
                         <i class="material-icons">logout</i>
-                        <div class="icon-text">logout</div>
+                        <div class="icon-text">Logout</div>
                     <% end %>
                 </div>
             </li>
