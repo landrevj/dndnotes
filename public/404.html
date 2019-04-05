@@ -1,67 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>404</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+  html, body { height: 100%; }
+  .error-page { display: flex; justify-content: center; align-items: center; margin: 0; color: #E8E8E8; font-family: 'Open Sans', arial, sans-serif; background-color: #313131; }
+  
+  .dialog { width: 75%; max-width: 55rem; }
+  .human-response { margin: 32px 0; }
+  .cause { font-size: 5rem; margin: 32px 0; }
+  .explanation { text-align: justify; }
+  .documentation { display: flex; margin: 25px 0;  font-size: 2rem; font-style: italic; }
+  .rfc { flex-grow: 1; color: inherit; text-decoration: none; transition: color 0.2s; }
+  .rfc:hover { color: #A9A598; }
+  .error-code { flex-grow: 1; text-align: right; }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+  hr.rainbow { border: 0; height: 5px; background: -moz-linear-gradient(left, #87AF5F 0%, #87AF5F 12.5%, #CECA5A 12.5%, #CECA5A 25%, #DC7C54 25%, #DC7C54 37.5%, #D05353 37.5%, #D05353 50%, #9F5ED1 50%, #9F5ED1 62.5%, #7B53DF 62.5%, #7B53DF 75%, #4084D6 75%, #4084D6 87.5%, #4CB1DC 87.5%, #4CB1DC 87.5%, #4CB1DC 100%); background: -webkit-linear-gradient(left, #87AF5F 0%, #87AF5F 12.5%, #CECA5A 12.5%, #CECA5A 25%, #DC7C54 25%, #DC7C54 37.5%, #D05353 37.5%, #D05353 50%, #9F5ED1 50%, #9F5ED1 62.5%, #7B53DF 62.5%, #7B53DF 75%, #4084D6 75%, #4084D6 87.5%, #4CB1DC 87.5%, #4CB1DC 87.5%, #4CB1DC 100%); background: -o-linear-gradient(left, #87AF5F 0%, #87AF5F 12.5%, #CECA5A 12.5%, #CECA5A 25%, #DC7C54 25%, #DC7C54 37.5%, #D05353 37.5%, #D05353 50%, #9F5ED1 50%, #9F5ED1 62.5%, #7B53DF 62.5%, #7B53DF 75%, #4084D6 75%, #4084D6 87.5%, #4CB1DC 87.5%, #4CB1DC 87.5%, #4CB1DC 100%); background: -ms-linear-gradient(left, #87AF5F 0%, #87AF5F 12.5%, #CECA5A 12.5%, #CECA5A 25%, #DC7C54 25%, #DC7C54 37.5%, #D05353 37.5%, #D05353 50%, #9F5ED1 50%, #9F5ED1 62.5%, #7B53DF 62.5%, #7B53DF 75%, #4084D6 75%, #4084D6 87.5%, #4CB1DC 87.5%, #4CB1DC 87.5%, #4CB1DC 100%); background: linear-gradient(to right, #87AF5F 0%, #87AF5F 12.5%, #CECA5A 12.5%, #CECA5A 25%, #DC7C54 25%, #DC7C54 37.5%, #D05353 37.5%, #D05353 50%, #9F5ED1 50%, #9F5ED1 62.5%, #7B53DF 62.5%, #7B53DF 75%, #4084D6 75%, #4084D6 87.5%, #4CB1DC 87.5%, #4CB1DC 87.5%, #4CB1DC 100%); }
+  
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body class="error-page">
   <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+    <div class="human-response">
+      <h1 class="cause">Not Found</h1>
+      <p class="explanation">
+        The 404 (Not Found) status code indicates that the origin server did not find a current representation for the target resource
+        or is not willing to disclose that one exists. A 404 status code does not indicate whether this lack of representation is
+        temporary or permanent; the 410 (Gone) status code is preferred over 404 if the origin server knows, presumably through some
+        configurable means, that the condition is likely to be permanent.
+      </p>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+    <hr class="rainbow">
+    <div class="documentation">
+      <a class="rfc" href="https://tools.ietf.org/html/rfc7231#section-6.5.4">RFC 7231, Section 6.5.4</a>
+      <div class="error-code">404</div>
+    </div>
   </div>
 </body>
 </html>
