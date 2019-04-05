@@ -17,7 +17,6 @@ class NotesController < ApplicationController
   
   # GET /notes/new
   def new
-    @category_name = current_user.categories.find(params[:category_id]).name
     @note = current_user.notes.build
   end
   
