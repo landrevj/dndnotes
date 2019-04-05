@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     resources :notes, except: [:index] 
   end
   # resources :links
-  resources :links, only: [:edit, :update, :create, :destroy]
+  resources :links, only: [:update, :create, :destroy]
 end

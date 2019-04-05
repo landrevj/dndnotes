@@ -52,18 +52,13 @@ So, here we are.
 "
 ### Features
 ---
-This site basically allows for quick and dirty wiki creation. You can add pages of various types then link them together \
-so you can quickly see any content related to the page you are looking at.
+This site basically allows for quick and dirty wiki creation.
 
-The distinct page types currently supported currently are:
+You create different categories of things which you want to keep track of - campaigns, locations, items, etc. - \
+then link them together. This allows for you to quickly see all related content to the thing you are looking at.
 
-* Campaigns
-* Locations
-* Quests
-
-If you need some other page type that isn't currently supported you can make a generic 'Note' page. All page types support markdown \
-in the bigger text field (usually called 'description' or something) and you can use that to make tables and stuff, idk. \
-(You can also open a feature request on Github, or make a pull request yourself.)
+This site is still pretty early on in development, so if there is a feature you would like to see implemented, please \
+submit a feature request on the GitHub repo linked below.
 "
 )%>
     </div>
@@ -72,12 +67,11 @@ in the bigger text field (usually called 'description' or something) and you can
 "
 ### Screenshots!
 ---
-*screenshots here*
-*screenshots here*
-*screenshots here*
-*screenshots here*
-"
-)%>
+")%>
+      <div class="screenshots-container">
+        <%= image_tag 'screenshot-1.png'%>
+        <%= image_tag 'screenshot-2.png'%>
+      </div>
     </div>
     <div class="technical">
       <%= markdown( 
@@ -85,14 +79,14 @@ in the bigger text field (usually called 'description' or something) and you can
 ### Technical Details
 ---
 I'm about to list out a bunch of stuff here but if you really want to dig through how things work go check out \
-the [GitHub repo](https://github.com/landrevj/dndnotes) and tell me everything I'm doing wrong.
+the [GitHub repo](https://github.com/landrevj/dndnotes).
 
 #### Frameworks
 This site runs on [Ruby on Rails 5.2.2](https://github.com/rails/rails/releases/tag/v5.2.2) using [Ruby](https://www.ruby-lang.org/en/downloads) 2.5.3. \
 I am also using [Bootstrap](https://getbootstrap.com/) for styling structure.
 #### Accounts
-Given recent issues handling privacy in tech stuff (and me not caring to figure it out myself) I used the [Devise](https://github.com/plataformatec/devise) gem, \
-so you can go yell at them if something happens.
+The [Devise](https://github.com/plataformatec/devise) gem is used here to handle user accounts. This made it easier for me to get things \
+up and running quickly and will likely provide more security features than I would have the know-how to implement.
 #### Other Gems Used
 
 * [CanCanCan](https://github.com/CanCanCommunity/cancancan) for authorization
@@ -101,6 +95,8 @@ so you can go yell at them if something happens.
 * [Rouge](https://github.com/jneen/rouge) for code highlighting
   * I really don't know why I installed this for a DnD site, but maybe your character dreams in C# or something and wants to keep a dream journal
   * This can still be used to make distinct looking sections of text so w/e
+
+The exact list of gems used can be found [here](https://github.com/landrevj/dndnotes/blob/master/Gemfile).
 "
 )%>
     </div>

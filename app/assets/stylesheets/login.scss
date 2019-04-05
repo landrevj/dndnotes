@@ -61,6 +61,14 @@
 
 .screenshots {
     background: $indigo;
+
+    .screenshots-container {
+        display: flex;
+        align-items: center;
+
+        img { max-width: 49%; }
+        img + img { margin-left: 2%; }
+    }
 }
 
 .technical {
