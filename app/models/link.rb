@@ -5,6 +5,7 @@ class Link < ApplicationRecord
   validate :not_self_referential
   validates :note_id, uniqueness: { scope: :linked_note_id }
 
+  belongs_to :user
   belongs_to :note, touch: true
   belongs_to :linked_note, class_name: 'Note'
 
@@ -20,7 +21,7 @@ class Link < ApplicationRecord
   end
 
   def create_inverse_relationship
-    linked_note.links.create(linked_note: note)
+    linked_note.links.create(linked_note: note, user: note.user)
   end
 
   def destroy_inverse_relationship
