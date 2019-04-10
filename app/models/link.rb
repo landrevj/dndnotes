@@ -1,4 +1,7 @@
 class Link < ApplicationRecord
+  after_create :create_inverse_relationship
+  after_destroy :destroy_inverse_relationship
+
   validate :not_self_referential
   validates :note_id, uniqueness: { scope: :linked_note_id }
 
@@ -14,5 +17,14 @@ class Link < ApplicationRecord
   def not_self_referential
     return unless note_id == linked_note_id
     errors.add :link, 'cannot be self-referential.'
+  end
+
+  def create_inverse_relationship
+    linked_note.links.create(linked_note: note)
+  end
+
+  def destroy_inverse_relationship
+    link = linked_note.links.find_by(linked_note: note)
+    link.destroy if link
   end
 end
