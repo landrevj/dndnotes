@@ -1,28 +1,28 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
-  
+
   # GET /notes
   # GET /notes.json
   def index
   end
-  
+
   # GET /notes/1
   # GET /notes/1.json
   def show
-    @linked_notes = @note.all_linked_notes.group_by { |n| n.category }.sort_by { |c, n| c.name }
+    @linked_notes = @note.linked_notes.group_by(&:category).sort_by { |c, _| c.name }
     @link = current_user.links.build
     render :show, layout: 'page'
   end
-  
+
   # GET /notes/new
   def new
     @note = current_user.notes.build
   end
-  
+
   # GET /notes/1/edit
   def edit
-    @linked_notes = @note.all_linked_notes.group_by { |n| n.category }.sort_by { |c, n| c.name }
+    @linked_notes = @note.linked_notes.group_by(&:category).sort_by { |c, _| c.name }
   end
 
   # POST /notes
@@ -70,13 +70,14 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def note_params
-      params.require(:note).permit(:name, :description, :content, :referrer_id, :category_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def note_params
+    params.require(:note).permit(:name, :description, :content, :referrer_id, :category_id)
+  end
 end
