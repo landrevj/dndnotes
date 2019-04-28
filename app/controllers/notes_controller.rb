@@ -22,7 +22,6 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
-    console
     @linked_notes = @note.linked_notes.group_by(&:category).sort_by { |c, _| c.name }
   end
 
