@@ -14,10 +14,17 @@
 
 }
 
+.card-header {
+    display: flex;
+    flex-direction: row;
+
+    .form-group { margin-bottom: 0; }
+}
+
+.flexbox-spacer { flex-grow: 1; }
+
 .card-actions {
-    position: absolute;
-    right: 1rem;
-    top: 0.8rem;
+    height: 0;
     a:hover { text-decoration: none; }
     .delete-btn, .delete-btn:hover { color: $font01 !important; }
 }
@@ -31,7 +38,7 @@
 }
 
 .page-layout-edit .note-main {
-    .card-actions { top: 0.55rem; }
+    // .card-actions { top: 0.55rem; }
     .back-link {
         position: relative;
         top: 0.1rem;

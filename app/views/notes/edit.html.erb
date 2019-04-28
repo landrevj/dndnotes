@@ -14,7 +14,11 @@
 
         <section class="left-col col-md-3 ml-auto">
             <div class="card bg-card note-main card-motif-<%= @note.category.color %>">
-                <div class="card-header"><%= @note.category.name.singularize %>
+                <div class="card-header">
+                    <div class="form-group" style="margin-bottom:0">
+                        <%= form.select :category_id, options_from_collection_for_select(current_user.categories.order(name: :asc), :id, :name, selected: params[:category_id]), { }, { class: 'custom-select' } %>
+                    </div>
+                    <div class="flexbox-spacer"></div>
                     <div class="card-actions">
                         <%= link_to 'Back', [@note.category, @note], class: 'back-link' %>
                         <%= form.submit 'Save', class: ['btn', 'btn-sm', 'save-btn', 'text-light'] %>

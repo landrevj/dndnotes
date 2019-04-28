@@ -1,6 +1,7 @@
 <div class="card bg-card category-index-card card-motif-<%= category.color %>">
     <div class="card-header">
         <%= link_to category.name.pluralize, category, class: 'title-link' %>
+        <div class="flexbox-spacer"></div>
         <div class="card-actions">
             <%= link_to new_category_note_path(category) do %>
                 <i class="material-icons">add</i>
