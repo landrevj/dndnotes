@@ -1,8 +1,9 @@
 <% content_for :left_column do %>
   <div class="card bg-card note-main card-motif-<%= @note.category.color %>">
     <div class="card-header"><%= @note.category.name.singularize %>
+      <div class="flexbox-spacer"></div>
       <div class="card-actions">
-        <%= link_to edit_category_note_path(@note) do %>
+        <%= link_to edit_category_note_path(@note.category, @note) do %>
           <i class="material-icons">edit</i>
         <% end %>
         <a data-toggle="modal" data-target="#linkModal"><i class="material-icons">insert_link</i></a>

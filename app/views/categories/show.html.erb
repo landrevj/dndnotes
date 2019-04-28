@@ -1,6 +1,7 @@
 <section class="index col-md-8 mx-auto">
   <div class="card bg-card card-motif-<%= @category.color %>">
     <div class="card-header"><%= @category.name.pluralize %>
+      <div class="flexbox-spacer"></div>
       <div class="card-actions">
         <%= link_to edit_category_path(@category) do %>
           <i class="material-icons">edit</i>
@@ -17,7 +18,7 @@
     <div class="card-body">
       <%= search_form_for @q, url: category_path(@category) do |form| %>
         <div class='form-group'>
-          <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'search' %>
+          <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'Search' %>
         </div>
         <hr>
         <div class="row">
