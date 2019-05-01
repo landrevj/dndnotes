@@ -1,4 +1,4 @@
-<%= form_with(model: [@note.category, @note], local: true) do |form| %>
+<%= form_with(model: [@note.category.workspace, @note.category, @note], local: true) do |form| %>
     <div class="row page-layout page-layout-edit">
         <% if @note.errors.any? %>
             <div id="error_explanation">
@@ -20,9 +20,9 @@
                     </div>
                     <div class="flexbox-spacer"></div>
                     <div class="card-actions">
-                        <%= link_to 'Back', [@note.category, @note], class: 'back-link' %>
+                        <%= link_to 'Back', [@note.category.workspace, @note.category, @note], class: 'back-link' %>
                         <%= form.submit 'Save', class: ['btn', 'btn-sm', 'save-btn', 'text-light'] %>
-                        <%= link_to 'Delete', [@note.category, @note], method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
+                        <%= link_to 'Delete', [@note.category.workspace, @note.category, @note], method: :delete, data: { confirm: 'Are you sure?' }, class: ['btn', 'btn-red', 'btn-sm', 'delete-btn'] %>
                     </div>
                 </div>
                 <div class="card-body">
@@ -41,13 +41,6 @@
                     <div class="form-group">
                         <%= form.text_area :content, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
                     </div>
-                
-                    <%# <% unless @notes.empty? %/>
-                        <hr>
-                        <div class="notes-container">
-                            <%= render 'shared/list', card_type: 'full', notes: @notes, referrer_id: @note.id, referrer_type: 'Note', show_unlink: true %/>      
-                        </div>
-                    <% end %/> %>
                 </div>
             </div>
         </section>

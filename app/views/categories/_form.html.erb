@@ -1,4 +1,4 @@
-<%= form_with(model: category, local: true) do |form| %>
+<%= form_with(model: [workspace, category], local: true) do |form| %>
   <% if category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
@@ -20,6 +20,8 @@
       <%= form.select :color, Category::COLORS, {}, { class: 'custom-select' } %>
     </div>
   </div>
+
+  <%= form.hidden_field :workspace_id, value: workspace.id %>
 
   <%= form.submit 'Save', class: ['btn', 'btn-success', 'text-light'] %>
 <% end %>
