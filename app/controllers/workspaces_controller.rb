@@ -1,10 +1,15 @@
 class WorkspacesController < ApplicationController
-  before_action :set_workspace, only: [:edit, :update, :destroy]
+  before_action :set_workspace, only: [:activate, :edit, :update, :destroy]
   load_and_authorize_resource
 
   def active
     @workspace = current_user.workspaces.find_by(active: true)
     @category = current_user.categories.build
+  end
+
+  def activate
+    activate_workspace(@workspace)
+    redirect_to root_path
   end
 
   def edit
@@ -17,6 +22,7 @@ class WorkspacesController < ApplicationController
 
     respond_to do |format|
       if @workspace.save
+        activate_workspace(@workspace)
         format.html { redirect_to root_path, notice: 'Workspace was successfully created.' }
         format.json { render :index, status: :created, location: @workspace }
       else
@@ -44,6 +50,7 @@ class WorkspacesController < ApplicationController
   # DELETE /workspaces/1.json
   def destroy
     @workspace.destroy
+    current_user.workspaces.first.update(active: true)
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Workspace was successfully destroyed.' }
       format.json { head :no_content }
@@ -59,6 +66,11 @@ class WorkspacesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def workspace_params
-    params.require(:workspace).permit(:name, :active)
+    params.require(:workspace).permit(:name)
+  end
+
+  def activate_workspace(workspace)
+    current_user.workspaces.where(active: true).update_all(active: false)
+    workspace.update(active: true)
   end
 end

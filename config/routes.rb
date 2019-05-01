@@ -23,9 +23,13 @@ Rails.application.routes.draw do
       resources :notes, except: [:index]
     end
   end
-
-  resource :workspace, only: [:active] do
-    get :active, on: :member
+  
+  resource :workspace, only: [:active, :activate] do
+    member do
+      get :active
+      patch :activate
+      put :activate
+    end
   end
 
   # resources :links

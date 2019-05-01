@@ -30,7 +30,9 @@
       </div>
       <div class="card-body">
         <div class="workspace-selector-group">
-          <%= select_tag :workspace, options_from_collection_for_select(current_user.workspaces.order(name: :asc), :id, :name, selected: @workspace.id), class: 'custom-select', id: 'active-workspace' %>
+          <%= form_tag(activate_workspace_path, method: 'patch', class: 'workspace-activate-form') do %>
+            <%= select_tag :id, options_from_collection_for_select(current_user.workspaces.order(name: :asc), :id, :name, selected: @workspace.id), class: ['custom-select', 'workspace-select'], id: 'active-workspace' %>
+          <% end %>
           <%= link_to edit_workspace_path(@workspace) do %>
             <div class="btn-workspace-action">
               <i class="material-icons">edit</i>
