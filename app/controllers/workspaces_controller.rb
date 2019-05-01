@@ -7,6 +7,9 @@ class WorkspacesController < ApplicationController
     @category = current_user.categories.build
   end
 
+  def edit
+  end
+
   # POST /workspaces
   # POST /workspaces.json
   def create
@@ -14,7 +17,7 @@ class WorkspacesController < ApplicationController
 
     respond_to do |format|
       if @workspace.save
-        format.html { redirect_to workspaces_path, notice: 'Workspace was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Workspace was successfully created.' }
         format.json { render :index, status: :created, location: @workspace }
       else
         format.html { render :new }
@@ -28,7 +31,7 @@ class WorkspacesController < ApplicationController
   def update
     respond_to do |format|
       if @workspace.update(workspace_params)
-        format.html { redirect_to @workspace, notice: 'Workspace was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Workspace was successfully updated.' }
         format.json { render :show, status: :ok, location: @workspace }
       else
         format.html { render :edit }
@@ -42,7 +45,7 @@ class WorkspacesController < ApplicationController
   def destroy
     @workspace.destroy
     respond_to do |format|
-      format.html { redirect_to workspaces_url, notice: 'Workspace was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Workspace was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

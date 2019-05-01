@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get :search, controller: :search, defaults: { format: 'json' }
 
   # resources
-  resources :workspaces, only: [:update, :create, :destroy] do
+  resources :workspaces, only: [:edit, :update, :create, :destroy] do
     resources :categories, except: [:index] do
       resources :notes, except: [:index]
     end

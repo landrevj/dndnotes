@@ -1,0 +1,19 @@
+<%= form_with(model: workspace, local: true) do |form| %>
+  <% if workspace.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(workspace.errors.count, "error") %> prohibited this workspace from being saved:</h2>
+
+      <ul>
+      <% workspace.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.text_field :name, placeholder: 'New workspace name', class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Save', class: ['btn', 'btn-success', 'text-light'] %>
+<% end %>
