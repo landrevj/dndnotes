@@ -6,7 +6,12 @@ So, here we are.
 ## Features
 This site basically allows for quick and dirty wiki creation.
 
-You create different categories of things which you want to keep track of - campaigns, locations, items, etc. - then link them together. This allows for you to quickly see all related content to the thing you are looking at.
+You can create:
+
+* Notes - Shocker, I know. These consist of a name, description, and general content. The last two of these are Markdown enabled. 
+* Links - These connect Notes and allow you to quickly denote and navigate related content.
+* Categories - These contain the Notes.
+* Workspaces - These contain Categories. Categories which belong to a workspace do not show up in others. The UI for creating links does not permit linking notes from different categories. This allows you to have multiple isolated spaces to work in without things getting cluttered.
 
 This site is still pretty early on in development, so if there is a feature you would like to see implemented, please submit a feature request.
 
