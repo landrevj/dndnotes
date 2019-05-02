@@ -1,9 +1,9 @@
 <div class="card bg-card category-index-card card-motif-<%= category.color %>">
     <div class="card-header">
-        <%= link_to category.name.pluralize, category, class: 'title-link' %>
+        <%= link_to category.name.pluralize, [category.workspace, category], class: 'title-link' %>
         <div class="flexbox-spacer"></div>
         <div class="card-actions">
-            <%= link_to new_category_note_path(category) do %>
+            <%= link_to new_workspace_category_note_path(category.workspace, category) do %>
                 <i class="material-icons">add</i>
             <% end %>
         </div>
@@ -11,7 +11,7 @@
     <div class="card-body">
         <% notes.each do |note| %>
             <div class="card link-card card-motif-<%= note.category.color %>">
-                <%= link_to [note.category, note], class: 'link-target' do %>
+                <%= link_to [note.category.workspace, note.category, note], class: 'link-target' do %>
                     <div class="card-body">
                         <%= note.name.truncate(100, separator: ' ') %>
                     </div>

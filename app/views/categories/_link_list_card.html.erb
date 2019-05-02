@@ -1,13 +1,13 @@
 <div class="category-link-list motif-<%= category.color %>">
   <div class="title-container">
-    <div class="title"><%= link_to category.name, category %></div>
-    <div class="actions"><%= link_to new_category_note_path(category, referrer_id: params[:id]) do %><i class="material-icons">add</i><% end %></div>
+    <div class="title"><%= link_to category.name, [category.workspace, category] %></div>
+    <div class="actions"><%= link_to new_workspace_category_note_path(category.workspace, category, referrer_id: params[:id]) do %><i class="material-icons">add</i><% end %></div>
   </div>
   <div class="card category-link-list-card">
 
     <% notes.each do |note| %>
       <div class="linked-note-row">
-        <%= link_to [note.category, note], class: 'linked-note-link' do %><div class="linked-note-card link-card"><%= note.name %></div><%end%>
+        <%= link_to [note.category.workspace, note.category, note], class: 'linked-note-link' do %><div class="linked-note-card link-card"><%= note.name %></div><%end%>
         <% if edit == true %>
           <div class="linked-note-actions">
             <%= link_to Link.find_link(note.id, params[:id].to_i), method: :delete, data: { confirm: 'Are you sure?' }, class: 'unlink' do %>

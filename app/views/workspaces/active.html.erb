@@ -1,0 +1,80 @@
+<div class="row page-layout">
+  <section class="left-col col-md-3 ml-auto">
+    <div class="card bg-card logo-card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <%= render 'shared/logo' %>
+          </div>
+          <div class="col-md-8">
+            <div class="row greeter">
+              <div class="col">
+                <div class="greeting">Welcome <%= current_user.username %>!</div>
+                <hr>
+                <div>Last login was <%= time_ago_in_words current_user.last_sign_in_at %> ago.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-card workspace-selector">
+      <div class="card-header">Workspace
+        <div class="flexbox-spacer"></div>
+        <div class="card-actions">
+          <a data-toggle="modal" data-target="#newWorkspaceModal">
+            <i class="material-icons">add</i>
+          </a>           
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="workspace-selector-group">
+          <%= form_tag(activate_workspace_path, method: 'patch', class: 'workspace-activate-form') do %>
+            <%= select_tag :id, options_from_collection_for_select(current_user.workspaces.order(name: :asc), :id, :name, selected: @workspace.id), class: ['custom-select', 'workspace-select'], id: 'active-workspace' %>
+          <% end %>
+          <%= link_to edit_workspace_path(@workspace) do %>
+            <div class="btn-workspace-action">
+              <i class="material-icons">edit</i>
+            </div>
+          <% end %>
+          <% if current_user.workspaces.count > 1 %>
+            <%= link_to @workspace, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <div class="btn-workspace-action">
+                <i class="material-icons">delete</i>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <hr>
+
+        <% if @workspace.categories.length > 0 %>
+          <% @workspace.categories.each do |category| %>
+            <div class="stat-pair">
+              <div class="stat-bubble bg-<%= category.color %>"><%= category.name.pluralize %></div>
+              <div class="stat-bubble bg-<%= category.color %>"><%= category.notes.count %></div>
+            </div>
+          <% end %>
+        <% else %>
+          You haven't created any categories yet!
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <section class="action-col">
+    <%= render 'categories/button_new' %>
+  </section>
+
+  <section class="main-col col-md">
+    <div class="home-cards card-columns">
+      <% @workspace.categories.each do |category| %>
+        <%= render 'categories/index_card', category: category, notes: category.notes.order(updated_at: :desc).first(5) %>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+<%= render 'new_modal', workspace: current_user.workspaces.build %>
+<%= render 'categories/new_modal', workspace: @workspace, category: @category %>

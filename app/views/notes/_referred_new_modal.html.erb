@@ -5,8 +5,8 @@
             <h3>Create and link...</h3>
             <hr>
 
-            <% current_user.categories.order(name: :asc).each do |category| %>
-              <%= link_to new_category_note_path(category, referrer_id: params[:id]) do %>
+            <% current_user.active_workspace.categories.order(name: :asc).each do |category| %>
+              <%= link_to new_workspace_category_note_path(category.workspace, category, referrer_id: params[:id]) do %>
                 <div class="card link-card card-motif-<%= category.color %>">
                   <div class="card-body"><%= category.name.singularize %><i class="material-icons">add</i></div>
                 </div>

@@ -3,8 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .btn-category-new {
-    $bgcolor: $blue;
-    
     width: 40px;
     height: 40px;
     border-radius: 0.25rem;
@@ -14,7 +12,6 @@
 
     &:hover {
         background: $base02;
-        // box-shadow: 0 0 0 0.2rem rgba($bgcolor, .5);
     }
 
     i.material-icons {

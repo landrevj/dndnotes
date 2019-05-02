@@ -1,0 +1,35 @@
+// Place all the styles related to the Workspace controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.workspace-selector {
+  .card-actions a:hover {
+    color: #cbd3da;
+  }
+}
+
+.workspace-selector-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.workspace-activate-form { display: contents; }
+
+.btn-workspace-action {
+  min-width: 38px;
+  height: 38px;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem;
+  background: lighten($base01, 5%);;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover {
+    background: $base01;
+  }
+  
+  i.material-icons {
+    position: relative;
+    top: 8px;
+    left: 7px;
+    color: #f8f9fa;
+  }
+}

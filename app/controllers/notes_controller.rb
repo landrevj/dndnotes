@@ -35,7 +35,7 @@ class NotesController < ApplicationController
         if params[:referrer_id]
           @note.links.build(linked_note_id: params[:referrer_id], user_id: current_user.id).save
         end
-        format.html { redirect_to [@note.category, @note], notice: 'Note was successfully created.' }
+        format.html { redirect_to [@note.category.workspace, @note.category, @note], notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to [@note.category, @note], notice: 'Note was successfully updated.' }
+        format.html { redirect_to [@note.category.workspace, @note.category, @note], notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: [@note.category, @note] }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class NotesController < ApplicationController
     category = @note.category
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to category, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to [category.workspace, category], notice: 'Note was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

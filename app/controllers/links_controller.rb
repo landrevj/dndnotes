@@ -13,7 +13,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to [@link.note.category, @link.note], notice: 'Link was successfully created.' }
+        format.html { redirect_to [@link.note.category.workspace, @link.note.category, @link.note], notice: 'Link was successfully created.' }
         format.json { render :show, status: :created, location: @link }
       else
         flash[:alert] = "Could not create link."
@@ -28,8 +28,8 @@ class LinksController < ApplicationController
   def update
     respond_to do |format|
       if @link.update(link_params)
-        format.html { redirect_to [@link.note.category, @link.note], notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@link.note.category, @link.note] }
+        format.html { redirect_to [@link.note.category.workspace, @link.note.category, @link.note], notice: 'Link was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@link.note.category.workspace, @link.note.category, @link.note] }
       else
         format.html { render :edit }
         format.json { render json: @link.errors, status: :unprocessable_entity }
@@ -41,15 +41,15 @@ class LinksController < ApplicationController
   # DELETE /links/1.json
   def destroy
     note = @link.note
-    category = note.category
     @link.destroy
     respond_to do |format|
-      format.html { redirect_to [category, note], notice: 'Link was successfully destroyed.' }
+      format.html { redirect_to [note.category.workspace, note.category, note], notice: 'Link was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_link
     @link = Link.find(params[:id])

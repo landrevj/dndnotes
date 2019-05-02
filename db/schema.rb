@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_001607) do
+ActiveRecord::Schema.define(version: 2019_04_28_214653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2019_04_10_001607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "workspace_id"
     t.index ["user_id"], name: "index_categories_on_user_id"
+    t.index ["workspace_id"], name: "index_categories_on_workspace_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -66,8 +68,19 @@ ActiveRecord::Schema.define(version: 2019_04_10_001607) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "workspaces", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active"
+    t.index ["user_id"], name: "index_workspaces_on_user_id"
+  end
+
   add_foreign_key "categories", "users"
+  add_foreign_key "categories", "workspaces"
   add_foreign_key "links", "users"
   add_foreign_key "notes", "categories"
   add_foreign_key "notes", "users"
+  add_foreign_key "workspaces", "users"
 end
