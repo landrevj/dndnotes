@@ -11,5 +11,5 @@ You create different categories of things which you want to keep track of - camp
 This site is still pretty early on in development, so if there is a feature you would like to see implemented, please submit a feature request.
 
 ## Screenshots
-![Home Page](https://raw.githubusercontent.com/landrevj/dndnotes/master/app/assets/images/screenshot-1.png)
-![Example Page](https://raw.githubusercontent.com/landrevj/dndnotes/master/app/assets/images/screenshot-2.png)
+![Home Page](https://raw.githubusercontent.com/landrevj/dndnotes/master/app/assets/images/screenshot-1.jpg)
+![Example Page](https://raw.githubusercontent.com/landrevj/dndnotes/master/app/assets/images/screenshot-2.jpg)
