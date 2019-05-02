@@ -9,7 +9,7 @@
 
           <div class="input-group">
             <div class="input-group-prepend">
-              <%= select_tag :categories, options_from_collection_for_select(current_user.categories.order(name: :asc), :id, :name), class: 'custom-select', id: 'linkable-search-type' %>
+              <%= select_tag :categories, options_from_collection_for_select(current_user.active_workspace.categories.order(name: :asc), :id, :name), class: 'custom-select', id: 'linkable-search-type' %>
             </div>
               <%= form.text_field :q, placeholder: 'Search', autocomplete: 'off', class: ['form-control', 'link-search'] %>
           </div>
