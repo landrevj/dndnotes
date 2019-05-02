@@ -49,11 +49,15 @@ class WorkspacesController < ApplicationController
   # DELETE /workspaces/1
   # DELETE /workspaces/1.json
   def destroy
-    @workspace.destroy
-    current_user.workspaces.first.update(active: true)
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Workspace was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.workspaces.count > 1
+      @workspace.destroy
+      current_user.workspaces.first.update(active: true)
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Workspace was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, notice: 'You must have at least one workspace.'
     end
   end
 

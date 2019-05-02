@@ -38,10 +38,12 @@
               <i class="material-icons">edit</i>
             </div>
           <% end %>
-          <%= link_to @workspace, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <div class="btn-workspace-action">
-              <i class="material-icons">delete</i>
-            </div>
+          <% if current_user.workspaces.count > 1 %>
+            <%= link_to @workspace, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <div class="btn-workspace-action">
+                <i class="material-icons">delete</i>
+              </div>
+            <% end %>
           <% end %>
         </div>
 
