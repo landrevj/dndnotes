@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :links, dependent: :destroy
 
+  has_one :active_workspace, -> { where(active: true) }, class_name: 'Workspace'
+
   private
 
   def create_deafult_workspace

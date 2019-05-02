@@ -3,7 +3,7 @@ class WorkspacesController < ApplicationController
   load_and_authorize_resource
 
   def active
-    @workspace = current_user.workspaces.find_by(active: true)
+    @workspace = current_user.active_workspace
     @category = current_user.categories.build
   end
 
@@ -70,7 +70,7 @@ class WorkspacesController < ApplicationController
   end
 
   def activate_workspace(workspace)
-    current_user.workspaces.where(active: true).update_all(active: false)
+    current_user.active_workspace.update(active: false)
     workspace.update(active: true)
   end
 end
