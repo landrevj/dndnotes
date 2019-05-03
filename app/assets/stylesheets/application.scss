@@ -248,3 +248,12 @@ input:checked + .slider:before {
   border-color: $base01;
   color: #fff;
 }
+
+.back-arrow-link {
+  position: absolute;
+  left: -20px;
+  top: 13px;
+  color: $font03;
+
+  &:hover { color: $font02; }
+}

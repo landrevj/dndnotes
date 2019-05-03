@@ -50,12 +50,14 @@
         <hr>
 
         <% if @workspace.categories.length > 0 %>
-          <% @workspace.categories.order(name: :asc).each do |category| %>
-            <div class="stat-pair">
-              <div class="stat-bubble bg-<%= category.color %>"><%= category.name.pluralize %></div>
-              <div class="stat-bubble bg-<%= category.color %>"><%= category.notes.count %></div>
-            </div>
-          <% end %>
+          <div class="stat-bubble-container">
+            <% @workspace.categories.order(name: :asc).each do |category| %>
+              <div class="stat-pair">
+                <div class="stat-bubble bg-<%= category.color %>"><%= category.name.pluralize %></div>
+                <div class="stat-bubble bg-<%= category.color %>"><%= category.notes.count %></div>
+              </div>
+            <% end %>
+          </div>
         <% else %>
           You haven't created any categories yet!
         <% end %>
