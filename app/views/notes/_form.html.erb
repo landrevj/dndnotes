@@ -1,15 +1,5 @@
 <%= form_with(model: note, local: true, url: workspace_category_notes_path(referrer_id: params[:referrer_id])) do |form| %>
-  <% if note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
-
-      <ul>
-      <% note.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'devise/shared/error_messages', resource: note %>
 
   <div class="form-group">
     <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %><br/>
