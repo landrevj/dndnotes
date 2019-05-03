@@ -235,9 +235,9 @@ input:checked + .slider:before {
 }
 
 .custom-select {
-  background-color: lighten($base01, 5%);
   color: $font01;
   border: 0;
+  background: lighten($base01, 5%) url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23e8e8e8' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
 }
 
 .custom-select:focus { box-shadow: 0 0 0 0.2rem rgba($blue, .5); }
