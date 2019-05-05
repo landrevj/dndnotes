@@ -3,7 +3,7 @@ class SearchController < ApplicationController
     respond_to do |format|
       format.html {
         @q = current_user.active_workspace.notes.ransack(params[:q])
-        @notes = @q.result(distinct: true).limit(10)
+        @notes = @q.result(distinct: true)
       }
       format.json {
         if params.key?(:category_id)
