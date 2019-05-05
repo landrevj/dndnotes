@@ -18,7 +18,7 @@
     <div class="card-body">
       <%= search_form_for @q, url: workspace_category_path(@category.workspace, @category) do |form| %>
         <div class='form-group'>
-          <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'Search' %>
+          <%= form.search_field :name_or_description_or_content_cont, class: 'form-control', placeholder: 'Search', autocomplete: 'off' %>
         </div>
         <hr>
         <div class="row">

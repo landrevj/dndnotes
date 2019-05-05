@@ -2,7 +2,7 @@
   <%= render 'devise/shared/error_messages', resource: workspace %>
 
   <div class="form-group">
-    <%= form.text_field :name, placeholder: 'New workspace name', class: 'form-control' %>
+    <%= form.text_field :name, placeholder: 'New workspace name', class: 'form-control', autocomplete: 'off' %>
   </div>
 
   <%= form.submit 'Save', class: ['btn', 'btn-success', 'text-light'] %>
