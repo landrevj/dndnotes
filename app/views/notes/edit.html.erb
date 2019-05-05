@@ -27,8 +27,8 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <%= form.text_field :name, class: 'form-control' %><br/>
-                        <%= form.text_area :description, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>                    
+                        <%= form.text_field :name, placeholder: 'Name', class: 'form-control', autocomplete: 'off' %><br/>
+                        <%= form.text_area :description, placeholder: 'Description', oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>                    
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <div class="card-header">Notes</div>
                 <div class="card-body">
                     <div class="form-group">
-                        <%= form.text_area :content, oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
+                        <%= form.text_area :content, placeholder: 'Content', oninput:'this.style.height = "";this.style.height = this.scrollHeight + "px"', class: 'form-control' %>
                     </div>
                 </div>
             </div>

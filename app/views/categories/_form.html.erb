@@ -2,7 +2,7 @@
   <%= render 'devise/shared/error_messages', resource: category %>
 
   <div class="form-group">
-    <%= form.text_field :name, placeholder: 'New category name', class: 'form-control' %><br/>
+    <%= form.text_field :name, placeholder: 'New category name', class: 'form-control', autocomplete: 'off' %><br/>
     <div class="input-group mb-2 mr-sm-2">
       <div class="input-group-prepend">
         <div class="input-group-text">Color</div>

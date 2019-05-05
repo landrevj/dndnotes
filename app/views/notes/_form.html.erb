@@ -2,7 +2,7 @@
   <%= render 'devise/shared/error_messages', resource: note %>
 
   <div class="form-group">
-    <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %><br/>
+    <%= form.text_field :name, placeholder: 'Name', class: 'form-control', autocomplete: 'off' %><br/>
     <%= form.text_area :description, placeholder: 'Description', class: 'form-control' %><br/>
     <%= form.text_area :content, placeholder: 'Content', class: 'form-control' %>
   </div>
