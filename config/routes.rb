@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  get :search, controller: :search, defaults: { format: 'json' }
+  get :search, controller: :search
 
   # resources
   resources :workspaces, only: [:edit, :update, :create, :destroy] do

@@ -234,6 +234,26 @@ input:checked + .slider:before {
   transform: translateX(15px);
 }
 
+.site-search {
+  flex-grow: 1;
+  .site-search-bar {
+    &:focus {
+      background: $base03;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+.navbar-toggler {
+  margin-left: 1rem;
+}
+
+.user-dropdown {
+  margin-left: 0.5rem;
+  flex-grow: 0;
+}
+
 .custom-select {
   color: $font01;
   border: 0;
@@ -241,7 +261,6 @@ input:checked + .slider:before {
 }
 
 .custom-select:focus { box-shadow: 0 0 0 0.2rem rgba($blue, .5); }
-
 
 .input-group-text { 
   background-color: $base01;
