@@ -84,6 +84,14 @@
     &:hover a {text-decoration: none; }
 }
 
+.inline-link-card {
+    color: white;
+    border-radius: 0.25rem;
+    padding: 0 0.5rem;
+    transition: background 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:hover { color: white; text-decoration: none; }
+}
+
 .full-card {
     background: $base01;
     a { color: $font01; }
