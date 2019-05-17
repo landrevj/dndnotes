@@ -11,7 +11,7 @@ module ApplicationHelper
       if link =~ /^(http)|^\//i
         "<a href=\"#{link}\" title=\"#{title}\">#{content}</a>"
       else
-        return nil unless note = Note.find_by(id: link.match(/^note:(\d+)/i)[1])
+        return nil unless note = Note.find_by(id: link.match(/^note:(.+)/i)[1])
         if content.blank?
           "<a class=\"inline-link-card card-motif-#{note.category.color}\" href=\"#{Rails.application.routes.url_helpers.workspace_category_note_path(note.category.workspace, note.category, note)}\" >#{note.name}</a>"
         else
