@@ -44,7 +44,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 # Use Redcarpet for markdown support
-gem 'redcarpet', '~> 3.4'
+gem 'redcarpet', '~> 3.5'
 # Use Rouge for code highlighting
 gem 'rouge', '~> 3.3'
 #################################
